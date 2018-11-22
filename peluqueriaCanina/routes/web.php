@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+
+
+//Rutas que pasaran por el controlador is_admin
+Route::group(['middleware' => 'is_admin'], function () {
+    Route::get('/admin', 'AdminController@admin')->name('admin');
+
+});
