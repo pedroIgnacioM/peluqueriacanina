@@ -15,6 +15,8 @@ class CreateReservaProductosTable extends Migration
     {
         Schema::create('reserva_productos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('estado');
+            $table->string('cantidad');
             $table->timestamps();
         });
         Schema::table('reserva_productos', function (Blueprint $table) {
