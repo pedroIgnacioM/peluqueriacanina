@@ -24,3 +24,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
