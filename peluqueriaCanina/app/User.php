@@ -18,7 +18,20 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    protected $primaryKey = 'id';
 
+    public function mascota(){
+        return $this->hasMany('App\mascota');
+    }
+    public function reservaCita(){
+        return $this->hasMany('App\reservaCita');
+    }
+    public function reservaProducto(){
+        return $this->hasMany('App\reservaProducto');
+    }
+    public function corteFavorito(){
+        return $this->hasMany('App\corteFavorito');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
