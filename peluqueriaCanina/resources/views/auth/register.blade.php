@@ -180,7 +180,7 @@
                                 <button type="submit" class="btn btn-primary">
                                         {{ __('Cancelar') }}
                                 </button>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" href="#" class="btn btn-primary">
                                         {{ __('Agregar Mascota') }}
                                 </button>
                             </div>
