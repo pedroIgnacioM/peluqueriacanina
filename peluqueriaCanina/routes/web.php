@@ -30,6 +30,6 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
