@@ -24,6 +24,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
 
 });
-Auth::routes();
+Auth::routes(); // Porque este esta 2 veces??
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rutas del Contacto
+Route::get('contacto', function () {
+    return view('contacto');
+});
