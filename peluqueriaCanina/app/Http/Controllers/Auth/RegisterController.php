@@ -91,4 +91,18 @@ class RegisterController extends Controller
         ]);
         return($user);
     }
+    protected function agregarMascota(array $data)
+    {
+        $user=Auth::user();
+        Mascota::create([
+            'nombre' => $data['nombre'],
+            'raza' => $data['raza'],
+            'edad' => $data['edadMascota'],
+            'sexo' => $data['sexoMascota'],
+            'color' => $data['color'],
+            'user_id' =>$user->id,
+
+        ]);
+        
+        }
 }
