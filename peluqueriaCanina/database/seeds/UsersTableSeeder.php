@@ -12,14 +12,14 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('es_ES');
         $sexo=['masculino','femenino','otros'];
-        foreach ($range(1,20) as $elemento) {
+        foreach (range(1,10) as $elemento) {
         DB::table('users')->insert([
             'name' => $faker->firstName(),
             'email' => $faker->email,
             'password'=>bcrypt('abc123456'),
             'nickname'=>$faker->userName,
-            'rut'=>$faker->randomNumber($nb=10)->unique(),
-            'telefono'=>$faker->randomNumber($nb=12)->unique(),
+            'rut'=>$faker->unique()->randomNumber($nb=9),
+            'telefono'=>$faker->unique()->randomNumber($nb=9),
             'ciudad'=>$faker->city,
             'direccion'=>$faker->address,
             'edad'=>$faker->randomNumber($nb=2),
