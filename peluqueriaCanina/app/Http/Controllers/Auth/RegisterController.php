@@ -91,7 +91,7 @@ class RegisterController extends Controller
         ]);
         return($user);
     }
-    protected function agregarMascota(array $data)
+    protected function registraMascota(array $data)
     {
         $user=Auth::user();
         Mascota::create([

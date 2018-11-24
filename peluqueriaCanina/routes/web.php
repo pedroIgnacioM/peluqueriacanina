@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +23,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
 
 });
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/registraMascota', 'RegisterController@agregarMascota')->name('registraMascota');
+Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
