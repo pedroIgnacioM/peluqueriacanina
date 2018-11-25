@@ -55,7 +55,6 @@
                                                         
                                                                             <td>{{$mascota->$nombreColumnaMascota}}</td>
                                                                             @endforeach
-                                                                            <td><a class="text" href="#">Ver Ficha</a></td>
                                                                              
                                                                             @endforeach
                                                                             </tr>
