@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                         <div class="card-title"><h1>Registro Usuario</h1></div>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -153,9 +153,9 @@
                                 </div>
                         </div>
                         <div class="form-group row">
-                                <label for="sexo" class="col-md-2 col-form-label text-md-right">{{ __('Sexo') }}</label>
+                                <label for="sexoMascota" class="col-md-2 col-form-label text-md-right">{{ __('Sexo') }}</label>
                             <div class="col-md-5">
-                                <select id="sexo" name="sexo" class="custom-select">
+                                <select id="sexoMascota" name="sexoMascota" class="custom-select">
 
                                         <option selected value="">Selecciona...</option>
                                         <option>Hembra</option>
@@ -170,6 +170,14 @@
                                 <input id="color" type="text" class="form-control" name="color" value="{{ old('color') }}" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
+                            <div class="col-md-5">
+                                    <input id="imagen" type="file" class="form-control" name="imagen">
+
+                            </div>
+                        </div>
+                      
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-4">
                                 

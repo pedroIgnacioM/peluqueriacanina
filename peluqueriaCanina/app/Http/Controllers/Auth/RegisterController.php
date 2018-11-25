@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -74,6 +76,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
+        $imagen = $data['imagen']->store('public');
         $user=User::create([
             'name' => $data['name'],
             'nickname' => $data['nickname'],
@@ -85,8 +89,9 @@ class RegisterController extends Controller
             'sexo' => $data['sexo'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'imagen'=>$imagen,
         ]);
-           
+            
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
@@ -96,6 +101,10 @@ class RegisterController extends Controller
             'user_id' =>$user->id,
 
         ]);
+
+        
+        
+
         return($user);
     }
     protected function registraMascota(array $data)
