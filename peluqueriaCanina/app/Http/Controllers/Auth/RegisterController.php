@@ -91,7 +91,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
         ]);
-        $imagen = $data['imagenMascota']->store('public'); 
+        $imagenMascota = $data['imagenMascota']->store('public'); 
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
@@ -99,7 +99,7 @@ class RegisterController extends Controller
             'sexo' => $data['sexoMascota'],
             'color' => $data['color'],
             'user_id' =>$user->id,
-            'imagen'=>$imagen,
+            'imagenMascota'=>$imagenMascota,
 
         ]);
 
