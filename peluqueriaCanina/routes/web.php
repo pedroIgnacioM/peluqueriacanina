@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +23,14 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
 
 });
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
+
+// Route::get('/perfil/{nombre}/{id}','PerfilController@index')->name('perfil');
+
+
+
+
