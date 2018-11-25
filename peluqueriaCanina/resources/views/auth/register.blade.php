@@ -179,7 +179,7 @@
                                 <button type="submit" class="btn btn-primary">
                                         {{ __('Cancelar') }}
                                 </button>
-                                {{-- <button type="submit" href={{ route('registraMascota') }}class="btn btn-primary">
+                                {{-- <button type="submit" href="{{ route('registraMascota') }}"class="btn btn-primary">
                                         {{ __('Agregar Nueva Mascota') }}
                                 </button> --}}
                             </div>

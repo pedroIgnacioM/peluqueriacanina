@@ -29,8 +29,15 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {   
+        $user = \Auth::user();
+        if($user!=null)
+            return redirect()->route('registraMascota');
 
+
+        return route('home');
+    }
     /**
      * Create a new controller instance.
      *
@@ -103,6 +110,7 @@ class RegisterController extends Controller
             'user_id' =>$user->id,
 
         ]);
+        return $user;
         
         }
 }
