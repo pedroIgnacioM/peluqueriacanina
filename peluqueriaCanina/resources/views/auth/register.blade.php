@@ -170,6 +170,13 @@
                                 <input id="color" type="text" class="form-control" name="color" value="{{ old('color') }}" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
+                            <div class="col-md-5">
+                                <input type="file">
+                            </div>
+                        </div>
+                      
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-4">
                                 
