@@ -14,7 +14,7 @@ class MascotasTableSeeder extends Seeder
         $faker = Faker\Factory::create('es_ES');
         $razas=["Border Collie", "Poodle o Caniche" ,"Pastor Alemán" ,"Golden Retriever", "Doberman" ];
         $sexo=['macho','hembra'];
-        foreach (range(1,5) as $i) {
+        foreach (range(1,10) as $i) {
             DB::table('mascotas')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
                 'updated_At'=>$faker->dateTimeThisYear,
