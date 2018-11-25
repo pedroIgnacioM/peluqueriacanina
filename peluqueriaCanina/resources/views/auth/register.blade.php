@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                         <div class="card-title"><h1>Registro Usuario</h1></div>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Nombre') }}</label>
