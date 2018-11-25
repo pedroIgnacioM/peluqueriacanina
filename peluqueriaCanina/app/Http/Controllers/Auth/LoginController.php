@@ -27,10 +27,6 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {   
-        $user = \Auth::user();
-        if($user->type=='admin')
-            return route('admin');
-
         return route('home');
     }
     /**
