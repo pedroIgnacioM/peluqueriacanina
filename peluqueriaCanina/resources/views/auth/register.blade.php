@@ -153,9 +153,9 @@
                                 </div>
                         </div>
                         <div class="form-group row">
-                                <label for="sexo" class="col-md-2 col-form-label text-md-right">{{ __('Sexo') }}</label>
+                                <label for="sexoMascota" class="col-md-2 col-form-label text-md-right">{{ __('Sexo') }}</label>
                             <div class="col-md-5">
-                                <select id="sexo" name="sexo" class="custom-select">
+                                <select id="sexoMascota" name="sexoMascota" class="custom-select">
 
                                         <option selected value="">Selecciona...</option>
                                         <option>Hembra</option>
@@ -173,7 +173,8 @@
                         <div class="form-group row">
                             <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
                             <div class="col-md-5">
-                                <input type="file">
+                                    <input id="imagen" type="file" class="form-control" name="imagen">
+
                             </div>
                         </div>
                       
