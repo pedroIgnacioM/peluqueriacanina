@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mascota extends Model
 {
     protected $fillable = [
-        'nombre','raza','edad','sexo','color','user_id'
+        'nombre','raza','edad','sexo','color','user_id','imagen',
     ];
     public function user(){
         return $this->belongsTo('App\user');

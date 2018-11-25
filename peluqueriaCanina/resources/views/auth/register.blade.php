@@ -127,6 +127,13 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                                <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
+                                <div class="col-md-5">
+                                        <input id="imagen" type="file" class="form-control" name="imagen">
+    
+                                </div>
+                            </div>
                         <h1>Registro Mascota</h1>
 
                         <div class="form-group row">
@@ -171,9 +178,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
+                            <label for="imagenMascota" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
                             <div class="col-md-5">
-                                    <input id="imagen" type="file" class="form-control" name="imagen">
+                                    <input id="imagenMascota" type="file" class="form-control" name="imagenMascota">
 
                             </div>
                         </div>

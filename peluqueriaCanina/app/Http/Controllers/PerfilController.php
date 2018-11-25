@@ -16,7 +16,7 @@ class PerfilController extends Controller
         $id=$user->id;
         $nombresColumnasMascotas=array('nombre','sexo','edad','color');
         $mascotasUsuario=\DB::table ('mascotas')
-        ->select('mascotas.id','mascotas.nombre','mascotas.sexo','mascotas.edad','mascotas.color','mascotas.user_id')
+        ->select('mascotas.id','mascotas.nombre','mascotas.sexo','mascotas.edad','mascotas.color','mascotas.user_id','mascotas.imagenMascota')
         ->join('users','mascotas.user_id','=','users.id')
         ->where('mascotas.user_id',$id)
         ->get();

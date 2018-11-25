@@ -55,7 +55,7 @@
                                                         
                                                                             <td>{{$mascota->$nombreColumnaMascota}}</td>
                                                                             @endforeach
-                                                                             
+                                                                            <td><img src="{{Storage::url($mascota->imagenMascota)}}" alt="avatarMascota" class="img-thumbnail" width="60"></td>
                                                                             @endforeach
                                                                             </tr>
                                                                         </table>
