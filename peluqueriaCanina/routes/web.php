@@ -27,7 +27,7 @@ Route::group(['middleware' => 'is_admin'], function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/perfil,{nombre}','PerfilController@index')->name('perfil');
+Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
 
 
 
