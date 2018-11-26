@@ -29,7 +29,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
 
+
+//Rutas POST
 Route::post('/agregarMascota','MascotaController@agregarMascota')->name('insertarMascota');
+Route::post('/subirImagenPerfil','PerfilController@subirImagen')->name('subirImagenPerfil');
+Route::post('/editarperfil','PerfilController@editarPerfil')->name('editarPerfil');
+
+
 
 
 
