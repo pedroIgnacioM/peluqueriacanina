@@ -57,14 +57,18 @@
 
             </div>
         </div>
-        <div class="row justify-content-center ">
-            <div class="col-md-8">
+        <div class="row justify-content-end ">
+            <div class="col-md-6">
+                    <a href="{{route('perfil',['Usuario'])}} " class="btn btn-secondary btn-lg">Cancelar</a>
+            </div>
+            <div class="col-md-6">
 
                 <input class="btn btn-primary btn-lg" type="submit" value="Agregar">
             </div>
         </div>
-        <br>
-    </form>
+        </form>
+        
+        
 </div>
 
 @endsection
