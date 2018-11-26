@@ -23,7 +23,7 @@ class CreateCortePelosTable extends Migration
 
         Schema::table('corte_pelos', function (Blueprint $table) {
             
-            $table->unsignedInteger('mascota_id');
+            $table->unsignedInteger('mascota_id')->nullable();
             $table->foreign('mascota_id')
             ->references('id')
             ->on('mascotas')

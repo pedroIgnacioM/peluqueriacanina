@@ -31,6 +31,10 @@ Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
 
 // Route::get('/perfil/{nombre}/{id}','PerfilController@index')->name('perfil');
 
+Route::get('/galeria', 'CortePeloController@index_default')  
+    ->name('galeria');
+
+Route::get('cortePelo/', 'CortePeloController@download');
 
 
 
