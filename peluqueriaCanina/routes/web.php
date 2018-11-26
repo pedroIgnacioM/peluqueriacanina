@@ -18,7 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 
-
 //Rutas que pasaran por el controlador is_admin
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
@@ -28,6 +27,11 @@ Route::group(['middleware' => 'is_admin'], function () {
 //Rutas del Contacto
 Route::get('contacto', function () {
     return view('contacto');
+});
+
+//Rutas del Inicio
+Route::get('inicio', function () {
+    return view('inicio');
 });
 
 //Auth::routes();
