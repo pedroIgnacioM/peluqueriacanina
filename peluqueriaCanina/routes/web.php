@@ -24,12 +24,12 @@ Route::group(['middleware' => 'is_admin'], function () {
 
 });
 
-
+Route::get('/formulario_mascota/agregar', 'MascotaController@formularioAgregar')->name('agregarMascota');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
 
-
+Route::post('/agregarMascota','MascotaController@agregarMascota')->name('insertarMascota');
 
 
 
