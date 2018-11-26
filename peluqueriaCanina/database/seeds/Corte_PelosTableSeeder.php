@@ -22,7 +22,8 @@ class Corte_PelosTableSeeder extends Seeder
                 'tipo'=>$faker->randomElement($tipos),
                 'tipoCabello'=>$faker->randomElement($tiposCabellos),
                 'tamaño'=>$faker->randomElement($tamannos),
-                'mascota_id'=>$faker->numberBetween($min = 1, $max = 5),
+                'descripcion'=>$faker->text,
+                'mascota_id'=>$faker->numberBetween($min = 1, $max = 10),
             ]);   
         }
     }
