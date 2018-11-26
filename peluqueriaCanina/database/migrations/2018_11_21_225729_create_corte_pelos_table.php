@@ -17,6 +17,7 @@ class CreateCortePelosTable extends Migration
             $table->increments('id');
             $table->string('tipo');
             $table->string('tamaño');
+            $table->mediumText('descripcion');
             $table->string('tipoCabello');
             $table->timestamps();
         });
