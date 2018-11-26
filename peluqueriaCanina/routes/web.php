@@ -29,11 +29,4 @@ Route::get('contacto', function () {
     return view('contacto');
 });
 
-//Rutas del Inicio
-Route::get('inicio', function () {
-    return view('inicio');
-});
-
-//Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
