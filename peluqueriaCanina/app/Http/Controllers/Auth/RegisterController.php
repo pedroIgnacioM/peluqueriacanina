@@ -34,9 +34,6 @@ class RegisterController extends Controller
     protected function redirectTo()
     {   
         $user = \Auth::user();
-        if($user!=null)
-            return redirect()->route('registraMascota');
-
 
         return route('home');
     }
@@ -91,7 +88,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
         ]);
-            
+        $imagenMascota = $data['imagenMascota']->store('public'); 
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
@@ -99,6 +96,7 @@ class RegisterController extends Controller
             'sexo' => $data['sexoMascota'],
             'color' => $data['color'],
             'user_id' =>$user->id,
+            'imagenMascota'=>$imagenMascota,
 
         ]);
 
@@ -110,6 +108,7 @@ class RegisterController extends Controller
     protected function registraMascota(array $data)
     {
         $user=Auth::user();
+
         Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
