@@ -34,9 +34,6 @@ class RegisterController extends Controller
     protected function redirectTo()
     {   
         $user = \Auth::user();
-        if($user!=null)
-            return redirect()->route('registraMascota');
-
 
         return route('home');
     }
