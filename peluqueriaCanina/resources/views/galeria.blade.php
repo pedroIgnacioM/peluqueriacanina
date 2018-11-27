@@ -3,12 +3,12 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-sm-12">
+        <div class="col-sm-10">
             <div class="card">
                 <div class="card-body">
 
                     <div class="row justify-content-center">
-                        <div class="col-2">
+                        <div class="col-md-2">
 
                             <div class="row justify-content-center">
                                 <div class="col-sm-8">
@@ -64,7 +64,7 @@
                                                                 Rubio</label>
                                                             </div>
                                                         </div>
-                                                         <div class="row ">
+                                                         <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
                                                                 <input class="form-check-input" type="checkbox" value="castaño" name="cabello">
@@ -90,44 +90,63 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>   
                         </div>
 
-                        <div class="col-10">
-                            <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="row ">
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)
-                                    <figure class="col-4 img-fluid">
-
-                                        <a href="#">
-                                            <img class="img-fluid d-block img-thumbnail" src="{{Storage::url($cortePelo->imagen)}}" alt="{{$cortePelo->descripcion}}"/>
-                                            {{-- <p>{{$cortePelo->descripcion}}</p> --}}
-                                        </a> 
-                                        
-                                        <div class="row justify-content-around">
-                                                <div class="col-2">
-
-                                                    <a href="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
-                                                        <i class="fas fa-download"></i>
-                                                    </span></a>                       
+                                        <div class="col-sm-4 ">
+                                            <div class="container-fluid ">  
+                                                <div class="img-container">
+                                                    <div class="panel-body" >
+                                                        <a class="thumbnail fancybox" rel="ligthbox" href="/cortePelo/{{ $cortePelo->imagen}}">
+                                                            <img class="img-responsive" alt="" src="/cortePelo/{{ $cortePelo->imagen }}"/>
+                                                            <p>{{$cortePelo->descripcion}}</p>
+                                                        </a> 
+                                                    </div>
                                                 </div>
-                                                <div class="col-2">
-
-                                                    <a href="#"><span style="font-size: 2em; color: grey;">
-                                                            <i class="fas fa-file"></i>
-                                                        </span></a>
+                                                <div class="panel-footer"> 
+                                                    <div class="row ">  
+                                                        <div class="col-md-2">
+                                                            <a href="/cortePelo/{{ $cortePelo->imagen}}" download="/cortePelo/{{ $cortePelo->imagen}}"><span style="font-size: 2em; color: grey;">
+                                                                <i class="fas fa-download"></i>
+                                                            </span></a>                       
+                                                        </div>
+                                                        @auth
+                                                            @if(Auth::user()->isDefault() || Auth::user()->isAdmin() )
+                                                                <div class="col-md-2">
+                                                                    <a href=""><span style="font-size: 2em; color: grey;">
+                                                                        <i class="fas fa-comment"></i>
+                                                                    </span></a>
+                                                                </div>
+                                                            @endif 
+                                                            @if(Auth::user()->isAdmin())
+                                                                <div class="col-md-2">
+                                                                    <form action="{{ action('CortePeloController@destroy', $cortePelo->id)}}" method="POST">
+                                                                        <input type="hidden" name="_method" value="delete">
+                                                                        {!! csrf_field() !!}
+                                                                        <a href=""><span style="font-size: 2em; color: grey;">
+                                                                           <i class="fas fa-trash"></i>
+                                                                        </span></a>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <form action="{{ action('CortePeloController@edit', $cortePelo->id)}}" method="POST">
+                                                                        <input type="hidden" name="_method" value="delete">
+                                                                        {!! csrf_field() !!}
+                                                                        <a href=""><span style="font-size: 2em; color: grey;">
+                                                                           <i class="fas fa-trash"></i>
+                                                                        </span></a>
+                                                                    </form>
+                                                                </div>
+                                                            @endif
+                                                        @endauth  
+                                                    </div>                                  
                                                 </div>
-                                                <div class="col-2">
-
-                                                    <a href="#"><span style="font-size: 2em; color: grey;">
-                                                        <i class="fas fa-comment "></i>
-                                                    </span></a>
-                                                </div>
-                                            
                                             </div>
-
-                                    </figure>
+                                        </div>
                                     @endforeach
                                 @endif  
                             </div>       
@@ -135,7 +154,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

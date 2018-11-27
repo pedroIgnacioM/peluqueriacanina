@@ -30,9 +30,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
 
 //Rutas galeria
+Route::resource('galeria', 'CortePeloController');
+
 Route::get('/galeria', 'CortePeloController@index_default')->name('galeria');
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
 Route::get('cortePelo/', 'CortePeloController@download');
+
+
 
 
 

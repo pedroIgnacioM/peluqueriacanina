@@ -81,7 +81,8 @@ class CortePeloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CortePelo::find($id)->delete();
+        return redirect()->wiew('galeria')->with('success','Registro eliminado satisfactoriamente');
     }
 
     public function index_default(){
@@ -142,7 +143,9 @@ class CortePeloController extends Controller
             header("Content-Length: $size");
             readfile($src);
             return true;
+
         } else{
+
             return false;
         }
     }
