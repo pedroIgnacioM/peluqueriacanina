@@ -3,13 +3,12 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
             <div class="card">
-                <div class="card-header"></div>
                 <div class="card-body">
 
                     <div class="row justify-content-center">
-                        <div class="col-sm-2">
+                        <div class="col-2">
 
                             <div class="row justify-content-center">
                                 <div class="col-sm-8">
@@ -89,40 +88,43 @@
                             
                         </div>
 
-                        <div class="col-sm-10">
-                            <div class='row galeria'>
+                        <div class="col-10">
+                            <div class="row justify-content-center">
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)
-                                        <div class="col-sm-4 ">
-                                            <div class="container-fluid ">  
-                                                <div class="img-container">
-                                                    <div class="panel-body justify-content-center imagen">
-                                                        <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($cortePelo->imagen)}}">
-                                                            <img class="img-responsive" alt="" src="{{Storage::url($cortePelo->imagen)}}" width="300" />
-                                                            <p>{{$cortePelo->descripcion}}</p>
-                                                        </a> 
-                                                    </div>
-                                                 </div>
-                                                <div class="panel-footer"> 
-                                                    <div class="row justify-content-center">  
-                                                        <div class="col-md-4">
-                                                            <a href="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
-                                                                <i class="fas fa-download"></i>
-                                                            </span></a>                       
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <a href=""><span style="font-size: 2em; color: grey;">
-                                                                <i class="fas fa-comment"></i>
-                                                            </span></a>
-                                                        </div>   
-                                                    </div>                                  
-                                                </div>
+                                    <figure class="col-4 img-fluid">
 
+                                        <a href="#">
+                                            <img class="img-fluid d-block img-thumbnail" src="{{Storage::url($cortePelo->imagen)}}" alt="{{$cortePelo->descripcion}}"/>
+                                            {{-- <p>{{$cortePelo->descripcion}}</p> --}}
+                                        </a> 
+                                        
+                                        <div class="row justify-content-around">
+                                                <div class="col-2">
+
+                                                    <a href="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
+                                                        <i class="fas fa-download"></i>
+                                                    </span></a>                       
+                                                </div>
+                                                <div class="col-2">
+
+                                                    <a href="#"><span style="font-size: 2em; color: grey;">
+                                                            <i class="fas fa-file"></i>
+                                                        </span></a>
+                                                </div>
+                                                <div class="col-2">
+
+                                                    <a href="#"><span style="font-size: 2em; color: grey;">
+                                                        <i class="fas fa-comment "></i>
+                                                    </span></a>
+                                                </div>
+                                            
                                             </div>
-                                        </div>
+
+                                    </figure>
                                     @endforeach
                                 @endif  
-                            </div>
+                            </div>       
                         </div>
                     </div>
                 </div>
