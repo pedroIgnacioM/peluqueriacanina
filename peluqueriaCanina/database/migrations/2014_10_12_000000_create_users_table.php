@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('type')->default('default');
-            $table->string('nickname');
-            $table->string('rut');
+            $table->string('nickname')->nullable();
+            $table->char('rut',10);
             $table->string('telefono');
             $table->string('ciudad');
             $table->string('direccion');

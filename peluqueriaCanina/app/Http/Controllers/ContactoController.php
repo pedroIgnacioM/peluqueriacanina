@@ -21,7 +21,7 @@ class ContactoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function contacto()
+    public function index()
     {
         return view('contacto');
     }

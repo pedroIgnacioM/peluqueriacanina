@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Http\Controllers\Auth\Auth;
+use App\Mascota;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -28,8 +31,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {   
+        $user = \Auth::user();
 
+        return route('home');
+    }
     /**
      * Create a new controller instance.
      *
@@ -50,6 +57,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'nickname' => ['required', 'string', 'max:40', 'unique:users'],
+            'rut' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'type' => User::DEFAULT_TYPE,
@@ -64,10 +73,52 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+        $imagen = $data['imagen']->store('public');
+        $user=User::create([
             'name' => $data['name'],
+            'nickname' => $data['nickname'],
+            'rut' => $data['rut'],
+            'telefono' => $data['telefono'],
+            'ciudad' => $data['ciudad'],
+            'direccion' => $data['direccion'],
+            'edad' => $data['edad'],
+            'sexo' => $data['sexo'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'imagen'=>$imagen,
         ]);
+        $imagenMascota = $data['imagenMascota']->store('public'); 
+            Mascota::create([
+            'nombre' => $data['nombre'],
+            'raza' => $data['raza'],
+            'edad' => $data['edadMascota'],
+            'sexo' => $data['sexoMascota'],
+            'color' => $data['color'],
+            'user_id' =>$user->id,
+            'imagenMascota'=>$imagenMascota,
+
+        ]);
+
+        
+        
+
+        return($user);
     }
+    protected function registraMascota(array $data)
+    {
+        $user=Auth::user();
+
+        Mascota::create([
+            'nombre' => $data['nombre'],
+            'raza' => $data['raza'],
+            'edad' => $data['edadMascota'],
+            'sexo' => $data['sexoMascota'],
+            'color' => $data['color'],
+            'user_id' =>$user->id,
+
+        ]);
+        return $user;
+        
+        }
 }

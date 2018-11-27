@@ -14,56 +14,81 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                         <h5>Ultimos Trabajos</h5>
                            <div class="row">
                                 <div class="col-sm-6">
-                                    <div id=>
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        </ol>
+                                        
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="img-responsive" src="FotosSlider/matyNvl1.jpg"  alt="First slide">
+                                            </div>
+
+                                            <div class="carousel-item">
+                                                <img class="img-responsive" src="FotosSlider/matyNvl7.jpg"  alt="Second slide">
+                                            </div>
+
+                                            <div class="carousel-item">
+                                                <img class="img-responsive" src="FotosSlider/reina.jpg" alt="Third slide">
+                                            </div>
+                                        </div>
+                                        
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <p>
-                                        LA JOYA DEL PACIFICO
+                                        Descripción
                                     <br>
                                     <br>
-                                        Eres un arco iris de múltiples colores
-                                        tu valparaíso puerto principal
-                                        tus mujeres son blancas margaritas
-                                        todas ellas arrancadas de tu mar
-                                        Al mirarte de playa ancha lindo puerto
-                                        allí se ven las naves al salir y al entrar
-                                        el marino te canta esta canción
-                                        yo sin ti no vivo puerto de mi amor
-                                        Del cerro los placeres yo me pase al barón
-                                        me vine al cordillera en busca de tu amor
-                                        te fuiste al cerro alegre y yo siempre detrás
-
+                                        Mi perrita Hermosa bien bellaka
 
                                     </p>
                                 </div>
-
                            </div>
-
+                            <hr>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="">Reserva Aquí</a>
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <br>
-                                    <b>Horarios de atención</b>
-                                    <p> 
-                                        Lunes a Viernes de 9:00 am hasta 17:00 pm 
-                                        Sabados de 9:00 am hasta 13:00 pm
-                                    </p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a href="">Reserva Aquí</a>
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <br>
+                                            <b>Horarios de atención</b>
+                                            <p> 
+                                                Lunes a Viernes de 9:00 am hasta 17:00 pm 
+                                                Sabados de 9:00 am hasta 13:00 pm
+                                            </p>
+                                        </div>    
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <h5>¿Buscas un Juguete para tu mascota?</h5>
+                                    <img class="img-responsive" alt="" src="Productos/cuerda.jpg" width="150" />
+                                    <img class="img-responsive" alt="" src="Productos/bolsa.jpg" width="150" />
+                                    <br>
                                     <a href="">Ver Precios</a>
                                 </div>
                             </div>
                         </div>
-
+                        <hr id="vertical">
                         <div class ="col">
                             <h5>Anuncios de Usuarios</h5>        
                             
@@ -88,6 +113,7 @@
                         </div>   
                     </div> 
                 </div>
+
             </div>
         
     </div>
