@@ -13,12 +13,12 @@ class Tipo_CabelloTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('es_ES');
         $tiposCabellos=["grande","mediano","pequeño",'rubio',"corto rulos","castaño"];
-        foreach ($tiposCabellos as $cabello) {
+        foreach (range(1,20) as $index) {
             
             DB::table('tipo_pelo')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
                 'updated_At'=>$faker->dateTimeThisYear,
-                'nombre'=>$cabello
+                'nombre'=>$faker->randomElement($tiposCabellos)
             ]);   
         }
     }
