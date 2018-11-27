@@ -31,22 +31,22 @@
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="form-check">
-                                                                <label class="form-check-label" for="grande" >
-                                                                <input class="form-check-input" type="checkbox" value="grande" name="grande" id="grande">
+                                                                <label class="form-check-label" for="tamano" >
+                                                                <input class="form-check-input" type="checkbox" value="grande" name="tamano">
                                                                 Grande</label>
                                                             </div>
                                                         </div>
                                                          <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="mediano">
-                                                                <input class="form-check-input" type="checkbox" value="mediano" name="mediano" id="mediano">
+                                                                <input class="form-check-input" type="checkbox" value="mediano" name="tamano">
                                                                 Mediano</label>
                                                             </div>
                                                         </div>
                                                          <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pequeño">
-                                                                <input class="form-check-input" type="checkbox" value="pequeño" name="pequeño" id="pequeño">
+                                                                <input class="form-check-input" type="checkbox" value="pequeño" name="tamano">
                                                                 Pequeño</label>
                                                             </div>
                                                         </div>
@@ -59,15 +59,15 @@
                                                     <div class="col-sm-8">
                                                          <div class="row  ">
                                                             <div class="form-check">
-                                                                <label class="form-check-label" for="rubio">
-                                                                <input class="form-check-input" type="checkbox" value="rubio" name="rubio" id="rubio">
+                                                                <label class="form-check-label" for="cabello">
+                                                                <input class="form-check-input" type="checkbox" value="rubio" name="cabello">
                                                                 Rubio</label>
                                                             </div>
                                                         </div>
                                                          <div class="row ">
                                                             <div class="form-check">
-                                                                <label class="form-check-label" for="castaño">
-                                                                <input class="form-check-input" type="checkbox" value="castaño" name="castaño" id="castaño">
+                                                                <label class="form-check-label" for="cabello">
+                                                                <input class="form-check-input" type="checkbox" value="castaño" name="cabello">
                                                                 Castaño</label>
                                                             </div>
                                                         </div>
