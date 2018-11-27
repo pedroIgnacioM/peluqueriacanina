@@ -74,7 +74,7 @@
                                                            <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pelo_liso">
-                                                                <input class="form-check-input" type="checkbox" value="pelo_liso" name="pelo_liso" id="pelo_liso">
+                                                                <input class="form-check-input" type="checkbox" value="pelo_liso" name="cabello" id="negro">
                                                                 Pelo Liso</label>
                                                             </div>
                                                         </div>
@@ -136,9 +136,9 @@
                                                                     <form action="{{ action('CortePeloController@edit', $cortePelo->id)}}" method="POST">
                                                                         <input type="hidden" name="_method" value="delete">
                                                                         {!! csrf_field() !!}
-                                                                        <a href=""><span style="font-size: 2em; color: grey;">
-                                                                           <i class="fas fa-trash"></i>
-                                                                        </span></a>
+                                                                        <a href="#" data-toggle="modal" data-target="#create">
+                                                                            <span style="font-size: 2em; color: grey;"><i class="fas fa-edit"></i></span>
+                                                                        </a>
                                                                     </form>
                                                                 </div>
                                                             @endif
@@ -156,5 +156,81 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="create">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Modificar Descripcion</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span> <i class="fas fa-times"></i></span>
+                </button> 
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <form method="POST" action="{{ action('CortePeloController@update', $cortePelo->id)}}"  role="form">
+                            {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="tipo" >{{ __('Tipo Animal:') }}</label>
+                             <select class="custom-select" id="tipo" name="tipo" required="required">
+                                <option value="{{$cortePelo->tipo}}" selected>{{$cortePelo->tipo}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tamaño">{{ __('Tamaño:') }}</label>
+                            <select class="custom-select" id="tamaño" name="tamaño" required="required">
+                                <option value="{{$cortePelo->tamaño}}" selected>{{$cortePelo->tamaño}}</option>
+                                @if($cortePelo->tamaño == 'grande')              
+                                    <option value="mediano">Mediano</option>
+                                    <option value="pequeño">Pequeño</option>
+                                @elseif($cortePelo->tamaño == 'mediano')     
+                                    <option value="grande">Grande</option>
+                                    <option value="pequeño">Pequeño</option>
+                                 @elseif($cortePelo->tamaño == 'pequeño')     
+                                    <option value="grande">Grande</option>
+                                    <option value="mediano">Mediano</option>
+                                @endif    
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion" >{{ __('Descripcíon:') }}</label>
+                            <textarea name="descripcion" class="form-control input-sm"  placeholder="descripcion">{{$cortePelo->descripcion}}</textarea>
+                        </div>
+                        <div class="form-group">
+                             <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="imagen" >{{ __('Imagen:') }}</label>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-sm-12">
+                                    <input id="imagen" type="file" class="form-control" name="imagen" value="{{$cortePelo->imagen}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo_cabello_id" >{{ __('Tipo Cabello:') }}</label>
+                             <select class="custom-select" id="tipo_cabello_id" name="tipo_cabello_id" required="required">
+                                <option value="{{$cortePelo->tipo_cabello_id}}" selected>{{$cortePelo->tipo_cabello_id}}</option>
+                                @if($cortePelo->tipo_cabello_id == 'rubio')              
+                                    <option value="castaño">Castaño</option>
+                                    <option value="negro">Negro</option>
+                                @elseif($cortePelo->tipo_cabello_id == 'castaño')     
+                                    <option value="rubio">Rubio</option>
+                                    <option value="negro">Negro</option>
+                                @elseif($cortePelo->tipo_cabello_id == 'negro')
+                                    <option value="rubio">Rubio</option>
+                                    <option value="castaño">Castaño</option>
+                                @endif  
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit"  value="Actualizar" class="btn btn-success btn-primary">
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 @endsection

@@ -36,7 +36,9 @@ class CortePeloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request,[ 'tipo'=>'required', 'tamano'=>'required', 'descripcion'=>'required' , 'imagen' =>'required', 'tipo_cabello_id' =>'required']);
+        CortePelo::create($request->all());
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -58,7 +60,8 @@ class CortePeloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cortePelo = CortePelo::find($id);
+        return view('galeria')->with('cortePelo',$cortePelo);
     }
 
     /**
@@ -70,7 +73,9 @@ class CortePeloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'tipo'=>'required', 'tamano'=>'required', 'descripcion'=>'required' , 'imagen' =>'required', 'tipo_cabello_id' =>'required']);
+        CortePelo::find($id)->update($request->all());
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -100,11 +105,11 @@ class CortePeloController extends Controller
             if(isset($request->tamano) && isset($request->cabello))
             {
                 $cortePelos = CortePelo::orderBy('id','DESC')
-                ->join('tipo_cabello','tipo_cabello.corte_pelo_id','=','corte_pelos.id')
-                ->Where('tipo_cabello.nombre',$request->tamano)
-                ->orWhere('tipo_cabello.nombre',$request->cabello)
+                ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
+                ->Where('corte_pelos.tamaño','=',$request->tamano)
+                ->orWhere('tipo_cabello.nombre','=',$request->cabello)
                 ->select('corte_pelos.*')
-                ->paginate(9);
+                ->paginate(7);
                  
             }
             else
@@ -112,18 +117,18 @@ class CortePeloController extends Controller
                 if(isset($request->tamano))
                 {
                     $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.corte_pelo_id','=','corte_pelos.id')
-                    ->Where('tipo_cabello.nombre',$request->tamano)
+                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
+                    ->Where('corte_pelos.tamaño','=',$request->tamano)
                     ->select('corte_pelos.*')
-                    ->paginate(9);
+                    ->paginate(7);
                 }
                 else
                 {
                     $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.corte_pelo_id','=','corte_pelos.id')
+                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
                     ->Where('tipo_cabello.nombre',$request->cabello)
                     ->select('corte_pelos.*')
-                    ->paginate(9);
+                    ->paginate(7);
                 }
             }
         }
