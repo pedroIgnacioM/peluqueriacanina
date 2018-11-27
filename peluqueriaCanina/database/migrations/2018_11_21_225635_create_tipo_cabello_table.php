@@ -17,11 +17,6 @@ class CreateTipoCabelloTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
-            $table->unsignedInteger('corte_pelo_id');
-            $table->foreign('corte_pelo_id')
-            ->references('id')
-            ->on('corte_pelos')
-            ->onDelete('cascade');
         });
     }
 

@@ -29,7 +29,11 @@ class CreateCortePelosTable extends Migration
             ->on('mascotas')
             ->onDelete('cascade');
 
-
+            $table->unsignedInteger('tipo_cabello_id');
+            $table->foreign('tipo_cabello_id')
+            ->references('id')
+            ->on('tipo_cabello')
+            ->onDelete('cascade');
         });
     }
 
