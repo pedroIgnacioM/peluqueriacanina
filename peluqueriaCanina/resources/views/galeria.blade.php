@@ -24,27 +24,30 @@
                                         <div class="card-header text-center">Filtro</div>
                                         <div class="card-body">
 
-                                            <form method="POST" action="{{ route('galeria') }}" enctype="multipart/form-data">
-
+                                            <form action="{{ route('galeriaFiltro') }}" method="POST" >
+                                                @csrf
                                                 <label class="label">Tamaño</label>
                                                 <div class="row justify-content-center">
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="grande" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Grande</label>
+                                                                <label class="form-check-label" for="grande" >
+                                                                <input class="form-check-input" type="checkbox" value="grande" name="grande" id="grande">
+                                                                Grande</label>
                                                             </div>
                                                         </div>
                                                          <div class="row">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="mediano" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Mediano</label>
+                                                                <label class="form-check-label" for="mediano">
+                                                                <input class="form-check-input" type="checkbox" value="mediano" name="mediano" id="mediano">
+                                                                Mediano</label>
                                                             </div>
                                                         </div>
                                                          <div class="row">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="pequeño" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Pequeño</label>
+                                                                <label class="form-check-label" for="pequeño">
+                                                                <input class="form-check-input" type="checkbox" value="pequeño" name="pequeño" id="pequeño">
+                                                                Pequeño</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -56,20 +59,23 @@
                                                     <div class="col-sm-8">
                                                          <div class="row  ">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="rubio" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Rubio</label>
+                                                                <label class="form-check-label" for="rubio">
+                                                                <input class="form-check-input" type="checkbox" value="rubio" name="rubio" id="rubio">
+                                                                Rubio</label>
                                                             </div>
                                                         </div>
                                                          <div class="row ">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="castaño" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Castaño</label>
+                                                                <label class="form-check-label" for="castaño">
+                                                                <input class="form-check-input" type="checkbox" value="castaño" name="castaño" id="castaño">
+                                                                Castaño</label>
                                                             </div>
                                                         </div>
                                                            <div class="row">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="pelo_liso" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Pelo Liso</label>
+                                                                <label class="form-check-label" for="pelo_liso">
+                                                                <input class="form-check-input" type="checkbox" value="pelo_liso" name="pelo_liso" id="pelo_liso">
+                                                                Pelo Liso</label>
                                                             </div>
                                                         </div>
                                                     </div>
