@@ -12,4 +12,7 @@ class CortePelo extends Model
     public function mascota(){
         return $this->belongsTo('App\mascota');
     }
+    public function cabello(){
+        return $this->belongsTo('App\Tipo_Cabello');
+    }
 }
