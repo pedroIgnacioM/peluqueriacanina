@@ -16,6 +16,8 @@
 
                     You are logged in!
                 </div>
+                <a class="btn btn-info" href={{route('perfil',['Usuario'])}}>Perfil usuario</a>
+
             </div>
         </div>
     </div>

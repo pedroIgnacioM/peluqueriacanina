@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +23,16 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
 
 });
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
+
+//Rutas galeria
+Route::get('/galeria', 'CortePeloController@index_default')->name('galeria');
+Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
+Route::get('cortePelo/', 'CortePeloController@download');
+
+
+

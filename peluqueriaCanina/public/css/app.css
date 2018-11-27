@@ -1,4 +1,67 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+.col-center{
+    float: none;
+    margin: 0 auto;
+}
+.navbar-brand{
+	font-size: 30px!important;
+	
+}
+.nav-link{
+	font-size: 20px!important;
+}
+label{
+	font-size: 20px!important;
+}
+.form-check-input{
+	font-size: 20px!important;
+}
+.card-header{
+	font-size: 20px!important;
+}
+.form-control{
+	font-size: 20px!important;
+}
+.galeria{
+	border-left: 2px solid!important;
+	border-color: #343a4026!important;
+}
+.img-container {
+    width: 300px;
+    position: relative; 
+}
+
+.img-container p {
+
+	margin: auto;  
+	color: black;
+	text-align: center;
+	  
+	line-height: 300px;
+	  
+	background: white;
+	transition: opacity .4s linear;
+ 	cursor: pointer;  
+	position: absolute;
+	top: 0;
+	right: 0;	
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.img-container:hover p {
+    opacity: .75;  
+}
+.imagen{
+    min-height: 300px!important;
+    background: black;
+}
+.img-responsive{
+	vertical-align: middle!important;	
+}
+/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
