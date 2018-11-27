@@ -85,14 +85,48 @@ class CortePeloController extends Controller
     }
 
     public function index_default(){
-
-        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(7);
-
+ 
+        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(9);
         return view('galeria')->with('cortePelos',$cortePelos);
     }
 
-    public function index_Usuario(){
-
+    public function galeriaFiltro(Request $request){
+        if (!isset($request->tamano) && !isset($request->cabello)) {
+            $cortePelos = CortePelo::orderBy('id','DESC')->paginate(9);
+        }
+        else
+        {
+            if(isset($request->tamano) && isset($request->cabello))
+            {
+                $cortePelos = CortePelo::orderBy('id','DESC')
+                ->join('tipo_cabello','tipo_cabello.corte_pelo_id','=','corte_pelos.id')
+                ->Where('tipo_cabello.nombre',$request->tamano)
+                ->orWhere('tipo_cabello.nombre',$request->cabello)
+                ->select('corte_pelos.*')
+                ->paginate(9);
+                 
+            }
+            else
+            {
+                if(isset($request->tamano))
+                {
+                    $cortePelos = CortePelo::orderBy('id','DESC')
+                    ->join('tipo_cabello','tipo_cabello.corte_pelo_id','=','corte_pelos.id')
+                    ->Where('tipo_cabello.nombre',$request->tamano)
+                    ->select('corte_pelos.*')
+                    ->paginate(9);
+                }
+                else
+                {
+                    $cortePelos = CortePelo::orderBy('id','DESC')
+                    ->join('tipo_cabello','tipo_cabello.corte_pelo_id','=','corte_pelos.id')
+                    ->Where('tipo_cabello.nombre',$request->cabello)
+                    ->select('corte_pelos.*')
+                    ->paginate(9);
+                }
+            }
+        }
+        return view('galeria')->with('cortePelos',$cortePelos);
     }
 
     protected function downloadFile($src){

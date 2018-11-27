@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCortePelosTable extends Migration
+class CreateTipoCabelloTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,15 @@ class CreateCortePelosTable extends Migration
      */
     public function up()
     {
-        Schema::create('corte_pelos', function (Blueprint $table) {
+        Schema::create('tipo_cabello', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo');
-            $table->string('tamaño');
-            $table->mediumText('descripcion');
+            $table->string('nombre');
             $table->timestamps();
-        });
-
-        Schema::table('corte_pelos', function (Blueprint $table) {
-            
-            $table->unsignedInteger('mascota_id')->nullable();
-            $table->foreign('mascota_id')
+            $table->unsignedInteger('corte_pelo_id');
+            $table->foreign('corte_pelo_id')
             ->references('id')
-            ->on('mascotas')
+            ->on('corte_pelos')
             ->onDelete('cascade');
-
-
         });
     }
 
@@ -40,6 +32,6 @@ class CreateCortePelosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('corte_pelos');
+        Schema::dropIfExists('tipo_cabello');
     }
 }

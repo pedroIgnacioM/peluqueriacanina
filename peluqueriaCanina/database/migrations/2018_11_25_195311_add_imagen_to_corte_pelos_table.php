@@ -14,7 +14,7 @@ class AddImagenToCortePelosTable extends Migration
     public function up()
     {
         Schema::table('corte_pelos', function (Blueprint $table) {
-             $table->string('imagen')->after('tipoCabello');
+             $table->string('imagen')->after('descripcion');
         });
     }
 
