@@ -72,7 +72,8 @@
                                             <br>
                                             <b>Horarios de atención</b>
                                             <p> 
-                                                Lunes a Viernes de 9:00 am hasta 17:00 pm 
+                                                Lunes a Viernes de 9:00 am hasta 17:00 pm
+                                                <br> 
                                                 Sabados de 9:00 am hasta 13:00 pm
                                             </p>
                                         </div>    

@@ -21,7 +21,7 @@
                             <hr>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43299.552928706384!2d-71.60174238205062!3d-33.04053567425118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2fc6c888d7a2a712!2sPontificia+Universidad+Cat%C3%B3lica+de+Valpara%C3%ADso!5e0!3m2!1ses!2scl!4v1543087680929" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>   
                             <br>
-                            <a href="https://goo.gl/maps/UqRJY9MVF5B2">Ampliar Mapa</a>
+                            <a href="https://goo.gl/maps/UqRJY9MVF5B2" target="__blank">Ampliar Mapa</a>
                         </div>
 
                         <div class ="col">
