@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
 
-
+//cortePelo
 Route::get('/galeria', 'CortePeloController@index_default')  
     ->name('galeria');
 
