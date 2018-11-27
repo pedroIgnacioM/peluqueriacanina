@@ -97,8 +97,8 @@
                                             <div class="container-fluid ">  
                                                 <div class="img-container">
                                                     <div class="panel-body justify-content-center imagen">
-                                                        <a class="thumbnail fancybox" rel="ligthbox" href="/cortePelo/{{ $cortePelo->imagen}}">
-                                                            <img class="img-responsive" alt="" src="/cortePelo/{{ $cortePelo->imagen }}" width="300" />
+                                                        <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($cortePelo->imagen)}}">
+                                                            <img class="img-responsive" alt="" src="{{Storage::url($cortePelo->imagen)}}" width="300" />
                                                             <p>{{$cortePelo->descripcion}}</p>
                                                         </a> 
                                                     </div>
@@ -106,7 +106,7 @@
                                                 <div class="panel-footer"> 
                                                     <div class="row justify-content-center">  
                                                         <div class="col-md-4">
-                                                            <a href="/cortePelo/{{ $cortePelo->imagen}}" download="/cortePelo/{{ $cortePelo->imagen}}"><span style="font-size: 2em; color: grey;">
+                                                            <a href="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
                                                                 <i class="fas fa-download"></i>
                                                             </span></a>                       
                                                         </div>
