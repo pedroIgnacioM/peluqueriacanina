@@ -85,14 +85,14 @@ class CortePeloController extends Controller
     }
 
     public function index_default(){
-
-        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(7);
-
+ 
+        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(9);
         return view('galeria')->with('cortePelos',$cortePelos);
     }
 
-    public function index_Usuario(){
-
+    public function galeriaFiltro(Request $request){
+        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(3);
+        return view('galeria')->with('cortePelos',$cortePelos);
     }
 
     protected function downloadFile($src){
