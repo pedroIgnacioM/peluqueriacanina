@@ -15,8 +15,13 @@ class CreateTipoCabelloTable extends Migration
     {
         Schema::create('tipo_cabello', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nomnre');
+            $table->string('nombre');
             $table->timestamps();
+            $table->unsignedInteger('corte_pelo_id');
+            $table->foreign('corte_pelo_id')
+            ->references('id')
+            ->on('corte_pelos')
+            ->onDelete('cascade');
         });
     }
 
