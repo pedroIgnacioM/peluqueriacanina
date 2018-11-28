@@ -109,7 +109,7 @@ class CortePeloController extends Controller
                 ->Where('corte_pelos.tamaño','=',$request->tamano)
                 ->orWhere('tipo_cabello.nombre','=',$request->cabello)
                 ->select('corte_pelos.*')
-                ->paginate(7);
+                ->paginate(9);
                  
             }
             else
@@ -120,7 +120,7 @@ class CortePeloController extends Controller
                     ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
                     ->Where('corte_pelos.tamaño','=',$request->tamano)
                     ->select('corte_pelos.*')
-                    ->paginate(7);
+                    ->paginate(9);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ class CortePeloController extends Controller
                     ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
                     ->Where('tipo_cabello.nombre',$request->cabello)
                     ->select('corte_pelos.*')
-                    ->paginate(7);
+                    ->paginate(9);
                 }
             }
         }
