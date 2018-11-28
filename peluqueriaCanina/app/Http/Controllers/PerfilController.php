@@ -33,7 +33,7 @@ class PerfilController extends Controller
         $user = \Auth::user();
         if(!isset($user))
             abort(404);
-        $imagen = $request->file('imagen')->store('public');
+        $imagen = $request->file('imagen')->store('public/perfiles');
 
         $user->imagen=$imagen;
         $user->save();
