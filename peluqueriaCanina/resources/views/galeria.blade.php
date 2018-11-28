@@ -9,7 +9,7 @@
                     <div class="row justify-content-center">
                         <div class="row justify-content-center">
                             <div class="col-sm-9">
-                                <button class="btn btn-lg btn-primary">+</button>
+                                <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarCortePelo" href="#">+</button>
                             </div> 
                         </div>
                         <div class="col-md-10">
@@ -245,5 +245,76 @@
         </div>
     </div>
 </div>
+</div>
+
+{{-- Modal del boton (+) --}}
+<div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar Corte de pelo</h4>
+                </div>
+                <form action="{{route('editarPerfil')}}" method="post" enctype="multipart/form-data">
+                                {{csrf_field()}}
+                        <div class="modal-body">
+                                <div class="form-group row justify-content-md-center">
+                                        <div class="col-md-10">
+                                            {{-- Tipo --}}
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="tipo" class="col-md-2 col-form-label text-md-right">{{ __('Tipo') }}</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input id="tipo" type="text" class="form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>   
+                                                </div>
+                                            </div>
+                                            {{-- Tamaño --}}
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="tamano" class="col-md-2 col-form-label text-md-right">{{ __('Tamaño') }}</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input id="tamano" type="text" class="form-control tipo ? ' is-invalid' : '' }}" name="tamano" required autofocus>   
+                                                </div>
+                                            </div>
+                                            {{-- Descripción --}}
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="descripcion" class="col-md-2 col-form-label text-md-right">{{ __('Descripción') }}</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input id="descripcion" type="text" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus>   
+                                                </div>
+                                            </div>
+                                            {{-- Imagen --}}
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input id="imagen" type="file" class="form-control" name="imagen">
+                                                </div>
+                                            </div>
+                                            {{-- Descripcion --}}
+                                            <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <label for="cabello" class="col-md-2 col-form-label text-md-right">{{ __('Tipo Cabello') }}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input id="cabello" type="text" class="form-control tipo ? ' is-invalid' : '' }}" name="cabello" required autofocus>   
+                                                    </div>
+                                            </div>
+
+
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                </form>
+                </div>
+        </div>
 </div>
 @endsection
