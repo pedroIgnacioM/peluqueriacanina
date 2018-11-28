@@ -53,12 +53,11 @@
                                 </div>
 
                                 <div class="col-md-6">
+                                    
+                                    <h5>Descripción</h5>
                                     <p>
-                                        Descripción
-                                    <br>
-                                    <br>
-                                        Mi perrita Hermosa bien bellaka
-
+                                    Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
+                                    cortes las uñas y tratamientos antiparasitarios.
                                     </p>
                                 </div>
                            </div>
@@ -67,6 +66,7 @@
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body">
+                                            <!-- Referenecia a Reserva -->
                                             <a href="">Reserva Aquí</a>
                                             <i class="fas fa-calendar-alt"></i>
                                             <br>
@@ -85,6 +85,7 @@
                                     <img class="img-responsive" alt="" src="Productos/cuerda.jpg" width="150" />
                                     <img class="img-responsive" alt="" src="Productos/bolsa.jpg" width="150" />
                                     <br>
+                                    <!-- Aca falta la referencia a productos-->
                                     <a href="">Ver Precios</a>
                                 </div>
                             </div>
