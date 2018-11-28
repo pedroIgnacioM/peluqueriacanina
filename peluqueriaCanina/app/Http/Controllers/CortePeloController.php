@@ -179,6 +179,24 @@ class CortePeloController extends Controller
 
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
+
+    public function editarCorte(Request $request)
+    {
+
+        $imagen = $request->file('imagen')->store('public/cortePelo'); 
+            CortePelo::create([
+            'tipo' => $request->tipo,
+            'tamaño' => $request->tamano,
+            'descripcion' => $request->descripcion,
+            'tipo_cabello_id'=>$request->cabello,
+            'imagen'=>$imagen,
+
+        ]);
+    
+   
+
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }
     
     
 
