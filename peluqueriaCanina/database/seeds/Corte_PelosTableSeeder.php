@@ -24,7 +24,7 @@ class Corte_PelosTableSeeder extends Seeder
                 'tipo_cabello_id'=>$faker->numberBetween($min = 1, $max = 6),
                 'descripcion'=>$faker->text,
                 'mascota_id'=>$faker->numberBetween($min = 1, $max = 10),
-                'imagen'=>$imagen
+                'imagen'=>'public/cortePelo/'.$imagen
             ]);   
         }
     }
