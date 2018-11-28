@@ -111,8 +111,8 @@
                                             <div class="container-fluid ">  
                                                 <div class="img-container">
                                                     <div class="panel-body" >
-                                                        <a class="thumbnail fancybox" rel="ligthbox" href="/cortePelo/{{ $cortePelo->imagen}}">
-                                                            <img class="img-responsive" alt="" src="/cortePelo/{{ $cortePelo->imagen }}"/>
+                                                        <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($cortePelo->imagen)}}">
+                                                            <img class="img-responsive" alt="{{$cortePelo->imagen}}" src="{{Storage::url($cortePelo->imagen)}}"/>
                                                             <p>{{$cortePelo->descripcion}}</p>
                                                         </a> 
                                                     </div>
@@ -120,7 +120,7 @@
                                                 <div class="panel-footer"> 
                                                     <div class="row ">  
                                                         <div class="col-md-2">
-                                                            <a href="/cortePelo/{{ $cortePelo->imagen}}" download="/cortePelo/{{ $cortePelo->imagen}}"><span style="font-size: 2em; color: grey;">
+                                                            <a src="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
                                                                 <i class="fas fa-download"></i>
                                                             </span></a>                       
                                                         </div>
@@ -254,7 +254,7 @@
                 <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Agregar Corte de pelo</h4>
                 </div>
-                <form action="{{route('editarPerfil')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('agregarCorte')}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
                         <div class="modal-body">
                                 <div class="form-group row justify-content-md-center">
@@ -295,7 +295,7 @@
                                                     <input id="imagen" type="file" class="form-control" name="imagen">
                                                 </div>
                                             </div>
-                                            {{-- Descripcion --}}
+                                            {{-- Tipo Cabello --}}
                                             <div class="form-group row">
                                                     <div class="col-md-4">
                                                         <label for="cabello" class="col-md-2 col-form-label text-md-right">{{ __('Tipo Cabello') }}</label>
