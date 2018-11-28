@@ -190,6 +190,7 @@
                                     <option value="mediano">Mediano</option>
                                 @endif    
                             </select>
+                            
                         </div>
                         <div class="form-group">
                             <label for="descripcion" >{{ __('Descripcíon:') }}</label>
