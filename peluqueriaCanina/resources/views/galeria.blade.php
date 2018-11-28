@@ -6,12 +6,22 @@
         <div class="col-sm-10">
             <div class="card">
                 <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-9">
+                                <button class="btn btn-lg btn-primary">+</button>
+                            </div> 
+                        </div>
+                        <div class="col-md-10">
 
+                        </div>
+                    </div>
+                    <br>
                     <div class="row justify-content-center">
                         <div class="col-md-2">
 
                             <div class="row justify-content-center">
-                                <div class="col-sm-8">
+                                <div class="col-sm-9">
                                     <select class="form-control">
                                         <option>Perros</option>
                                     </select>
@@ -151,6 +161,8 @@
                                 @endif  
                             </div>       
                         </div>
+                        
+
                     </div>
                 </div>
             </div>
