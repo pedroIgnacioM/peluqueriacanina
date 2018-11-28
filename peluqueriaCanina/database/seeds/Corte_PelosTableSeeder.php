@@ -21,6 +21,7 @@ class Corte_PelosTableSeeder extends Seeder
                 'updated_At'=>$faker->dateTimeThisYear,
                 'tipo'=>$faker->randomElement($tipos),
                 'tamaño'=>$faker->randomElement($tamannos),
+                'tipo_cabello_id'=>$faker->numberBetween($min = 1, $max = 6),
                 'descripcion'=>$faker->text,
                 'mascota_id'=>$faker->numberBetween($min = 1, $max = 10),
                 'imagen'=>'default.png'
