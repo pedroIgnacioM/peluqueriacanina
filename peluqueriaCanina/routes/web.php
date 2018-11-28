@@ -28,3 +28,5 @@ Route::group(['middleware' => 'is_admin'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
+
+Route::get('/catalogo', 'CatalogoController@index')->name('catalogo');
