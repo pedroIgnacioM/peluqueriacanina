@@ -14,6 +14,7 @@
                                     <div class="card">
                                         <div class="card-header text-center">Filtro</div>
                                         <div class="card-body">
+                                            <form action="{{ route('catalogoFiltro') }}" method="POST" >
                                                 @csrf
                                                 <label class="label">Orden</label>
                                                 <div class="row justify-content-center">

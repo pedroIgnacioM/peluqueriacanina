@@ -83,42 +83,37 @@ class ProductosController extends Controller
     {
         //
     }
-    public function productoFiltro(Request $request){
-        if (!isset($request->tamano) && !isset($request->cabello)) {
-            $cortePelos = CortePelo::orderBy('id','DESC')->paginate(9);
+    public function catalogoFiltro(Request $request){
+        if (!isset($request->Por_Precio) && !isset($request->Orden_Alfabetico)) {
+            $productos = Producto::orderBy('id','ASC')->paginate(9);
         }
         else
         {
-            if(isset($request->tamano) && isset($request->cabello))
+            if(isset($request->Por_Precio) && isset($request->Orden_Alfabetico))
             {
-                $cortePelos = CortePelo::orderBy('id','DESC')
-                ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                ->Where('corte_pelos.tamaño','=',$request->tamano)
-                ->orWhere('tipo_cabello.nombre','=',$request->cabello)
-                ->select('corte_pelos.*')
+                $productos = Producto::orderBy('id','ASC')
+                ->orderByRaw('productos.precio - productos.nombre ASC')
+                ->select('productos.*')
                 ->paginate(7);
-                 
             }
             else
             {
-                if(isset($request->tamano))
+                if(isset($request->Por_Precio))
                 {
-                    $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                    ->Where('corte_pelos.tamaño','=',$request->tamano)
-                    ->select('corte_pelos.*')
+                    $productos = Producto::orderBy('id','ASC')
+                    ->orderByRaw('productos.precio ASC')
+                    ->select('productos.*')
                     ->paginate(7);
                 }
                 else
                 {
-                    $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                    ->Where('tipo_cabello.nombre',$request->cabello)
-                    ->select('corte_pelos.*')
+                    $productos = Producto::orderBy('id','ASC')
+                    ->orderByRaw('productos.nombre ASC')
+                    ->select('productos.*')
                     ->paginate(7);
                 }
             }
         }
-        return view('galeria')->with('cortePelos',$cortePelos);
+        return view('catalogo')->with('productos',$productos);
     }
 }
