@@ -29,4 +29,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
 
-Route::get('/catalogo', 'CatalogoController@index')->name('catalogo');
+
+
+
+Route::resource('catalogo', 'ProductosController');
+Route::get('/catalogo', 'ProductosController@index')->name('catalogo');
+Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
