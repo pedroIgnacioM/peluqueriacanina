@@ -14,7 +14,7 @@ class AddImagenToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('imagen')->after('sexo')->default('avatar.png'); 
+            $table->string('imagen')->after('sexo')->default('public/perfiles/'.'avatar.png'); 
         });
        
     }
