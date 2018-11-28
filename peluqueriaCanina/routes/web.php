@@ -42,7 +42,7 @@ Route::get('cortePelo/', 'CortePeloController@download');
 
 
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
-Route::post('/galeria/agregar','CortePeloController@store')->name('agregarCorte');
+Route::post('/galeria/agregar','CortePeloController@agregarCorte')->name('agregarCorte');
 
 
 
