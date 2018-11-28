@@ -136,6 +136,7 @@ class CortePeloController extends Controller
     }
 
     protected function downloadFile($src){
+        
          if(is_file($src)){
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $content_type = finfo_file($finfo, $src);
@@ -203,6 +204,17 @@ class CortePeloController extends Controller
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
     
+    public function eliminarCorte(Request $request , $id)
+    {
+
+        $elemento = CortePelo::find($id);
+        if(!isset($elemento))
+            return redirect()->route('galeria');
+
+        $elemento->delete();
+
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }
     
 
 
