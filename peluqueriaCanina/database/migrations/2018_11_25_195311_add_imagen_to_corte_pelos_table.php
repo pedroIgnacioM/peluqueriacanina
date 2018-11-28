@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImagenToUsersTable extends Migration
+class AddImagenToCortePelosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddImagenToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('imagen')->after('sexo')->default('public/perfiles/'.'avatar.png'); 
+        Schema::table('corte_pelos', function (Blueprint $table) {
+             $table->string('imagen')->after('descripcion');
         });
-       
     }
 
     /**
@@ -26,8 +25,8 @@ class AddImagenToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
+        Schema::table('corte_pelos', function (Blueprint $table) {
+            $table->dropColumn('imagen');
         });
     }
 }

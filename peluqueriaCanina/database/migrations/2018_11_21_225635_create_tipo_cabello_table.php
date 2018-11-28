@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImagenToUsersTable extends Migration
+class CreateTipoCabelloTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddImagenToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('imagen')->after('sexo')->default('public/perfiles/'.'avatar.png'); 
+        Schema::create('tipo_cabello', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->timestamps();
         });
-       
     }
 
     /**
@@ -26,8 +27,6 @@ class AddImagenToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tipo_cabello');
     }
 }

@@ -53,7 +53,7 @@
                             <a class="nav-link" href="#">{{ __('Reserva Aquí') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Galeria') }}</a>
+                            <a class="nav-link" href="{{ route('galeria') }}">Galeria</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('Catálogo') }}</a>

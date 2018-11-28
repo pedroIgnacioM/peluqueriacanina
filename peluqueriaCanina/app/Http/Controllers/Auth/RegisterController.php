@@ -74,7 +74,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        $imagen = $data['imagen']->store('public');
+        $imagen = $data['imagen']->store('public/perfiles');
         $user=User::create([
             'name' => $data['name'],
             'nickname' => $data['nickname'],
@@ -88,7 +88,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
         ]);
-        $imagenMascota = $data['imagenMascota']->store('public'); 
+        $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],

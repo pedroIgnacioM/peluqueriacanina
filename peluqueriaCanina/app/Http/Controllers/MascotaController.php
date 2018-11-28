@@ -19,7 +19,7 @@ class MascotaController extends Controller
         $user = Auth::user();
         if(!isset($user))
             abort(404);
-        $imagenMascota = $request->file('imagenMascota')->store('public'); 
+        $imagenMascota = $request->file('imagenMascota')->store('public/mascotas'); 
             Mascota::create([
             'nombre' => $request->nombre,
             'raza' => $request->raza,
