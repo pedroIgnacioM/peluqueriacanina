@@ -111,6 +111,7 @@
                                             <div class="container-fluid ">  
                                                 <div class="img-container">
                                                     <div class="panel-body" >
+                                                        {{-- Imagen --}}
                                                         <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($cortePelo->imagen)}}">
                                                             <img class="img-responsive" alt="{{$cortePelo->imagen}}" src="{{Storage::url($cortePelo->imagen)}}"/>
                                                             <p>{{$cortePelo->descripcion}}</p>
@@ -119,37 +120,35 @@
                                                 </div>
                                                 <div class="panel-footer"> 
                                                     <div class="row ">  
+                                                        {{-- Botón Descargar --}}
                                                         <div class="col-md-2">
-                                                            <a src="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
+                                                            <a href="#" src="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
                                                                 <i class="fas fa-download"></i>
                                                             </span></a>                       
                                                         </div>
                                                         @auth
                                                             @if(Auth::user()->isDefault() || Auth::user()->isAdmin() )
+                                                                {{-- Botón Comentar --}}
                                                                 <div class="col-md-2">
-                                                                    <a href=""><span style="font-size: 2em; color: grey;">
+                                                                    <a href="#"><span style="font-size: 2em; color: grey;">
                                                                         <i class="fas fa-comment"></i>
                                                                     </span></a>
                                                                 </div>
                                                             @endif 
                                                             @if(Auth::user()->isAdmin())
+                                                                {{-- Botón Eliminar --}}
                                                                 <div class="col-md-2">
-                                                                    <form action="{{ action('CortePeloController@destroy', $cortePelo->id)}}" method="POST">
-                                                                        <input type="hidden" name="_method" value="delete">
-                                                                        {!! csrf_field() !!}
-                                                                        <a href=""><span style="font-size: 2em; color: grey;">
-                                                                           <i class="fas fa-trash"></i>
-                                                                        </span></a>
-                                                                    </form>
+                                                                    <a href="#" onclick="eliminar({{$cortePelo->id}})">
+                                                                        <span style="font-size: 2em; color: grey;">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </span>
+                                                                    </a>
                                                                 </div>
+                                                                {{-- Botón Editar --}}
                                                                 <div class="col-md-2">
-                                                                    <form action="{{ action('CortePeloController@edit', $cortePelo->id)}}" method="POST">
-                                                                        <input type="hidden" name="_method" value="delete">
-                                                                        {!! csrf_field() !!}
-                                                                        <a href="#" data-toggle="modal" data-target="#create">
-                                                                            <span style="font-size: 2em; color: grey;"><i class="fas fa-edit"></i></span>
-                                                                        </a>
-                                                                    </form>
+                                                                    <a href="#" onclick="editar({{$cortePelo->id}})">
+                                                                        <span style="font-size: 2em; color: grey;"><i class="fas fa-edit"></i></span>
+                                                                    </a>
                                                                 </div>
                                                             @endif
                                                         @endauth  
@@ -169,96 +168,166 @@
 </div>
 {{-- Modal del boton (+) --}}
 <div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar Corte de pelo</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span> <i class="fas fa-times"></i></span>
+                </button> 
+            </div>
+            <form action="{{route('agregarCorte')}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <div class="form-group row justify-content-md-center">
+                        <div class="col-md-12">
+                            {{-- Tipo --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="tipo" class="col-form-label text-md-right">{{ __('Tipo') }}</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
+                                        <option value="" selected disabled>Seleccionar</option>
+                                        <optgroup label="Tipos de servicios">
+                                        <option value="solo corte">Solo corte</option>
+                                        <option value="baño y corte">Baño + Corte</option>
+                                        <option value="solo baño">Solo baño</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {{-- Tamaño --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="tamano" class="col-form-label text-md-right">{{ __('Tamaño') }}</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <select id="tamano" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tamano" required autofocus>
+                                        <option value="" selected disabled>Seleccionar</option>
+                                        <optgroup label="Tamaños de Perros">
+                                        <option value="pequeño">Pequeño</option>
+                                        <option value="mediano">Mediano</option>
+                                        <option value="grande">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {{-- Tipo Cabello --}}
+                            <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label for="cabello" class="col-form-label text-md-right">{{ __('Cabello') }}</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select id="cabello" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="cabello" required autofocus>>
+                                            <option value="" selected disabled>Seleccionar</option>
+                                            <optgroup label="Tipos de Cabellos">
+                                            <option value="1">Rubio</option>
+                                            <option value="2">Castaño</option>
+                                            <option value="3">Pelo liso</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            {{-- Descripción --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="descripcion" class="col-form-label text-md-right">{{ __('Descripción') }}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea id="descripcion" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus></textarea>
+                                </div>
+                            </div>
+                            {{-- Imagen --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input id="imagen" type="file" name="imagen">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- Modal del boton Eliminar --}}
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Agregar Corte de pelo</h4>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar Corte de Pelo</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span> <i class="fas fa-times"></i></span>
                     </button> 
                 </div>
-                <form action="{{route('agregarCorte')}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    <div class="modal-body">
-                        <div class="form-group row justify-content-md-center">
-                            <div class="col-md-12">
-                                {{-- Tipo --}}
-                                <div class="form-group row">
+                <div class="modal-body">
+                <div class="form-group row justify-content-md-center">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label class="col-form-label text-md-right">{{ __('Tipo') }}</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <p>{{$cortePelo->tipo}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                     <div class="col-md-3">
-                                        <label for="tipo" class="col-form-label text-md-right">{{ __('Tipo') }}</label>
+                                        <label class="col-form-label text-md-right">{{ __('Tamaño') }}</label>
                                     </div>
                                     <div class="col-md-5">
-                                        <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
-                                            <option value="" selected disabled>Seleccionar</option>
-                                            <optgroup label="Tipos de servicios">
-                                            <option value="solo corte">Solo corte</option>
-                                            <option value="baño y corte">Baño + Corte</option>
-                                            <option value="solo baño">Solo baño</option>
-                                        </select>
+                                        <p>{{$cortePelo->tamaño}}</p>
                                     </div>
                                 </div>
-                                {{-- Tamaño --}}
-                                <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label for="tamano" class="col-form-label text-md-right">{{ __('Tamaño') }}</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select id="tamano" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tamano" required autofocus>
-                                            <option value="" selected disabled>Seleccionar</option>
-                                            <optgroup label="Tamaños de Perros">
-                                            <option value="pequeño">Pequeño</option>
-                                            <option value="mediano">Mediano</option>
-                                            <option value="grande">Grande</option>
-                                        </select>
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label class="col-form-label text-md-right">{{ __('Cabello') }}</label>
                                 </div>
-                                {{-- Tipo Cabello --}}
-                                <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label for="cabello" class="col-form-label text-md-right">{{ __('Cabello') }}</label>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <select id="cabello" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="cabello" required autofocus>>
-                                                <option value="" selected disabled>Seleccionar</option>
-                                                <optgroup label="Tipos de Cabellos">
-                                                <option value="1">Rubio</option>
-                                                <option value="2">Castaño</option>
-                                                <option value="3">Pelo liso</option>
-                                            </select>
-                                        </div>
+                                <div class="col-md-5">
+                                    <p>{{$cortePelo->tipo_cabello_id}}</p>
                                 </div>
-                                {{-- Descripción --}}
-                                <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label for="descripcion" class="col-form-label text-md-right">{{ __('Descripción') }}</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <textarea id="descripcion" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus></textarea>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label class="col-form-label text-md-right">{{ __('Descripción') }}</label>
                                 </div>
-                                {{-- Imagen --}}
-                                <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input id="imagen" type="file" name="imagen">
-                                    </div>
+                                <div class="col-md-8">
+                                    <p>{{$cortePelo->descripcion}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label class="col-form-label text-md-right">{{ __('Foto') }}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <img class="img-responsive" alt="{{$cortePelo->imagen}}" src="{{Storage::url($cortePelo->imagen)}}"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+                </div>
+                <form action="{{route('eliminarCorte',['id'=>$cortePelo->id])}}" method="post">
+                    {{csrf_field()}}
+                    
+                    
+                            <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+
 {{-- Modal Modificar Corte de pelo --}}
-<div class="modal fade" id="create">
+<div class="modal fade" id="editarModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -375,7 +444,21 @@
     </div>
 </div>
 
+<script>
 
+function eliminar(id)
+{
+    var valor = id;
+    $('#eliminarModal').modal('show');
+}
+
+function editar(id)
+{
+    var valor = id;
+    $('#editarModal').modal('show');
+}
+
+</script>
 
 
 
