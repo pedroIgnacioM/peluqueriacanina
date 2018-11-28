@@ -267,7 +267,7 @@
                     <span> <i class="fas fa-times"></i></span>
                 </button> 
             </div>
-            <form method="POST" action="{{ action('CortePeloController@update', $cortePelo->id)}}"  role="form">
+            <form method="POST" action="{{ route('editarCorte', ['id'=>$cortePelo->id])}}"  role="form">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="form-group row justify-content-md-center">
