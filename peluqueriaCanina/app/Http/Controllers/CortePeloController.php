@@ -156,6 +156,21 @@ class CortePeloController extends Controller
         }
     }
 
+    public function eliminarCorteModal($id)
+    {
+        $elemento=CortePelo::find($id);
+        return view('modalEliminarCorte',[
+            'elemento'=>$elemento
+        ]);
+    }
+    public function editarCorteModal($id)
+    {
+        $elemento=CortePelo::find($id);
+        return view('modalEditarCorte',[
+            'elemento'=>$elemento
+        ]);
+    }
+
     //--------------------------------------------Funciones provisorias--------------------------------------------
 
 
