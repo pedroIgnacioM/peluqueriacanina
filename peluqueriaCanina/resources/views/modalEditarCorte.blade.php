@@ -53,9 +53,9 @@
                                             <option value="mediano" selected>Mediano</option>
                                             <option value="grande">Grande</option>
                                         @elseif($elemento->tamaño == 'pequeño')     
-                                            <option value="pequeño">Pequeño</option>
+                                            <option value="pequeño" selected>Pequeño</option>
                                             <option value="mediano">Mediano</option>
-                                            <option value="grande" selected>Grande</option>
+                                            <option value="grande" >Grande</option>
                                         @endif    
                                     </select>
                                 </div>
