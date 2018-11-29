@@ -138,7 +138,7 @@
                                                             @if(Auth::user()->isAdmin())
                                                                 {{-- Botón Eliminar --}}
                                                                 <div class="col-md-2">
-                                                                    <a href="#" onclick="eliminar({{$cortePelo->id}})">
+                                                                        <a href="" class="botonModal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
                                                                         <span style="font-size: 2em; color: grey;">
                                                                             <i class="fas fa-trash"></i>
                                                                         </span>
@@ -146,7 +146,7 @@
                                                                 </div>
                                                                 {{-- Botón Editar --}}
                                                                 <div class="col-md-2">
-                                                                    <a href="#" onclick="editar({{$cortePelo->id}})">
+                                                                    <a href="" class="botonModal" data-form="{{route('editarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
                                                                         <span style="font-size: 2em; color: grey;"><i class="fas fa-edit"></i></span>
                                                                     </a>
                                                                 </div>
@@ -255,211 +255,32 @@
         </div>
     </div>
 </div>
-
-{{-- Modal del boton Eliminar --}}
-<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Eliminar Corte de Pelo</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span> <i class="fas fa-times"></i></span>
-                    </button> 
-                </div>
-                <div class="modal-body">
-                <div class="form-group row justify-content-md-center">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label class="col-form-label text-md-right">{{ __('Tipo') }}</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <p>{{$cortePelo->tipo}}</p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label class="col-form-label text-md-right">{{ __('Tamaño') }}</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p>{{$cortePelo->tamaño}}</p>
-                                    </div>
-                                </div>
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label class="col-form-label text-md-right">{{ __('Cabello') }}</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <p>{{$cortePelo->tipo_cabello_id}}</p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label class="col-form-label text-md-right">{{ __('Descripción') }}</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <p>{{$cortePelo->descripcion}}</p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label class="col-form-label text-md-right">{{ __('Foto') }}</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <img class="img-responsive" alt="{{$cortePelo->imagen}}" src="{{Storage::url($cortePelo->imagen)}}"/>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <form action="{{route('eliminarCorte',['id'=>$cortePelo->id])}}" method="post">
-                    {{csrf_field()}}
-                    
-                    
-                            <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-{{-- Modal Modificar Corte de pelo --}}
-<div class="modal fade" id="editarModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Modificar Corte de Pelo</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span> <i class="fas fa-times"></i></span>
-                </button> 
-            </div>
-            <form method="POST" action="{{ route('editarCorte', ['id'=>$cortePelo->id])}}"  role="form">
-                {{ csrf_field() }}
-                <div class="modal-body">
-                    <div class="form-group row justify-content-md-center">
-                        <div class="col-md-12">
-                            {{-- Tipo --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="tipo" class="col-form-label text-md-right">{{ __('Tipo') }}</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
-                                        <optgroup label="Tipos de servicios">
-                                        @if($cortePelo->tipo == 'solo corte')
-                                            <option value="solo corte" selected>Solo corte</option>              
-                                            <option value="baño y corte">Baño + Corte</option>
-                                            <option value="solo baño">Solo baño</option>
-                                        @elseif($cortePelo->tipo == 'baño y corte')     
-                                            <option value="solo corte">Solo corte</option>              
-                                            <option value="baño y corte"selected>Baño + Corte</option>
-                                            <option value="solo baño">Solo baño</option>
-                                        @elseif($cortePelo->tipo == 'solo baño')     
-                                            <option value="solo corte">Solo corte</option>              
-                                            <option value="baño y corte">Baño + Corte</option>
-                                            <option value="solo baño" selected>Solo baño</option>
-                                        @endif    
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- Tamaño --}}
-                            <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label for="tamano" class="col-form-label text-md-right">{{ __('Tamaño') }}</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select id="tamano" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tamano" required autofocus>
-                                            <optgroup label="Tamaños de Perros">
-                                            @if($cortePelo->tamaño == 'grande')              
-                                                <option value="pequeño">Pequeño</option>
-                                                <option value="mediano">Mediano</option>
-                                                <option value="grande" selected>Grande</option>
-                                            @elseif($cortePelo->tamaño == 'mediano')     
-                                                <option value="pequeño">Pequeño</option>
-                                                <option value="mediano" selected>Mediano</option>
-                                                <option value="grande">Grande</option>
-                                            @elseif($cortePelo->tamaño == 'pequeno')     
-                                                <option value="pequeño">Pequeño</option>
-                                                <option value="mediano">Mediano</option>
-                                                <option value="grande" selected>Grande</option>
-                                            @endif    
-                                        </select>
-                                    </div>
-                            </div>
-                            {{-- Tipo Cabello --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="cabello" class="col-form-label text-md-right">{{ __('Cabello') }}</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <select id="cabello" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="cabello" required autofocus>>
-                                        <optgroup label="Tipos de Cabellos">
-                                        @if($cortePelo->tipo_cabello_id == '1')              
-                                            <option value="1" selected>Rubio</option>
-                                            <option value="2">Castaño</option>
-                                            <option value="3">Pelo liso</option>
-                                        @elseif($cortePelo->tipo_cabello_id == '2')     
-                                            <option value="1">Rubio</option>
-                                            <option value="2" selected>Castaño</option>
-                                            <option value="3">Pelo liso</option>
-                                        @elseif($cortePelo->tipo_cabello_id == '3')
-                                            <option value="1">Rubio</option>
-                                            <option value="2">Castaño</option>
-                                            <option value="3" selected>Pelo liso</option>
-                                        @endif  
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- Descripción --}}
-                            <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label for="descripcion" class="col-form-label text-md-right">{{ __('Descripción') }}</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <textarea id="descripcion" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus placeholder="descripcion">{{$cortePelo->descripcion}}</textarea>
-                                    </div>
-                            </div>
-
-                            {{-- Imagen --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <input id="imagen" type="file" name="imagen" value="{{$cortePelo->imagen}}">
-                                </div>
-                            </div>    
-
-                </form>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Editar</button>
-    </div>
-</div>
+<div class="modal" id="modal-corte"></div>
 
 <script>
+// Modal
+$(document).ready(function () {
 
-function eliminar(id)
-{
-    var valor = id;
-    $('#eliminarModal').modal('show');
-}
+$(".botonModal").click(function (ev) { // for each edit contact url
+    ev.preventDefault(); // prevent navigation
+    var url = $(this).data("form"); // get the contact form url
+    console.log(url);
+    $("#modal-corte").load(url, function () { // load the url into the modal
+        $(this).modal('show'); // display the modal on url load
+    });
+});
 
-function editar(id)
-{
-    var valor = id;
-    $('#editarModal').modal('show');
-}
-
+$('.corte-form').on('submit', function () {
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        context: this,
+        success: function (data, status) {
+            $('#modal-corte').html(data);
+        }
+    });
+});
+});
 </script>
-
-
-
 @endsection
