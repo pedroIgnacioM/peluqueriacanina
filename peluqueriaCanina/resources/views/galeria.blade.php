@@ -122,7 +122,7 @@
                                                     <div class="row ">  
                                                         {{-- Botón Descargar --}}
                                                         <div class="col-md-2">
-                                                            <a href="#" src="{{Storage::url($cortePelo->imagen)}}" download="{{Storage::url($cortePelo->imagen)}}"><span style="font-size: 2em; color: grey;">
+                                                            <a href="{{Storage::url($cortePelo->imagen)}}" download><span style="font-size: 2em; color: grey;">
                                                                 <i class="fas fa-download"></i>
                                                             </span></a>                       
                                                         </div>
