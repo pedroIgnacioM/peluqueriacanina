@@ -26,6 +26,7 @@ class ProductosTableSeeder extends Seeder
                 'nombre'=>$faker->randomElement($productos),
                 'descripcion'=>$faker->text,
                 'precio'=>$faker->numberBetween($min = 4000, $max = 15000),
+                'imagen'=>'producto_default.jpg'
             ]);   
         }
     }
