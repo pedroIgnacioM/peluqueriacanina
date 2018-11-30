@@ -31,8 +31,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {   
+        $user = \Auth::user();
 
+        return route('home');
+    }
     /**
      * Create a new controller instance.
      *
@@ -70,7 +74,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        $imagen = $data['imagen']->store('public');
+        $imagen = $data['imagen']->store('public/perfiles');
         $user=User::create([
             'name' => $data['name'],
             'nickname' => $data['nickname'],
@@ -84,7 +88,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
         ]);
-            
+        $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
@@ -92,6 +96,7 @@ class RegisterController extends Controller
             'sexo' => $data['sexoMascota'],
             'color' => $data['color'],
             'user_id' =>$user->id,
+            'imagenMascota'=>$imagenMascota,
 
         ]);
 
@@ -103,6 +108,7 @@ class RegisterController extends Controller
     protected function registraMascota(array $data)
     {
         $user=Auth::user();
+
         Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
@@ -112,6 +118,7 @@ class RegisterController extends Controller
             'user_id' =>$user->id,
 
         ]);
+        return $user;
         
         }
 }

@@ -16,11 +16,12 @@ class DatabaseSeeder extends Seeder
             ProductosTableSeeder::class,
             UsersTableSeeder::class,
             MascotasTableSeeder::class,
+            Tipo_CabelloTableSeeder::class,
             Corte_PelosTableSeeder::class,
             Corte_FavoritosTableSeeder::class,
             Reserva_ProductosTableSeeder::class,
             Reserva_CitasTableSeeder::class,
-            Tipo_CabelloTableSeeder::class
+            
         ]);
 
     }
