@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\cortePelo;
+use App\Producto;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $cortes = CortePelo::orderBy('id','DESC')->paginate(3);
+        $productos = Producto::orderBy('id','DESC')->paginate(3);
+
+        return view('home',[
+            'cortes'=>$cortes,
+            'productos'=>$productos
+        ]);
     }
 }

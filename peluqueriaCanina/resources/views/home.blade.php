@@ -27,17 +27,12 @@
                                         </ol>
                                         
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img class="img-responsive" src="FotosSlider/matyNvl1.jpg"  alt="First slide">
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <img class="img-responsive" src="FotosSlider/matyNvl7.jpg"  alt="Second slide">
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <img class="img-responsive" src="FotosSlider/reina.jpg" alt="Third slide">
-                                            </div>
+                                            @foreach ($cortes as $corte)
+                                                
+                                                <div class="carousel-item">
+                                                    <img class="img-responsive" src="{{Storage::url($corte->imagen)}}" width="150">
+                                                </div>
+                                            @endforeach
                                         </div>
                                         
                                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -82,8 +77,9 @@
 
                                 <div class="col-md-6">
                                     <h5>¿Buscas un Juguete para tu mascota?</h5>
-                                    <img class="img-responsive" alt="" src="Productos/cuerda.jpg" width="150" />
-                                    <img class="img-responsive" alt="" src="Productos/bolsa.jpg" width="150" />
+                                    @foreach ($productos as $producto)
+                                        <img class="img-responsive" src="{{Storage::url($producto->imagen)}}" width="150" >
+                                    @endforeach
                                     <br>
                                     <!-- Aca falta la referencia a productos-->
                                     <a href="">Ver Precios</a>
