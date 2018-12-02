@@ -11,8 +11,8 @@ class PerfilController extends Controller
         if($nombre=='Usuario'){
             
             $user=\Auth::user();
-            $nombresColumnas=array('name','email','nickname','rut','telefono','ciudad','direccion','edad','sexo');
-            $titulos=array('Nombre','Correo ','Nickname','Rut','Telefono','Ciudad','Direccion','Edad','Sexo');
+            $nombresColumnas=array('nombres','apellidos','correo','telefono');
+            $titulos=array('Nombres','Apellidos','Correo','Telefono');
             $id=$user->id;
             $nombresColumnasMascotas=array('nombre','sexo','edad','color');
             $mascotasUsuario=\DB::table ('mascotas')
@@ -47,15 +47,10 @@ class PerfilController extends Controller
         if(!isset($user))
             abort(404);
 
-        $user->name = $request->name;
-        $user->nickname = $request->nickname;
+        $user->nombres = $request->nombres;
+        $user->apellidos = $request->apellidos;
         $user->telefono = $request->telefono;
-        $user->rut = $request->rut;
-        $user->ciudad = $request->ciudad;
-        $user->direccion = $request->direccion;
-        $user->edad = $request->edad;
-        $user->sexo = $request->sexo;
-        $user->email = $request->email;
+        $user->correo = $request->correo;
 
         $user->save();
 
