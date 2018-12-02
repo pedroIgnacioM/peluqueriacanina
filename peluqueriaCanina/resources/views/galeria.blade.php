@@ -109,16 +109,12 @@
                                     @foreach($cortePelos as $cortePelo)
                                         <div class="col-sm-4 ">
                                             <div class="container-fluid ">  
-                                                <div class="img-container">
-                                                    <div class="panel-body" >
+                                                <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
                                                         <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($cortePelo->imagen)}}">
-                                                            <img class="img-responsive" alt="{{$cortePelo->imagen}}" src="{{Storage::url($cortePelo->imagen)}}"/>
                                                             <p>{{$cortePelo->descripcion}}</p>
                                                         </a> 
-                                                    </div>
                                                 </div>
-                                                <div class="panel-footer"> 
                                                     <div class="row ">  
                                                         {{-- Botón Descargar --}}
                                                         <div class="col-md-2">
@@ -152,7 +148,6 @@
                                                                 </div>
                                                             @endif
                                                         @endauth  
-                                                    </div>                                  
                                                 </div>
                                             </div>
                                         </div>
