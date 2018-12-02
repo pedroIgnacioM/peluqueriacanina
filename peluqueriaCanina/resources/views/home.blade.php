@@ -27,17 +27,18 @@
                                         </ol>
                                         
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img class="img-responsive" src="FotosSlider/matyNvl1.jpg"  alt="First slide">
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <img class="img-responsive" src="FotosSlider/matyNvl7.jpg"  alt="Second slide">
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <img class="img-responsive" src="FotosSlider/reina.jpg" alt="Third slide">
-                                            </div>
+                                            @foreach ($cortes as $corte)
+                                            @if($loop->first)
+                                                <div class="carousel-item active">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60">
+                                                </div>
+                                            @else
+                                                <div class="carousel-item">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60">
+                                                </div>
+                                            @endif
+                                                
+                                            @endforeach
                                         </div>
                                         
                                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -81,12 +82,22 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h5>¿Buscas un Juguete para tu mascota?</h5>
-                                    <img class="img-responsive" alt="" src="Productos/cuerda.jpg" width="150" />
-                                    <img class="img-responsive" alt="" src="Productos/bolsa.jpg" width="150" />
-                                    <br>
-                                    <!-- Aca falta la referencia a productos-->
-                                    <a href="">Ver Precios</a>
+                                    <div class="row justify-content-center">
+                                        <h5>¿Buscas un Juguete para tu mascota?</h5>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        @foreach ($productos as $producto)
+                                            <div class="col-md-6">
+                                                <img class="img-fluid" src="{{Storage::url($producto->imagen)}}">
+                                            </div>
+                                        @endforeach
+                                        <br>
+                                        <!-- Aca falta la referencia a productos-->
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <a href="">Ver Precios</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
