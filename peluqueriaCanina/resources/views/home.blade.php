@@ -28,10 +28,16 @@
                                         
                                         <div class="carousel-inner">
                                             @foreach ($cortes as $corte)
-                                                
-                                                <div class="carousel-item">
-                                                    <img class="img-responsive" src="{{Storage::url($corte->imagen)}}" width="150">
+                                            @if($loop->first)
+                                                <div class="carousel-item active">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60">
                                                 </div>
+                                            @else
+                                                <div class="carousel-item">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60">
+                                                </div>
+                                            @endif
+                                                
                                             @endforeach
                                         </div>
                                         
