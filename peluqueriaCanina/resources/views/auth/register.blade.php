@@ -45,14 +45,14 @@
 
                         <div class="form-group row">
                                 
-                            <label for="correo" class="col-md-2 col-form-label text-md-right">{{ __('Correo') }}</label>
+                            <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-5">
-                                <input id="correo" type="text" class="form-control{{ $errors->has('correo') ? ' is-invalid' : '' }}" name="correo" value="{{old('correo') }}" required>
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{old('email') }}" required>
 
-                                @if ($errors->has('correo'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('correo') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
