@@ -82,13 +82,22 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h5>¿Buscas un Juguete para tu mascota?</h5>
-                                    @foreach ($productos as $producto)
-                                        <img class="img-responsive" src="{{Storage::url($producto->imagen)}}" width="150" >
-                                    @endforeach
-                                    <br>
-                                    <!-- Aca falta la referencia a productos-->
-                                    <a href="">Ver Precios</a>
+                                    <div class="row justify-content-center">
+                                        <h5>¿Buscas un Juguete para tu mascota?</h5>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        @foreach ($productos as $producto)
+                                            <div class="col-md-6">
+                                                <img class="img-fluid" src="{{Storage::url($producto->imagen)}}">
+                                            </div>
+                                        @endforeach
+                                        <br>
+                                        <!-- Aca falta la referencia a productos-->
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <a href="">Ver Precios</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
