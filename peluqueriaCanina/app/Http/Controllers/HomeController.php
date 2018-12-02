@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $cortes = CortePelo::orderBy('id','DESC')->paginate(3);
-        $productos = Producto::orderBy('id','DESC')->paginate(3);
+        $productos = Producto::orderBy('id','DESC')->paginate(2);
 
         return view('home',[
             'cortes'=>$cortes,
