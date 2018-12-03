@@ -70,8 +70,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        $imagen = $data['imagen']->store('public/perfiles');
+        if(!isset($data['imagen'])){
+            $imagen = "public/perfiles/avatar.png";
+        }else{
+            $imagen = $data['imagen']->store('public/perfiles');
+        }
         $user=User::create([
             'nombres' => $data['nombres'],
             'apellidos' => $data['apellidos'],
@@ -80,7 +83,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
         ]);
-        $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
+        if(!isset($data['imagenMascota'])){
+            $imagenMascota = "public/mascotas/avatarMascota.png";
+        }else{
+            $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
+        }
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],
