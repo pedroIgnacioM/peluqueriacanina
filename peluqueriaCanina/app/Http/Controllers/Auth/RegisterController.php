@@ -72,6 +72,9 @@ class RegisterController extends Controller
     {
         
         $imagen = $data['imagen']->store('public/perfiles');
+        if(!isset($data['imagen'])){
+            $imagen = 'public/perfiles/avatar.png';
+        }
         $user=User::create([
             'nombres' => $data['nombres'],
             'apellidos' => $data['apellidos'],
@@ -79,7 +82,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
+            
         ]);
+        
         $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
             Mascota::create([
             'nombre' => $data['nombre'],
