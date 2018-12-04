@@ -20,14 +20,14 @@
                                                         <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="Por_precio" >
-                                                                <input class="form-check-input" type="checkbox" value="Por_precio" name="Por_precio">
+                                                                <input class="form-check-input" type="checkbox" value="Por_precio" name="Por_precio" id="checkPrecio">
                                                                 Por precio</label>
                                                             </div>
                                                         </div>
                                                             <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="Orden_Alfabetico">
-                                                                <input class="form-check-input" type="checkbox" value="Orden_Alfabetico" name="Orden_Alfabetico">
+                                                                <input class="form-check-input" type="checkbox" value="Orden_Alfabetico" name="Orden_Alfabetico" id="checkAlfabe">
                                                                 Orden Alfabetico</label>
                                                             </div>
                                                         </div>
@@ -36,7 +36,7 @@
                                                 <br>
                                                 <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
-                                                        <button type="submit" class="btn btn-primary">{{ __('Buscar') }}</button>
+                                                        <button id="btnFiltrar" type="submit" class="btn btn-primary" disabled>{{ __('Buscar') }}</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -60,28 +60,80 @@
                                         </div>
                                     </div>
                                 </div>
-                            <div class="panel-footer"> 
-                                <div class="row justify-content-center">
-                                    <div class="">
-                                        <label class="label">{{$producto->nombre}}</label>
-                                    </div>  
-                                </div> 
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-12">
-                                        <p>{{$producto->descripcion}}</p>   
-                                    </div>
-                                </div>
+                                <div class="panel-footer"> 
                                     <div class="row justify-content-center">
-                                        <label class="label">${{$producto->precio}}</label>
-                                    </div>                    
+                                        <div class="">
+                                            <label class="label">{{$producto->nombre}}</label>
+                                        </div>  
+                                    </div> 
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-12">
+                                            <p>{{$producto->descripcion}}</p>   
+                                        </div>
+                                    </div>
+                                        <div class="row justify-content-center">
+                                            <label class="label">${{$producto->precio}}</label>
+                                        </div>                    
+                                </div>
                             </div>
-                        </div>
                            @endforeach       
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<script>
+$(document).ready(function(){ 
+    
+    $('#checkPrecio').on('change', function(){
+        if( $(this).is(':checked') ) {
+            if( $('#checkAlfabe').prop('checked') ) {
+                $('#btnFiltrar').prop('disabled',true);
+            }
+            else
+            {
+                $('#btnFiltrar').prop('disabled',false);
+            }
+        }
+        else{
+            if( $('#checkAlfabe').prop('checked') ){
+                $('#btnFiltrar').prop('disabled',false);
+            }
+            else{
+                $('#btnFiltrar').prop('disabled',true);
+            }
+        }
+    });
+
+
+    $('#checkAlfabe').on('change', function(){
+        if( $(this).is(':checked') ) {
+            if( $('#checkPrecio').prop('checked') ) {
+                $('#btnFiltrar').prop('disabled',true);
+            }
+            else
+            {
+                $('#btnFiltrar').prop('disabled',false);
+            }
+        }
+        else{
+            if( $('#checkPrecio').prop('checked') ) 
+            {
+                $('#btnFiltrar').prop('disabled',false);
+            }
+            else
+            {
+                $('#btnFiltrar').prop('disabled',true);
+            }
+        }
+    });
+
+
+
+
+});
+</script>
 @endsection
