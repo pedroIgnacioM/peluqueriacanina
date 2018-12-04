@@ -56,9 +56,9 @@ label{
 	border-color: #343a4026!important;
 }
 .img-container {
-   	width: 400px;
+   	width: 300px;
     position: relative;
-  	height:300px;
+  	height:200px;
   	overflow:hidden; 
 }
 
