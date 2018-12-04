@@ -30,11 +30,11 @@
                                             @foreach ($cortes as $corte)
                                             @if($loop->first)
                                                 <div class="carousel-item active">
-                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60" width="150" height="230">
                                                 </div>
                                             @else
                                                 <div class="carousel-item">
-                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60" width="150" height="230">
                                                 </div>
                                             @endif
                                                 
