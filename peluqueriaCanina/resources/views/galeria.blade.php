@@ -8,13 +8,13 @@
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-2">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-1">
                                     <div class="row justify-content-center">
                                         @auth
                                             @if(Auth::user()->isAdmin())
                                                 {{-- Botón Agregar --}}
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-6">
                                                     <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarCortePelo">Agregar Imagen <i class="fas fa-plus"></i></button>
                                                 </div>
                                             @endif
