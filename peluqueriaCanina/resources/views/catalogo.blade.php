@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-        <div class="col-md-12">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -47,32 +47,37 @@
                         </div>
                         <div class="col-md-10">
                             <div class="row">
-                                @foreach($productos as $producto)
-                                <div class="col-md-4 img-thumbnail">
-                                    <div class="row">
-                                        <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($producto->imagen)}}">
-                                            <img class="img-fluid" alt="{{$producto->imagen}}" src="{{Storage::url($producto->imagen)}}"/>
-                                        </a> 
-                                    </div>
-                                    
-                                    <div class="row justify-content-center">
-                                        <div class="">
-                                            <label class="label">{{$producto->nombre}}</label>
-                                        </div>  
-                                    </div> 
-                                    <div class="row justify-content-center">
-                                        <div class="col-sm-12">
-                                            <p>{{$producto->descripcion}}</p>   
+
+                            
+                           @foreach($productos as $producto)
+                            <div class="col-md-4 ">
+                                <div class="container-fluid ">  
+                                    <div class="img-container">
+                                        <div class="panel-body" >
+                                            <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($producto->imagen)}}">
+                                                <img class="img-responsive" alt="{{$producto->imagen}}" src="{{Storage::url($producto->imagen)}}"/>
+                                            </a> 
                                         </div>
                                     </div>
+                                </div>
+                            <div class="panel-footer"> 
+                                <div class="row justify-content-center">
+                                    <div class="">
+                                        <label class="label">{{$producto->nombre}}</label>
+                                    </div>  
+                                </div> 
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-12">
+                                        <p>{{$producto->descripcion}}</p>   
+                                    </div>
+                                </div>
                                     <div class="row justify-content-center">
                                         <label class="label">${{$producto->precio}}</label>
                                     </div>                    
-                                    
-                                </div>
-                                @endforeach       
                             </div>
                         </div>
+                           @endforeach       
+                    </div>
                 </div>
             </div>
         </div>
