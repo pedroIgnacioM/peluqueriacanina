@@ -37,6 +37,9 @@ class User extends Authenticatable
     public function isAdmin()    {        
         return $this->type === self::ADMIN_TYPE;    
     }
+     public function isDefault()    {        
+        return $this->type === self::DEFAULT_TYPE;    
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,4 +48,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+
+
+
+
+
+
 }
+    

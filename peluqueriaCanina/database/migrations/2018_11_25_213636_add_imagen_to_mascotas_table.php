@@ -14,7 +14,7 @@ class AddImagenToMascotasTable extends Migration
     public function up()
     {
         Schema::table('mascotas', function (Blueprint $table) {
-            $table->string('imagenMascota')->after('user_id')->default('avatarMascota.png'); 
+            $table->string('imagenMascota')->after('user_id')->default('public/mascotas/'.'avatarMascota.png'); 
         });
     }
 

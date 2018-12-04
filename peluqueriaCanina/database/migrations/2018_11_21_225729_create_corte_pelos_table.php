@@ -23,13 +23,17 @@ class CreateCortePelosTable extends Migration
 
         Schema::table('corte_pelos', function (Blueprint $table) {
             
-            $table->unsignedInteger('mascota_id');
+            $table->unsignedInteger('mascota_id')->nullable();
             $table->foreign('mascota_id')
             ->references('id')
             ->on('mascotas')
             ->onDelete('cascade');
 
-
+            $table->unsignedInteger('tipo_cabello_id');
+            $table->foreign('tipo_cabello_id')
+            ->references('id')
+            ->on('tipo_cabello')
+            ->onDelete('cascade');
         });
     }
 
