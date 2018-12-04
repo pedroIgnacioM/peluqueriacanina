@@ -158,7 +158,7 @@
 </div>
 
 {{-- Modal del boton (+) --}}
-<div class="modal fade modal-lg" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
