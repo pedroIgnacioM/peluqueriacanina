@@ -96,7 +96,7 @@
                                         <!-- Aca falta la referencia a productos-->
                                     </div>
                                     <div class="row justify-content-center">
-                                        <a href="">Ver Precios</a>
+                                        <a href="{{ route('catalogo') }}">Ver Precios</a>
                                     </div>
                                 </div>
                             </div>
