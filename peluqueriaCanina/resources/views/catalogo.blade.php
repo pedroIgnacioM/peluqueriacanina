@@ -47,20 +47,15 @@
                         </div>
                         <div class="col-md-10">
                             <div class="row">
-
-                            
-                           @foreach($productos as $producto)
-                            <div class="col-md-4 ">
-                                <div class="container-fluid ">  
-                                    <div class="img-container">
-                                        <div class="panel-body" >
-                                            <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($producto->imagen)}}">
-                                                <img class="img-responsive" alt="{{$producto->imagen}}" src="{{Storage::url($producto->imagen)}}"/>
-                                            </a> 
+                            @foreach($productos as $producto)
+                            <div class="col-md-4">
+                                <div class="container-fluid">  
+                                    <div class="img-container" style="background-image:url({{Storage::url($producto->imagen)}});">
+                                        <div>
+                                            <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($producto->imagen)}}"> </a>                                           </a> 
                                         </div>
                                     </div>
-                                </div>
-                            <div class="panel-footer"> 
+                                
                                 <div class="row justify-content-center">
                                     <div class="">
                                         <label class="label">{{$producto->nombre}}</label>
@@ -73,10 +68,11 @@
                                 </div>
                                     <div class="row justify-content-center">
                                         <label class="label">${{$producto->precio}}</label>
-                                    </div>                    
+                                    </div>   
+                                </div> 
+                                           
                             </div>
-                        </div>
-                           @endforeach       
+                            @endforeach       
                     </div>
                 </div>
             </div>
