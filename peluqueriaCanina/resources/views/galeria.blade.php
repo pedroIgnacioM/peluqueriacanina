@@ -7,24 +7,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row justify-content-center">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-9">
-                                <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarCortePelo">+</button>
-                            </div> 
-                        </div>
-                        <div class="col-md-10">
-
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row justify-content-center">
                         <div class="col-md-2">
-
                             <div class="row justify-content-center">
-                                <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option>Perros</option>
-                                    </select>
+                                <div class="col-sm-10">
+                                    <div class="row justify-content-center">
+                                        @auth
+                                            @if(Auth::user()->isAdmin())
+                                                {{-- Botón Agregar --}}
+                                                <div class="col-sm-10">
+                                                    <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarCortePelo">Agregar Imagen <i class="fas fa-plus"></i></button>
+                                                </div>
+                                            @endif
+                                        @endauth
+                                    </div>
                                 </div> 
                             </div>
                             <br>
@@ -64,8 +59,8 @@
                                                 </div>
                                                 <br>
 
-                                                 <label class="label">Cabello</label>
-                                                 <div class="row justify-content-center">  
+                                                <label class="label">Cabello</label>
+                                                <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
                                                          <div class="row  ">
                                                             <div class="form-check">
@@ -85,7 +80,7 @@
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pelo_liso">
                                                                 <input class="form-check-input" type="checkbox" value="pelo_liso" name="cabello" id="negro">
-                                                                Pelo Liso</label>
+                                                                Negro</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -104,7 +99,7 @@
                         </div>
 
                         <div class="col-md-10">
-                            <div class="row ">
+                            <div class="row">
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)
                                         <div class="col-sm-4 ">
@@ -119,7 +114,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="panel-footer"> 
-                                                    <div class="row ">  
+                                                    <div class="row justify-content-center">  
                                                         {{-- Botón Descargar --}}
                                                         <div class="col-md-2">
                                                             <a href="{{Storage::url($cortePelo->imagen)}}" download><span style="font-size: 2em; color: grey;">
@@ -152,7 +147,8 @@
                                                                 </div>
                                                             @endif
                                                         @endauth  
-                                                    </div>                                  
+                                                    </div>
+                                                    <br>                                 
                                                 </div>
                                             </div>
                                         </div>
@@ -166,8 +162,9 @@
         </div>
     </div>
 </div>
+
 {{-- Modal del boton (+) --}}
-<div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade modal-lg" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
