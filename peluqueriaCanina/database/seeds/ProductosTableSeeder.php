@@ -19,6 +19,13 @@ class ProductosTableSeeder extends Seeder
             "Cuerda de tiro trenzada",
             "cola de zorro para gatos",
         ];
+        $imagenes=[
+            'producto_default.jpg',
+            'juguete1.jpg',
+            'juguete2.jpg',
+            'juguete3.jpg',
+            'juguete4.jpg'
+        ];
         foreach (range(1,10) as $i) {
             DB::table('productos')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
@@ -26,7 +33,7 @@ class ProductosTableSeeder extends Seeder
                 'nombre'=>$faker->randomElement($productos),
                 'descripcion'=>$faker->text,
                 'precio'=>$faker->numberBetween($min = 4000, $max = 15000),
-                'imagen'=>'public/productos/'.'producto_default.jpg'
+                'imagen'=>'public/productos/'. $faker->randomElement($imagenes)
             ]);   
         }
     }

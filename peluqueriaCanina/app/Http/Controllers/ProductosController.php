@@ -88,7 +88,7 @@ class ProductosController extends Controller
  
         if(isset($request->Por_precio))
         {
-            $productos = Producto::orderByRaw('LENGTH(precio) asc')
+            $productos = Producto::orderBy('precio', 'asc')
             ->paginate(9);
         }
         else if(isset($request->Orden_Alfabetico))
