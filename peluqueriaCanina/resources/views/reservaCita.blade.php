@@ -10,8 +10,21 @@
 
                 <div class="card-body">
                    
-                   
-
+                    <div class="row">
+                        <div class="col-md-8">
+                            
+                        </div>
+                        
+                        <div class ="col">
+                            <div class="card">
+                                    <div class="card-header"> <h3>El horario seria:</h3> </div>
+                    
+                                    <div class="card-body">
+                               
+                            </div>
+                        </div>
+    
+                    </div>
                 </div>
             </div>
         </div>
