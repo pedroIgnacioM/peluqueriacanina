@@ -14,12 +14,22 @@
                         <div class="col-md-8">
                             <p>dia actual: {{$dia}}</p>
                             <p>mes actual: {{$mes}}</p>
-                            <br>
                             <p>dias de la semana actual</p>
                             @foreach ($dias as $dia)
                             <p>{{$dia}}</p>
                                 
                             @endforeach
+                            <br>
+                            @foreach ($horariosLibres as $horarioDia)
+                                @foreach ($horarioDia as $horarioHora)
+                                    <p>{{$horarioHora}}</p>
+                                @endforeach
+                                <br>
+                            @endforeach
+                            {{-- @foreach ($horariosLibres as $item)
+                                <p>{{$item}}</p>
+                            @endforeach --}}
+                            
                         </div>
                         
                         <div class ="col">
