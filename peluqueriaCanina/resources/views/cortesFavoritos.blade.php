@@ -29,7 +29,7 @@
                                             <form action="{{ route('galeriaFiltro') }}" method="POST" >
                                                 @csrf
                                                 <label class="label text-center">Tamaño</label>
-                                               <div class="row justify-content-center">  
+                                                <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
                                                          <div class="row  ">
                                                             <div class="form-check">
@@ -121,24 +121,15 @@
                                                                     <i class="fas fa-comment"></i>
                                                                 </span></a>
                                                             </div>
-                                                            {{-- Boton Favorito --}}
                                                             <div class="col-md-2">
-                                                                <a href=""><span style="font-size: 20px; color: grey;">
-                                                                    <i class="fas fa-heart" ></i>
+                                                                <a href="#"><span style="font-size: 20px; color: grey;">
+                                                                    <i class="fas fa-heart"></i>
                                                                 </span></a>
                                                             </div>
-                                                        @endif 
-                                                        @if(Auth::user()->isAdmin())
                                                             {{-- Botón Eliminar --}}
                                                             <div class="col-md-2">
                                                                 <a href="" class="botonModal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
                                                                     <span style="font-size: 20px; color: grey;"><i class="fas fa-trash"></i></span>
-                                                                </a>
-                                                            </div>
-                                                            {{-- Botón Editar --}}
-                                                            <div class="col-md-2">
-                                                                <a href="" class="botonModal" data-form="{{route('editarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
-                                                                    <span style="font-size: 20px; color: grey;"><i class="fas fa-edit"></i></span>
                                                                 </a>
                                                             </div>
                                                         @endif
@@ -157,110 +148,9 @@
         </div>
     </div>
 </div>
-
-{{-- Modal del boton (+) --}}
-<div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Agregar Corte de pelo</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span> <i class="fas fa-times"></i></span>
-                </button> 
-            </div>
-            <form action="{{route('agregarCorte')}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
-                <div class="modal-body">
-                    <div class="form-group row justify-content-md-center">
-                        <div class="col-md-12">
-                            {{-- Tipo --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="tipo" class="col-form-label text-md-right">{{ __('Tipo') }}</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
-                                        <option value="" selected disabled>Seleccionar</option>
-                                        <optgroup label="Tipos de servicios">
-                                        <option value="solo corte">Solo corte</option>
-                                        <option value="baño y corte">Baño + Corte</option>
-                                        <option value="solo baño">Solo baño</option>
-                                    </select>
-                                </div>
-                            </div>
-                            {{-- Tamaño --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="tamano" class="col-form-label text-md-right">{{ __('Tamaño') }}</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <select id="tamano" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tamano" required autofocus>
-                                        <option value="" selected disabled>Seleccionar</option>
-                                        <optgroup label="Tamaños de Perros">
-                                        <option value="pequeño">Pequeño</option>
-                                        <option value="mediano">Mediano</option>
-                                        <option value="grande">Grande</option>
-                                    </select>
-                                </div>
-                            </div>
-                            {{-- Tipo Cabello --}}
-                            <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <label for="cabello" class="col-form-label text-md-right">{{ __('Cabello') }}</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select id="cabello" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="cabello" required autofocus>>
-                                            <option value="" selected disabled>Seleccionar</option>
-                                            <optgroup label="Tipos de Cabellos">
-                                            <option value="1">Rubio</option>
-                                            <option value="2">Castaño</option>
-                                            <option value="3">Pelo liso</option>
-                                        </select>
-                                    </div>
-                            </div>
-                            {{-- Descripción --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="descripcion" class="col-form-label text-md-right">{{ __('Descripción') }}</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea id="descripcion" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus></textarea>
-                                </div>
-                            </div>
-                            {{-- Imagen --}}
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <input id="imagen" type="file" name="imagen">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal" id="modal-corte"></div>
-
 <script>
 // Modal
 $(document).ready(function () {
-
-$(".botonModal").click(function (ev) { // for each edit contact url
-    ev.preventDefault(); // prevent navigation
-    var url = $(this).data("form"); // get the contact form url
-    console.log(url);
-    $("#modal-corte").load(url, function () { // load the url into the modal
-        $(this).modal('show'); // display the modal on url load
-    });
-});
 
 $('.corte-form').on('submit', function () {
     $.ajax({

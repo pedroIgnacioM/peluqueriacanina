@@ -39,7 +39,7 @@ Route::post('/editarperfil','PerfilController@editarPerfil')->name('editarPerfil
 //-------------------------------Rutas galeria-----------------------------------
 Route::resource('galeria', 'CortePeloController');
 
-Route::get('/galeria', 'CortePeloController@index_default')->name('galeria');
+Route::get('/galeria', 'CortePeloController@index')->name('galeria');
 Route::get('cortePelo/', 'CortePeloController@download');
 
 // Rutas modales
@@ -49,14 +49,12 @@ Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->na
 //Rutas post
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
 Route::post('/galeria/agregar','CortePeloController@agregarCorte')->name('agregarCorte');
+Route::post('/galeria/agregar','CorteFavoritoController@create')->name('agregarCorte');
 Route::post('/galeria/editarCorte/{id}','CortePeloController@editarCorte')->name('editarCorte');
 Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->name('eliminarCorte');
-
-
-
-
-
-
+//------------------------------Rutas CorteFavorito------------------------------------------
+Route::resource('cortesFavoritos', 'CorteFavoritoController');
+Route::get('/imagenesFavoritas', 'CorteFavoritoController@index')->name('cortesFavoritos');
 
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
 

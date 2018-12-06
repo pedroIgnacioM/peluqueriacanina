@@ -27,7 +27,7 @@ class CortePeloController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[ 'tipo'=>'required', 'tamano'=>'required', 'descripcion'=>'required' , 'imagen' =>'required', 'tipo_cabello_id' =>'required']);
+        $this->validate($request,[ 'tipo'=>'required', 'tamano'=>'required', 'descripcion'=>'required' , 'imagen' =>'required', 'tipo_cabello_id' =>'required']);
         CortePelo::create($request->all());
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
@@ -81,7 +81,7 @@ class CortePeloController extends Controller
         return redirect()->wiew('galeria')->with('success','Registro eliminado satisfactoriamente');
     }
 
-    public function index_default(){
+    public function index(){
  
         $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
         return view('galeria')->with('cortePelos',$cortePelos);
@@ -164,11 +164,6 @@ class CortePeloController extends Controller
 
     //--------------------------------------------Funciones provisorias--------------------------------------------
 
-
-
-
-
-
     public function agregarCorte(Request $request)
     {
 
@@ -182,8 +177,6 @@ class CortePeloController extends Controller
 
         ]);
     
-   
-
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
 
@@ -212,7 +205,6 @@ class CortePeloController extends Controller
     
     public function eliminarCorte(Request $request , $id)
     {
-
         $elemento = CortePelo::find($id);
         if(!isset($elemento))
             return redirect()->route('galeria');
