@@ -84,36 +84,19 @@ class ProductosController extends Controller
         //
     }
     public function catalogoFiltro(Request $request){
-        if (!isset($request->Por_Precio) && !isset($request->Orden_Alfabetico)) {
-            $productos = Producto::orderBy('id','ASC')->paginate(9);
-        }
-        else
+
+ 
+        if(isset($request->Por_precio))
         {
-            if(isset($request->Por_Precio) && isset($request->Orden_Alfabetico))
-            {
-                $productos = Producto::orderBy('id','ASC')
-                ->orderByRaw('productos.precio - productos.nombre ASC')
-                ->select('productos.*')
-                ->paginate(7);
-            }
-            else
-            {
-                if(isset($request->Por_Precio))
-                {
-                    $productos = Producto::orderBy('id','ASC')
-                    ->orderByRaw('productos.precio ASC')
-                    ->select('productos.*')
-                    ->paginate(7);
-                }
-                else
-                {
-                    $productos = Producto::orderBy('id','ASC')
-                    ->orderByRaw('productos.nombre ASC')
-                    ->select('productos.*')
-                    ->paginate(7);
-                }
-            }
+            $productos = Producto::orderBy('precio', 'asc')
+            ->paginate(9);
         }
+        else if(isset($request->Orden_Alfabetico))
+        {
+            $productos = Producto::orderBy('nombre','asc')
+            ->paginate(9);
+        }
+        
         return view('catalogo')->with('productos',$productos);
     }
 }

@@ -8,13 +8,13 @@
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-2">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-1">
                                     <div class="row justify-content-center">
                                         @auth
                                             @if(Auth::user()->isAdmin())
                                                 {{-- Botón Agregar --}}
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-6">
                                                     <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarCortePelo">Agregar Imagen <i class="fas fa-plus"></i></button>
                                                 </div>
                                             @endif
@@ -104,17 +104,13 @@
                                     @foreach($cortePelos as $cortePelo)
                                         <div class="col-sm-4 ">
                                             <div class="container-fluid ">  
-                                                <div class="img-container">
-                                                    <div class="panel-body" >
+                                                <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
                                                         <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($cortePelo->imagen)}}">
-                                                            <img class="img-responsive" alt="{{$cortePelo->imagen}}" src="{{Storage::url($cortePelo->imagen)}}"/>
                                                             <p>{{$cortePelo->descripcion}}</p>
                                                         </a> 
-                                                    </div>
                                                 </div>
-                                                <div class="panel-footer"> 
-                                                    <div class="row justify-content-center">  
+                                                    <div class="row ">  
                                                         {{-- Botón Descargar --}}
                                                         <div class="col-md-2">
                                                             <a href="{{Storage::url($cortePelo->imagen)}}" download><span style="font-size: 2em; color: grey;">
@@ -147,8 +143,6 @@
                                                                 </div>
                                                             @endif
                                                         @endauth  
-                                                    </div>
-                                                    <br>                                 
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +158,7 @@
 </div>
 
 {{-- Modal del boton (+) --}}
-<div class="modal fade modal-lg" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
