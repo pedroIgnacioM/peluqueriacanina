@@ -12,7 +12,14 @@
                    
                     <div class="row">
                         <div class="col-md-8">
-                            
+                            <p>dia actual: {{$dia}}</p>
+                            <p>mes actual: {{$mes}}</p>
+                            <br>
+                            <p>dias de la semana actual</p>
+                            @foreach ($dias as $dia)
+                            <p>{{$dia}}</p>
+                                
+                            @endforeach
                         </div>
                         
                         <div class ="col">
