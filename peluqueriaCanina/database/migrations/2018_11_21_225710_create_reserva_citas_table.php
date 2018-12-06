@@ -15,7 +15,6 @@ class CreateReservaCitasTable extends Migration
     {
         Schema::create('reserva_citas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hora');
             $table->string('fecha');
             $table->string('servicio');
             $table->timestamps();
