@@ -12,21 +12,22 @@
     float: none;
     margin: 0 auto;
 }
+/* navbar */
 .navbar{
 	background: cadetblue!important;
 }
 .navbar-nav{
-	margin-right: 200px!important;
+	margin-right: 100px!important;*/
 }
 .navbar-brand{
-	font-size: 30px!important;
+	font-size: 20px!important;
 	margin-left: 180px!important;
 	color: whitesmoke!important;
 }
 .nav-link{
-	font-size: 20px!important;
 	color: whitesmoke!important;
 }
+/*pagina*/
 .py-4{
 	background: #50888a42;
 	min-height: 2000px;
@@ -35,35 +36,25 @@ button{
 	background: cadetblue!important;
 	border-color:  cadetblue!important;
 }
-label{
-	font-size: 20px!important;
-}
-.form-check-input{
-	font-size: 20px!important;
-}
 .card-header{
-	font-size: 20px!important;
+	font-size: 15px!important;
 	background: whitesmoke!important;
 }
 .card{
 	background: whitesmoke!important;
 }
-.form-control{
-	font-size: 20px!important;
-}
 .galeria{
 	border-left: 2px solid!important;
 	border-color: #343a4026!important;
 }
+
+/* descripcion de imagenes*/
 .img-container {
 	width:270px;
 	height:250px;
 	background-size: 100% 100%;
 	background-repeat:no-repeat;
 }
-
-  
-
 .img-container p {
 	color: black;
 	text-align: center;
@@ -79,7 +70,6 @@ label{
 	left: 0;
 	opacity: 0;
 }
-
 .img-container:hover p {
     opacity: .75;  
 }
@@ -94,6 +84,8 @@ label{
 	position:absolute;
 	background-size: cover;
 }
+
+/*modal*/
 .modal-dialog{
 	min-width: 800px;
 }
@@ -109,7 +101,10 @@ label{
 .modal-body{
 	background: whitesmoke!important;
 }
-	
+/*iconos*/
+.fa-paw{
+	font-size: 30px!important;
+	padding-right: 10px!important;
 }
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
