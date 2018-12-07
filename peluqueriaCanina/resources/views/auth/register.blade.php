@@ -9,43 +9,32 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombres" class="col-md-2 col-form-label text-md-right">{{ __('Nombres') }}</label>
 
                             <div class="col-md-5">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="nombres" type="text" class="form-control{{ $errors->has('nombres') ? ' is-invalid' : '' }}" name="nombres" value="{{ old('nombres') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('nombres'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('nombres') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nickname" class="col-md-2 col-form-label text-md-right">{{ __('Nickname') }}</label>
+                            <label for="apellidos" class="col-md-2 col-form-label text-md-right">{{ __('Apellidos') }}</label>
 
                             <div class="col-md-5">
-                                <input id="nickname" type="text" class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}" required>
+                                <input id="apellidos" type="text" class="form-control{{ $errors->has('apellidos') ? ' is-invalid' : '' }}" name="apellidos" value="{{ old('apellidos') }}" required>
 
-                                @if ($errors->has('nickname'))
+                                @if ($errors->has('apellidos'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nickname') }}</strong>
+                                        <strong>{{ $errors->first('apellidos') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="rut" class="col-md-2 col-form-label text-md-right">{{ __('Rut') }}</label>
-
-                            <div class="col-md-5">
-                                <input id="rut" type="text" class="form-control{{ $errors->has('rut') ? ' is-invalid' : '' }}" name="rut" value="{{ old('rut') }}" required>
-                                @if ($errors->has('rut'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('rut') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="telefono" class="col-md-2 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
@@ -55,45 +44,8 @@
                         </div>
 
                         <div class="form-group row">
-                                <label for="ciudad" class="col-md-2 col-form-label text-md-right">{{ __('Ciudad') }}</label>
-
-                            <div class="col-md-2">
-                                <input id="ciudad" type="text" class="form-control" name="ciudad" value="{{ old('ciudad') }}" required>
-                            </div>
-
-                            <label for="direccion" class="col-md-1 col-form-label text-md-right">{{ __('Direccion') }}</label>
-                            <div class="col-md-2">
-                                <input id="direccion" type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" required>
-                            </div>
-                        </div>
-
-                        
-
-                        <div class="form-group row">
-                                <label for="edad" class="col-md-2 col-form-label text-md-right">{{ __('Edad') }}</label>
-
-                            <div class="col-md-5">
-                                    <input id="edad" type="text" class="form-control" name="edad" value="{{ old('edad') }}" required>
-                                </div>
-                        </div>
-
-                        <div class="form-group row">
-                                <label for="sexo" class="col-md-2 col-form-label text-md-right">{{ __('Sexo') }}</label>
-                                <div class="col-md-5">
-                                    <select id="sexo" name="sexo" class="custom-select">
-
-                                            <option selected value="">Selecciona...</option>
-                                            <option>Femenino</option>
-                                            <option>Masculino</option>
-                                            {{-- porque #inclusion XD--}}
-                                            <option>Otro</option>     
-                                    </select>
-                                </div>                              
-                        </div>
-
-                        <div class="form-group row">
                                 
-                            <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-5">
                                 <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{old('email') }}" required>
@@ -131,7 +83,6 @@
                                 <label for="imagen" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
                                 <div class="col-md-5">
                                         <input id="imagen" type="file" class="form-control" name="imagen">
-    
                                 </div>
                             </div>
                         <h1>Registro Mascota</h1>
