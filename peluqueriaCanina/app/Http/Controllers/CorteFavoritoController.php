@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use App\CortePelo;
+use App\CorteFavorito;
+
 
 class CorteFavoritoController extends Controller
 {
@@ -46,7 +48,12 @@ class CorteFavoritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CorteFavorito::create([
+            'user_id' => Auth::user()->id,
+            'corte_pelos_id' => $id
+        ]);
+    
+        return redirect()->route('cortesFavoritos')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -80,7 +87,12 @@ class CorteFavoritoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        CorteFavorito::create([
+            'user_id' => Auth::user()->id,
+            'corte_pelos_id' => $id
+        ]);
+    
+        return redirect()->route('cortesFavoritos')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -91,6 +103,34 @@ class CorteFavoritoController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $corteFavorito = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id,'and','corte_favoritos.corte_pelos_id','=', $id)
+                ->select('corte_favoritos.*')
+                ->paginate(1);
+
+        $idFavorito = $corteFavorito->id;
+
+        CorteFavorito::find($idFavorito)->delete();
+
+        return redirect()->route('cortesFavoritos')->with('success','Registro eliminado satisfactoriamente');
     }
+    public function eliminarCorteModal($id)
+    {
+        $elemento=CortePelo::find($id);
+        return view('modalEliminarCorteFavorito',[
+            'elemento'=>$elemento
+        ]);
+    }
+     public function eliminarCorte(Request $request , $id)
+    {
+        $corteFavorito = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id,'and','corte_favoritos.corte_pelos_id','=', $id)
+                ->select('corte_favoritos.*')
+                ->paginate(1);
+
+        CorteFavorito::find($CorteFavorito->id)->delete();
+
+        return redirect()->route('cortesFavoritos')->with('success','Registro creado satisfactoriamente');
+    }
+    
 }

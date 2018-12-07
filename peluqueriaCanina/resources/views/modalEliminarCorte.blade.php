@@ -55,8 +55,6 @@
                 </div>
                 <form class="corte-form" action="{{route('eliminarCorte',['id'=>$elemento->id])}}" method="post">
                     {{csrf_field()}}
-                    
-                    
                             <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-danger">Eliminar</button>

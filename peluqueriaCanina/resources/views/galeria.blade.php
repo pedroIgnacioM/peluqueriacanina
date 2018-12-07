@@ -273,6 +273,7 @@ $('.corte-form').on('submit', function () {
         }
     });
 });
+
 });
 </script>
 @endsection

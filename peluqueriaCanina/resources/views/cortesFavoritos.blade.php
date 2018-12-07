@@ -14,9 +14,9 @@
                                         @auth
                                             @if(Auth::user()->isAdmin())
                                                 {{-- Botón Agregar --}}
-                                                <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarCortePelo">Agregar Imagen <i class="fas fa-plus"></i></button>
+                                                <button class="btn btn-lg btn-primary" href="{{ route('galeria') }}">Agregar Imagen <i class="fas fa-plus"></i></button>
                                             @endif
-                                        @endauth
+                                        @endauth   
                                     </div>
                                 </div> 
                             </div>
@@ -121,17 +121,14 @@
                                                                     <i class="fas fa-comment"></i>
                                                                 </span></a>
                                                             </div>
-                                                            <div class="col-md-2">
-                                                                <a href="#"><span style="font-size: 20px; color: grey;">
-                                                                    <i class="fas fa-heart"></i>
-                                                                </span></a>
-                                                            </div>
+
                                                             {{-- Botón Eliminar --}}
                                                             <div class="col-md-2">
-                                                                <a href="" class="botonModal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
-                                                                    <span style="font-size: 20px; color: grey;"><i class="fas fa-trash"></i></span>
+                                                                <a href="" class="botonModalFavorito" data-toggle="modal" data-form="{{route('eliminarCorteFavoritoModal',['id'=>$cortePelo->id])}}" data-target="#modal-corteFavorito">
+                                                                    <span style="font-size: 20px; color: #ea3232;"><i class="fas fa-heart"></i></span>
                                                                 </a>
                                                             </div>
+                                                            
                                                         @endif
                                                     @endauth  
                                                 </div>
@@ -148,21 +145,33 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal-corteFavorito"></div>
+
 <script>
 // Modal
 $(document).ready(function () {
 
-$('.corte-form').on('submit', function () {
+$(".botonModalFavorito").click(function (ev) { // for each edit contact url
+    ev.preventDefault(); // prevent navigation
+    var url = $(this).data("form"); // get the contact form url
+    console.log(url);
+    $("#modal-corteFavorito").load(url, function () { // load the url into the modal
+        $(this).modal('show'); // display the modal on url load
+    });
+});
+
+$('.corteFavorito-form').on('submit', function () {
     $.ajax({
         type: $(this).attr('method'),
         url: $(this).attr('action'),
         data: $(this).serialize(),
         context: this,
         success: function (data, status) {
-            $('#modal-corte').html(data);
+            $('#modal-corteFavorito').html(data);
         }
     });
 });
+
 });
 </script>
 @endsection

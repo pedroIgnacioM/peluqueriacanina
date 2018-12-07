@@ -107,6 +107,9 @@ button{
 .modal-body{
 	background: whitesmoke!important;
 }
+.modal-footer{
+	background: whitesmoke!important;
+}
 /*iconos*/
 .fa-paw{
 	font-size: 30px!important;

@@ -92,12 +92,12 @@
                                 {{ __('Logout') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('cortesFavoritos') }}">
-                                {{ __('Imagenes Favoritas') }}
+                                {{ __('Cortes Favoritos') }}
                             </a>
                                             
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                            </form>
+                            </form> 
                         </div>
                     </li>
                     @endguest
