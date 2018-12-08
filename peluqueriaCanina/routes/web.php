@@ -30,6 +30,7 @@ Route::get('/contacto', 'ContactoController@index')->name('contacto');
 Route::get('/formulario_mascota/agregar', 'MascotaController@formularioAgregar')->name('agregarMascota');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
+Route::get('/modal/actividades','PerfilController@actividadesModal')->name('actividadesModal');
 
 Route::post('/agregarMascota','MascotaController@agregarMascota')->name('insertarMascota');
 Route::post('/subirImagenPerfil','PerfilController@subirImagen')->name('subirImagenPerfil');
