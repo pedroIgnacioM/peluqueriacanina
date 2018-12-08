@@ -12,13 +12,42 @@
                    
                     <div class="row">
                         <div class="col-md-8">
-                            <p>dia actual: {{$dia}}</p>
-                            <p>mes actual: {{$mes}}</p>
-                            <p>dias de la semana actual</p>
-                            @foreach ($dias as $dia)
-                            <p>{{$dia}}</p>
-                                
-                            @endforeach
+                                <div class="table-responsive"> 
+                                        <table class="table table-bordered ">
+                                         <tbody> 
+                                                <tr>
+                                                   <th><input class="btn btn-link active btn-block" type="button" value="<-----"></th> 
+                                                   <th class="text-center">{{$mes}}</th> 
+                                                   <th><input class="btn btn-link active btn-block" type="button" value="----->"></th> 
+                                                   
+                                                </tr> 
+                                            </tbody>
+                                        </table>
+
+                                 <div class="table-responsive"> 
+                                        <table class="table table-bordered ">
+                                         
+                                            <thead> 
+                                                    <tr>
+                                                    @foreach (array_combine($nombresDias, $dias) as $nombreDia => $dia)
+                                                       <th class="text-center">{{$nombreDia}} {{$dia}}</th> 
+                                                       
+                                                    @endforeach
+                                                    </tr> 
+                                            </thead>
+                                            <tbody> 
+                                                    @foreach ($horariosLibres as $horariosDia)
+                                                        @foreach ($horariosDia as $horario)
+                                                        
+                                                        <th class="text-center">{{$horario}}</th> 
+                                                        
+                                                        @endforeach
+                                                    @endforeach
+
+                                            </tbody>
+                                        </table>
+                                 </div>
+                              
                             <br>
                             @foreach ($horariosLibres as $horarioDia)
                                 @foreach ($horarioDia as $horarioHora)
