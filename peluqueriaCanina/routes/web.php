@@ -45,10 +45,14 @@ Route::get('cortePelo/', 'CortePeloController@download');
 // Rutas modales
 Route::get('/modal/eliminarCorte/{id}','CortePeloController@eliminarCorteModal')->name('eliminarCorteModal');
 Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->name('editarCorteModal');
+Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->name('agregarCorteFavoritoModal');
 
 //Rutas post
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
 Route::post('/galeria/agregar','CortePeloController@agregarCorte')->name('agregarCorte');
+
+Route::post('/galeria/agregarFavorito','CortePeloController@agregarCorteFavorito')->name('agregarCorteFavorito');
+
 Route::post('/galeria/editarCorte/{id}','CortePeloController@editarCorte')->name('editarCorte');
 Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->name('eliminarCorte');
 

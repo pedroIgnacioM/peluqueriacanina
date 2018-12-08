@@ -114,6 +114,7 @@ class CorteFavoritoController extends Controller
 
         return redirect()->route('cortesFavoritos')->with('success','Registro eliminado satisfactoriamente');
     }
+    
     public function eliminarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
@@ -121,14 +122,17 @@ class CorteFavoritoController extends Controller
             'elemento'=>$elemento
         ]);
     }
-     public function eliminarCorte(Request $request , $id)
+
+    public function eliminarCorte(Request $request , $id)
     {
         $corteFavorito = CorteFavorito::orderBy('id','DESC')
                 ->Where('corte_favoritos.user_id','=', \Auth::user()->id,'and','corte_favoritos.corte_pelos_id','=', $id)
-                ->select('corte_favoritos.*')
-                ->paginate(1);
+                ->select('corte_favoritos.*');
 
-        CorteFavorito::find($CorteFavorito->id)->delete();
+        if(!isset($corteFavorito))
+            return redirect()->route('galeria');
+
+        $corteFavorito->delete();
 
         return redirect()->route('cortesFavoritos')->with('success','Registro creado satisfactoriamente');
     }

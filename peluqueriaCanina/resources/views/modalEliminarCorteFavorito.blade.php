@@ -1,15 +1,15 @@
 {{-- Modal del boton Eliminar  --}}
-<div class="modal fade" id="eliminarCorteFavorito">
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Eliminar Corte Favorito</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span> <i class="fas fa-times"></i></span>
+                </a>
             </div>
             <div class="modal-body">
-                ¿Seguro que desea eliminar de favoritos?     
+                <p>¿Seguro que desea eliminar de favoritos?<p>     
             </div>
             <form class="corteFavorito-form" action="{{route('eliminarCorteFavorito',['id'=>$elemento->id])}}" method="post">
                 {{csrf_field()}}
@@ -20,4 +20,3 @@
             </form>
         </div>
     </div>
-</div>

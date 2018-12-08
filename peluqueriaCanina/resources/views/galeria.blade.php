@@ -29,7 +29,7 @@
                                             <form action="{{ route('galeriaFiltro') }}" method="POST" >
                                                 @csrf
                                                 <label class="label text-center">Tamaño</label>
-                                               <div class="row justify-content-center">  
+                                                <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
                                                          <div class="row  ">
                                                             <div class="form-check">
@@ -97,13 +97,12 @@
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)
                                         <div class="col-sm-4">
-                                            <div class="container-fluid" style="border-color: black!important;"> 
+                                            <div class="container-fluid"> 
                                                 <div class="row justify-content-center">  
                                                     <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
-                                                        <a class="thumbnail fancybox" rel="ligthbox" href="#s">
-                                                            <p>{{$cortePelo->descripcion}}</p>
-                                                        </a> 
+                                                        <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
+                                                        <p>{{$cortePelo->descripcion}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">  
@@ -123,15 +122,16 @@
                                                             </div>
                                                             {{-- Boton Favorito --}}
                                                             <div class="col-md-2">
-                                                                <a href=""><span style="font-size: 20px; color: grey;">
-                                                                    <i class="fas fa-heart" ></i>
-                                                                </span></a>
+                                                                <a href="" class="botonModalFavorito" data-toggle="modal" data-form="{{route('agregarCorteFavoritoModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corteFavorito">
+                                                                    <span style="font-size: 20px; color: grey;"><i class="fas fa-heart"></i></span>
+                                                                </a>
                                                             </div>
+
                                                         @endif 
                                                         @if(Auth::user()->isAdmin())
                                                             {{-- Botón Eliminar --}}
                                                             <div class="col-md-2">
-                                                                <a href="" class="botonModal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
+                                                                <a href="" class="botonModal" data-toggle="modal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corte">
                                                                     <span style="font-size: 20px; color: grey;"><i class="fas fa-trash"></i></span>
                                                                 </a>
                                                             </div>
@@ -247,32 +247,34 @@
         </div>
     </div>
 </div>
+
 <div class="modal" id="modal-corte"></div>
+<div class="modal" id="modal-corteFavorito"></div>
 
 <script>
-// Modal
-$(document).ready(function () {
+    // Modal
+    $(document).ready(function () {
 
-$(".botonModal").click(function (ev) { // for each edit contact url
-    ev.preventDefault(); // prevent navigation
-    var url = $(this).data("form"); // get the contact form url
-    console.log(url);
-    $("#modal-corte").load(url, function () { // load the url into the modal
-        $(this).modal('show'); // display the modal on url load
+    $(".botonModal").click(function (ev) { // for each edit contact url
+        ev.preventDefault(); // prevent navigation
+        var url = $(this).data("form"); // get the contact form url
+        console.log(url);
+        $("#modal-corte").load(url, function () { // load the url into the modal
+            $(this).modal('show'); // display the modal on url load
+        });
     });
-});
 
-$('.corte-form').on('submit', function () {
-    $.ajax({
-        type: $(this).attr('method'),
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
-        context: this,
-        success: function (data, status) {
-            $('#modal-corte').html(data);
-        }
+    $('.corte-form').on('submit', function () {
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            context: this,
+            success: function (data, status) {
+                $('#modal-corte').html(data);
+            }
+        });
     });
-});
 
 });
 </script>

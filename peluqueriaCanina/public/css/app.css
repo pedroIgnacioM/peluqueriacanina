@@ -59,22 +59,24 @@ button{
 	height:250px;
 	background-size: 100% 100%;
 	background-repeat:no-repeat;
+	border-radius: 10px;
 }
 .img-container p {
 	color: black;
 	text-align: center;
 	height: 250px;
-	background: gray;
+	background: whitesmoke;
 	transition: opacity .4s linear;
  	cursor: pointer;  
 	position: relative;
-	margin: 2px;
 
 	top: 0;
 	right: 0;	
 	bottom: 0;
 	left: 0;
 	opacity: 0;
+
+	border-radius: 10px;
 }
 .img-container:hover p {
     opacity: .75;  

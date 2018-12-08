@@ -101,9 +101,8 @@
                                                 <div class="row justify-content-center">  
                                                     <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
-                                                        <a class="thumbnail fancybox" rel="ligthbox" href="#s">
-                                                            <p>{{$cortePelo->descripcion}}</p>
-                                                        </a> 
+                                                        <div class="thumbnail fancybox" rel="ligthbox" href="#s"></div>  
+                                                        <p>{{$cortePelo->descripcion}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">  
@@ -151,26 +150,26 @@
 // Modal
 $(document).ready(function () {
 
-$(".botonModalFavorito").click(function (ev) { // for each edit contact url
-    ev.preventDefault(); // prevent navigation
-    var url = $(this).data("form"); // get the contact form url
-    console.log(url);
-    $("#modal-corteFavorito").load(url, function () { // load the url into the modal
-        $(this).modal('show'); // display the modal on url load
+    $(".botonModalFavorito").click(function (ev) { // for each edit contact url
+        ev.preventDefault(); // prevent navigation
+        var url = $(this).data("form"); // get the contact form url
+        console.log(url);
+        $("#modal-corteFavorito").load(url, function () { // load the url into the modal
+            $(this).modal('show'); // display the modal on url load
+        });
     });
-});
 
-$('.corteFavorito-form').on('submit', function () {
-    $.ajax({
-        type: $(this).attr('method'),
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
-        context: this,
-        success: function (data, status) {
-            $('#modal-corteFavorito').html(data);
-        }
+    $('.corteFavorito-form').on('submit', function () {
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            context: this,
+            success: function (data, status) {
+                $('#modal-corteFavorito').html(data);
+            }
+        });
     });
-});
 
 });
 </script>

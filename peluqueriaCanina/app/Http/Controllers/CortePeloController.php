@@ -154,10 +154,18 @@ class CortePeloController extends Controller
             'elemento'=>$elemento
         ]);
     }
+
     public function editarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
         return view('modalEditarCorte',[
+            'elemento'=>$elemento
+        ]);
+    }
+
+    public function agregarCorteFavoritoModal($id){
+        $elemento=CortePelo::find($id);
+        return view('modalAgregarCorteFavorito',[
             'elemento'=>$elemento
         ]);
     }
@@ -174,6 +182,18 @@ class CortePeloController extends Controller
             'descripcion' => $request->descripcion,
             'tipo_cabello_id'=>$request->cabello,
             'imagen'=>$imagen,
+
+        ]);
+    
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }
+
+    public function agregarCorteFavorito(Request $request, $id)
+    {
+
+        CortePelo::create([
+            'corte_pelos_id' => $id,
+            'user_id' => \Auth::user()->id,
 
         ]);
     
