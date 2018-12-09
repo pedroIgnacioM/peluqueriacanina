@@ -80,6 +80,37 @@
                                                     {{-- mascota delusuario --}}
                                                 
                                                 </form>
+                                                <form action="#">
+                                                    <div class="form-group ">
+                                                        <div class="col-8">
+                                                            <label for="hora" >Hora :</label>
+                                                            <input type="hora" class="form-control " id="hora">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-8">
+                                                            <label for="dia">Dia:</label>
+                                                            <input type="dia" class="form-control" id="dia">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-8">
+                                                            <label for="mes">Mes:</label>
+                                                            <input type="mes" class="form-control" id="mes">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-check">
+                                                      <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox"> Remember me
+                                                      </label>
+                                                    </div>
+                                                    <div class="form-group text-center ">
+                                                    <button type="button" class="btn btn-primary btn-lg"> Aceptar </button>
+                                                    <br>
+                                                    <br>
+                                                    <button type="button" class="btn btn-primary btn-lg">Cancelar</button>
+                                                    </div>
+                                                  </form>
                                             <div class="card-body">
                                     
                                             </div>
