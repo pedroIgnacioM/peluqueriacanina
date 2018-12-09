@@ -36,14 +36,32 @@
                                                     </tr> 
                                             </thead>
                                             <tbody> 
-                                                    @foreach ($horariosLibres as $horariosDia)
-                                                        @foreach ($horariosDia as $horario)
-                                                        
-                                                        <th class="text-center">{{$horario}}</th> 
-                                                        
-                                                        @endforeach
-                                                    @endforeach
-
+                                                    {{-- @for ($i = 0,$k=0; $i < 7 && $k < count($horariosLibres[$i]); $i++,$k++)
+                                                        @if (isset($horariosLibres[$i]))
+                                                            <tr>
+                                                            @for ($j = 0; $j < 7; $j++)
+                                                                    @if (isset($horariosLibres[$j][$k]))
+                                                                        <td class="text-center">{{$horariosLibres[$j][$k]}}</td> 
+                                                                    @endif
+                                                                    @endfor 
+                                                            </tr> 
+                                                        @endif
+                                                    @endfor --}}
+                                                    
+                                                    @for ($i = 0; $i < 9; $i++)
+                                                            <tr>
+                                                                @for ($j = 0; $j < 7; $j++)
+                                                                    @if (isset($horariosLibres[$j][$i]))
+                                                                        <td class="text-center">{{$horariosLibres[$j][$i]}}</td> 
+                                                                    @else
+                                                                    <td></td> 
+                                                                    @endif
+                                                                @endfor
+                                                            </tr>
+                                                    @endfor
+                                                   
+                                                   
+                                                   
                                             </tbody>
                                         </table>
                                  </div>
@@ -55,6 +73,7 @@
                                 @endforeach
                                 <br>
                             @endforeach
+
                             {{-- @foreach ($horariosLibres as $item)
                                 <p>{{$item}}</p>
                             @endforeach --}}

@@ -27,13 +27,15 @@ class ReservaCitaController extends Controller
         $mesNumero = strftime('%m');
         $horariosDisponibles = $this->horariosDisponibles($diasSemana,$mesNumero);
         $nombreDias=array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+        // return dd($horariosDisponibles);
         return view('reservaCita',[
             'dias'=>$diasSemana,
             'mes'=>$mes,
             'dia'=>$diaActual,
             'diasem'=>$diaSemana,
             'horariosLibres'=>$horariosDisponibles,
-            'nombresDias'=>$nombreDias,
+            'nombresDias'=>$nombreDias
+            
         ]);
     }
 
