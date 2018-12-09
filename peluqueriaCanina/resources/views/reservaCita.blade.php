@@ -70,14 +70,10 @@
                                 
                                 
                             </div>
-                                
+                           
                                     <div class ="col">
                                         <div class="card">
                                             <div class="card-header"> <h3>El horario seria:</h3> </div>
-                                                <form action="">
-                                                    {{-- solobaño --}}
-                                                    <option value=""></option>
-                                                    {{-- mascota delusuario --}}
                                                 
                                                 </form>
                                                 <form action="#">
@@ -99,25 +95,61 @@
                                                             <input type="mes" class="form-control" id="mes">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group form-check">
-                                                      <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox"> Remember me
-                                                      </label>
-                                                    </div>
-                                                    <div class="form-group text-center ">
-                                                    <button type="button" class="btn btn-primary btn-lg"> Aceptar </button>
+                                                    @if(null!=($user = Auth::user()))
+                                                        
+                                                    {{-- @foreach ($mascotasUsuario as $mascota)
+                                                            <select name="mascota" id="mascota">
+                                                                    <option value=''>{{$mascota}}</option>
+                                                                </select>
+                                                    @endforeach --}}
+                                                        <div class="col-8">
+                                                                <label for="mascotas">Mascota:</label>
+                                                                <select id="mascotas" class="custom-select  mb-4 form-control tipo ? ' is-invalid' : '' }}" name="mascotas" required autofocus>
+                                                                    <option value="" selected disabled>Seleccionar</option>
+                                                                    @for ($i = 0; $i < count($mascotasUsuario); $i++)
+                                                                    <option value="mascota">{{$mascotasUsuario[$i]->nombre}}</option>
+                                                                    @endfor
+                                                                   
+                                                                    
+                                                                </select>
+                                                        </div>
+                                                        <div class="col-8">
+                                                                <label for="tipo">Tipo de servicios:</label>
+                                                                <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
+                                                                    <option value="" selected disabled>Seleccionar</option>
+                                                                    <option value="solo corte">Solo corte</option>
+                                                                    <option value="baño y corte">Baño + Corte</option>
+                                                                    <option value="solo baño">Solo baño</option>
+                                                                </select>
+                                                        </div>
+                                                    @endif
                                                     <br>
                                                     <br>
-                                                    <button type="button" class="btn btn-primary btn-lg">Cancelar</button>
-                                                    </div>
+                                                    @if (null!=($user = Auth::user()))
+                                                            <div class="form-group text-center ">
+                                                                <button type="button" class="btn btn-primary btn-lg"> Aceptar </button>
+                                                                <br>
+                                                                <br>
+                                                                <button type="button" class="btn btn-primary btn-lg">Cancelar</button>
+                                                            </div>
+                                                    @else
+                                                            <div class="form-group text-center ">
+                                                                <button type="button" class="btn btn-primary btn-lg"> Aceptar </button>
+                                                                <br>
+                                                                <br>
+                                                                <button type="button" class="btn btn-primary btn-lg">Cancelar</button>
+                                                            </div>          
+                                                    @endif
+                                                    
                                                   </form>
                                             <div class="card-body">
                                     
                                             </div>
                                         </div>
                                     </div>
-                            
+                                    
                         </div>
+                      
                 </div>
             </div>
         </div>

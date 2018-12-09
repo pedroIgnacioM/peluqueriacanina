@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Auth;
+use App\User;
 use Illuminate\Http\Request;
 use App\ReservaCita;
 
@@ -27,6 +28,14 @@ class ReservaCitaController extends Controller
         $mesNumero = strftime('%m');
         $horariosDisponibles = $this->horariosDisponibles($diasSemana,$mesNumero);
         $nombreDias=array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+        $id_usuario=$user = \Auth::user()->id;
+        $mascotasUsuario=\DB::table ('mascotas')
+        ->select('mascotas.nombre','mascotas.user_id')
+        ->join('users','mascotas.user_id','=','users.id')
+        ->where('mascotas.user_id',$id_usuario)
+        ->get();
+        // return dd($mascotasUsuario);
+        $nombreMes=array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
         // return dd($horariosDisponibles);
         return view('reservaCita',[
             'dias'=>$diasSemana,
@@ -34,7 +43,9 @@ class ReservaCitaController extends Controller
             'dia'=>$diaActual,
             'diasem'=>$diaSemana,
             'horariosLibres'=>$horariosDisponibles,
-            'nombresDias'=>$nombreDias
+            'nombresDias'=>$nombreDias,
+            'nombreMes'=>$nombreMes,
+            'mascotasUsuario'=>$mascotasUsuario
             
         ]);
     }
