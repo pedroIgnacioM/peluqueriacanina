@@ -96,8 +96,8 @@
                             <div class="row">
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)
-                                        <div class="col-sm-4">
-                                            <div class="container-fluid" style="border-color: black!important;"> 
+                                        <div class="col-sm-4 conFoto">
+                                            <div class="container-fluid foto"> 
                                                 <div class="row justify-content-center">  
                                                     <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
@@ -108,23 +108,23 @@
                                                 <div class="row justify-content-center">  
                                                     {{-- Botón Descargar --}}
                                                     <div class="col-md-2">
-                                                        <a href="{{Storage::url($cortePelo->imagen)}}" download><span style="font-size: 20px; color: grey;">
-                                                            <i class="fas fa-download"></i>
+                                                        <a href="{{Storage::url($cortePelo->imagen)}}" download><span>
+                                                            <i class="fas fa-download iconoGaleria"></i>
                                                         </span></a>                       
                                                     </div>
                                                     @auth
                                                         @if(Auth::user()->isDefault() || Auth::user()->isAdmin() )
                                                             {{-- Botón Comentar --}}
                                                             <div class="col-md-2">
-                                                                <a href="#"><span style="font-size: 20px; color: grey;">
-                                                                    <i class="fas fa-comment"></i>
+                                                                <a href="#"><span>
+                                                                    <i class="fas fa-comment iconoGaleria"></i>
                                                                 </span></a>
                                                             </div>
 
                                                             {{-- Botón Eliminar --}}
                                                             <div class="col-md-2">
                                                                 <a href="" class="botonModalFavorito" data-toggle="modal" data-form="{{route('eliminarCorteFavoritoModal',['id'=>$cortePelo->id])}}" data-target="#modal-corteFavorito">
-                                                                    <span style="font-size: 20px; color: #ea3232;"><i class="fas fa-heart"></i></span>
+                                                                    <span><i class="fas fa-heart favorito"></i></span>
                                                                 </a>
                                                             </div>
                                                             

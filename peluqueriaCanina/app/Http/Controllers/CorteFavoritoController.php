@@ -22,6 +22,7 @@ class CorteFavoritoController extends Controller
                 ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
                 ->select('corte_pelos.*')
                 ->paginate(12);
+                
         return view('cortesFavoritos')->with('cortePelos',$cortePelos);
     }
 
@@ -57,28 +58,6 @@ class CorteFavoritoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -101,19 +80,6 @@ class CorteFavoritoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-       $corteFavorito = CorteFavorito::orderBy('id','DESC')
-                ->Where('corte_favoritos.user_id','=', \Auth::user()->id,'and','corte_favoritos.corte_pelos_id','=', $id)
-                ->select('corte_favoritos.*')
-                ->paginate(1);
-
-        $idFavorito = $corteFavorito->id;
-
-        CorteFavorito::find($idFavorito)->delete();
-
-        return redirect()->route('cortesFavoritos')->with('success','Registro eliminado satisfactoriamente');
-    }
     
     public function eliminarCorteModal($id)
     {
@@ -126,7 +92,9 @@ class CorteFavoritoController extends Controller
     public function eliminarCorte(Request $request , $id)
     {
         $corteFavorito = CorteFavorito::orderBy('id','DESC')
-                ->Where('corte_favoritos.user_id','=', \Auth::user()->id,'and','corte_favoritos.corte_pelos_id','=', $id)
+                ->Where([
+                    ['corte_favoritos.user_id','=', \Auth::user()->id],
+                    ['corte_favoritos.corte_pelos_id','=', $id]])
                 ->select('corte_favoritos.*');
 
         if(!isset($corteFavorito))

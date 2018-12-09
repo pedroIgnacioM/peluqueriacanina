@@ -96,8 +96,8 @@
                             <div class="row">
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)
-                                        <div class="col-sm-4">
-                                            <div class="container-fluid"> 
+                                        <div class="col-sm-4 conFoto">
+                                            <div class="container-fluid foto"> 
                                                 <div class="row justify-content-center">  
                                                     <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
@@ -108,45 +108,48 @@
                                                 <div class="row justify-content-center">  
                                                     {{-- Botón Descargar --}}
                                                     <div class="col-md-2">
-                                                        <a href="{{Storage::url($cortePelo->imagen)}}" download><span style="font-size: 20px; color: grey;">
-                                                            <i class="fas fa-download"></i>
-                                                        </span></a>                       
+                                                        <a href="{{Storage::url($cortePelo->imagen)}}" download><span><i class="fas fa-download iconoGaleria"></i></span></a>
                                                     </div>
                                                     @auth
                                                         @if(Auth::user()->isDefault() || Auth::user()->isAdmin() )
                                                             {{-- Botón Comentar --}}
                                                             <div class="col-md-2">
-                                                                <a href="#"><span style="font-size: 20px; color: grey;">
-                                                                    <i class="fas fa-comment"></i>
-                                                                </span></a>
+                                                                <a href="#"><span><i class="fas fa-comment iconoGaleria"></i></span></a>
                                                             </div>
+
                                                             {{-- Boton Favorito --}}
-                                                            <div class="col-md-2">
-                                                                <a href="" class="botonModalFavorito" data-toggle="modal" data-form="{{route('agregarCorteFavoritoModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corteFavorito">
-                                                                    <span style="font-size: 20px; color: grey;"><i class="fas fa-heart"></i></span>
-                                                                </a>
-                                                            </div>
+                                                            <?php $cont = 0; ?> 
+                                                            @foreach($corteFavoritos as $corteFavorito)
+                                                                @if($corteFavorito->corte_pelos_id == $cortePelo->id)
+                                                                    <div class="col-md-2">
+                                                                        <a href="#" class="botonModalFavorito" data-toggle="modal" data-form="{{route('agregarCorteFavoritoModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corteFavorito"><span><i class="fas fa-heart favorito"></i></span></a>
+                                                                    </div>
+                                                                    <?php $cont= $cont +1;?>
+                                                                @endif
+                                                            @endforeach
+                                                            @if ($cont == 0)
+                                                                <div class="col-md-2">
+                                                                    <a href="#" class="botonModalFavorito" data-toggle="modal" data-form="{{route('agregarCorteFavoritoModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corteFavorito" ><span><i class="fas fa-heart iconoGaleria" ></i></span></a>
+                                                                </div>
+                                                            @endif
 
                                                         @endif 
                                                         @if(Auth::user()->isAdmin())
+
                                                             {{-- Botón Eliminar --}}
                                                             <div class="col-md-2">
-                                                                <a href="" class="botonModal" data-toggle="modal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corte">
-                                                                    <span style="font-size: 20px; color: grey;"><i class="fas fa-trash"></i></span>
-                                                                </a>
+                                                                <a href="" class="botonModal" data-toggle="modal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corte"><span><i class="fas fa-trash iconoGaleria"></i></span></a>
                                                             </div>
                                                             {{-- Botón Editar --}}
                                                             <div class="col-md-2">
                                                                 <a href="" class="botonModal" data-form="{{route('editarCorteModal',['id'=>$cortePelo->id])}}" data-toggle="modal" data-target="#modal-corte">
-                                                                    <span style="font-size: 20px; color: grey;"><i class="fas fa-edit"></i></span>
-                                                                </a>
+                                                                <span><i class="fas fa-edit iconoGaleria" ></i></span></a>
                                                             </div>
                                                         @endif
-                                                    @endauth  
+                                                     @endauth  
                                                 </div>
                                             </div>
                                         </div>
-                                        <br>
                                     @endforeach
                                 @endif  
                             </div>       
@@ -255,27 +258,48 @@
     // Modal
     $(document).ready(function () {
 
-    $(".botonModal").click(function (ev) { // for each edit contact url
-        ev.preventDefault(); // prevent navigation
-        var url = $(this).data("form"); // get the contact form url
-        console.log(url);
-        $("#modal-corte").load(url, function () { // load the url into the modal
-            $(this).modal('show'); // display the modal on url load
+        $(".botonModal").click(function (ev) { // for each edit contact url
+            ev.preventDefault(); // prevent navigation
+            var url = $(this).data("form"); // get the contact form url
+            console.log(url);
+            $("#modal-corte").load(url, function () { // load the url into the modal
+                $(this).modal('show'); // display the modal on url load
+            });
+        });
+
+        $('.corte-form').on('submit', function () {
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                context: this,
+                success: function (data, status) {
+                    $('#modal-corte').html(data);
+                }
+            });
+        });
+
+        // Modal Favorito
+        $(".botonModalFavorito").click(function (ev) { // for each edit contact url
+            ev.preventDefault(); // prevent navigation
+            var url = $(this).data("form"); // get the contact form url
+            console.log(url);
+            $("#modal-corteFavorito").load(url, function () { // load the url into the modal
+                $(this).modal('show'); // display the modal on url load
+            });
+        });
+
+        $('.corteFavorito-form').on('submit', function () {
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                context: this,
+                success: function (data, status) {
+                    $('#modal-corteFavorito').html(data);
+                }
+            });
         });
     });
-
-    $('.corte-form').on('submit', function () {
-        $.ajax({
-            type: $(this).attr('method'),
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            context: this,
-            success: function (data, status) {
-                $('#modal-corte').html(data);
-            }
-        });
-    });
-
-});
 </script>
 @endsection

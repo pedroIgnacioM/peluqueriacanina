@@ -20,7 +20,6 @@ Auth::routes();
 //Rutas que pasaran por el controlador is_admin
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
-
 });
 
 //Rutas del Contacto
@@ -45,30 +44,29 @@ Route::get('cortePelo/', 'CortePeloController@download');
 // Rutas modales
 Route::get('/modal/eliminarCorte/{id}','CortePeloController@eliminarCorteModal')->name('eliminarCorteModal');
 Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->name('editarCorteModal');
-Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->name('agregarCorteFavoritoModal');
 
 //Rutas post
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
 Route::post('/galeria/agregar','CortePeloController@agregarCorte')->name('agregarCorte');
-
-Route::post('/galeria/agregarFavorito','CortePeloController@agregarCorteFavorito')->name('agregarCorteFavorito');
 
 Route::post('/galeria/editarCorte/{id}','CortePeloController@editarCorte')->name('editarCorte');
 Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->name('eliminarCorte');
 
 //------------------------------Rutas CorteFavorito------------------------------------------
 Route::resource('cortesFavoritos', 'CorteFavoritoController');
+
+Route::get('/corte-favorito', 'CorteFavoritoController@index')->name('cortesFavoritos');
+
 //Ruta modal
 Route::get('/modal/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorteModal')->name('eliminarCorteFavoritoModal');
+Route::get('/modal/agregarFavorito/{id}','CortePeloController@agregarCorteFavoritoModal')->name('agregarCorteFavoritoModal');
+
 //Ruta post
-Route::get('/corte-favorito', 'CorteFavoritoController@index')->name('cortesFavoritos');
 Route::post('/corte-favorito/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorte')->name('eliminarCorteFavorito');
+Route::post('/galeria/agregarFavorito/{id}','CortePeloController@agregarCorteFavorito')->name('agregarCorteFavorito');
 
 //------------------------------Rutas Registrar Mascota -------------------------------------
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
-
-
-
 
 Route::resource('catalogo', 'ProductosController');
 Route::get('/catalogo', 'ProductosController@index')->name('catalogo');
