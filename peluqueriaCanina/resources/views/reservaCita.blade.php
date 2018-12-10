@@ -118,8 +118,8 @@
                                                                 <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
                                                                     <option value="" selected disabled>Seleccionar</option>
                                                                     <option value="solo corte">Solo corte</option>
-                                                                    <option value="baño y corte">Baño + Corte</option>
                                                                     <option value="solo baño">Solo baño</option>
+                                                                    <option value="baño y corte">Baño + Corte</option>
                                                                 </select>
                                                         </div>
                                                     @endif

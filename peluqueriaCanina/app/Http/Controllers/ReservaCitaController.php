@@ -28,7 +28,11 @@ class ReservaCitaController extends Controller
         $mesNumero = strftime('%m');
         $horariosDisponibles = $this->horariosDisponibles($diasSemana,$mesNumero);
         $nombreDias=array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
-        $id_usuario=$user = \Auth::user()->id;
+        $user = \Auth::user();
+        if(null!=$user)
+        $id_usuario=$user->id;
+        else
+        $id_usuario=null;
         $mascotasUsuario=\DB::table ('mascotas')
         ->select('mascotas.nombre','mascotas.user_id')
         ->join('users','mascotas.user_id','=','users.id')
