@@ -83,11 +83,14 @@ class CortePeloController extends Controller
     }
 
     public function index(){
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
 
-        $corteFavoritos = CorteFavorito::orderBy('id','DESC')
-            ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
-            ->select('corte_favoritos.*')
-            ->paginate(12);
+        }
 
         $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
 
