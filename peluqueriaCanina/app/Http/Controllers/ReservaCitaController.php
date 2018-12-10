@@ -43,14 +43,12 @@ class ReservaCitaController extends Controller
         return view('reservaCita',[
             'dias'=>$diasSemana,
             'mes'=>$mes,
-            'dia'=>$diaActual,
+            'diaActual'=>$diaActual,
             'diasem'=>$diaSemana,
             'horariosLibres'=>$horariosDisponibles,
             'nombresDias'=>$nombreDias,
             'nombreMes'=>$nombreMes,
-            'mascotasUsuario'=>$mascotasUsuario,
-            'fechaSeleccionada'=>null
-            
+            'mascotasUsuario'=>$mascotasUsuario,            
         ]);
     }
 

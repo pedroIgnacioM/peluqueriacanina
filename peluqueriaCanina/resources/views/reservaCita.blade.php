@@ -14,37 +14,37 @@
                             <div class="col-md-8">
                                     <div class="table-responsive"> 
                                             <table class="table table-bordered ">
-                                            <tbody> 
-                                                    <tr>
-                                                    <th><input class="btn btn-link active btn-block" type="button" value="<-----"></th> 
-                                                    <th class="text-center">{{$mes}}</th> 
-                                                    <th><input class="btn btn-link active btn-block" type="button" value="----->"></th> 
-                                                    
-                                                    </tr> 
-                                                </tbody>
-                                            </table>
-                                    </div>
-                                    <div class="table-responsive"> 
-                                            <table class="table table-bordered ">
-                                            
                                                 <thead> 
-                                                        <tr>
-                                                            @foreach (array_combine($nombresDias, $dias) as $nombreDia => $dia)
+                                                    <tr>
+                                                        <th colspan="2"><input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="button" value="<-----"></th> 
+                                                        <th colspan="3" style="font-size:30px; text-align:center"><span class="text-capitalize">{{$mes}}</span></th> 
+                                                        <th colspan="2"><input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="button" value="----->"></th> 
+                                                    </tr> 
+                                                    <tr>
+                                                        @foreach (array_combine($nombresDias, $dias) as $nombreDia => $dia)
+                                                            @if ($dia==$diaActual)
+                                                                <th class="text-center table-active">{{$nombreDia}} {{$dia}}</th> 
+                                                            @else
                                                                 <th class="text-center">{{$nombreDia}} {{$dia}}</th> 
-                                                            @endforeach
-                                                        </tr> 
+                                                            @endif
+                                                        @endforeach
+                                                    </tr> 
                                                 </thead>
                                                 <tbody> 
                                                     @for ($i = 0; $i < 9; $i++)
-                                                            <tr>
-                                                                @for ($j = 0; $j < 7; $j++)
-                                                                    @if (isset($horariosLibres[$j][$i]))
-                                                                        <td class="text-center">{{$horariosLibres[$j][$i]}}</td> 
+                                                        <tr>
+                                                            @for ($j = 0; $j < 7; $j++)
+                                                                @if (isset($horariosLibres[$j][$i]))
+                                                                    @if ($j < $diasem)
+                                                                        <td class="text-center table-active"></td> 
                                                                     @else
-                                                                    <td></td> 
+                                                                        <td class="text-center"><a href="#">{{$horariosLibres[$j][$i]}}</a></td> 
                                                                     @endif
-                                                                @endfor
-                                                            </tr>
+                                                                @else
+                                                                    <td class="text-center"></td> 
+                                                                @endif
+                                                            @endfor
+                                                        </tr>
                                                     @endfor
                                                 </tbody>
                                             </table>
@@ -67,7 +67,7 @@
                                                             <label for="hora">Hora</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="hora" id="hora" disabled value="{{$fechaSeleccionada}}">
+                                                            <input type="text" class="form-control " name="hora" id="hora" disabled value="">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -76,7 +76,7 @@
                                                             <label for="dia">Día</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="dia" id="dia" disabled value="{{$fechaSeleccionada}}">
+                                                            <input type="text" class="form-control " name="dia" id="dia" disabled value="">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -85,14 +85,14 @@
                                                             <label for="mes">Mes</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="mes" id="mes" disabled value="{{$fechaSeleccionada}}">
+                                                            <input type="text" class="form-control " name="mes" id="mes" disabled value="">
                                                         </div>
                                                     </div>
                                                     <br>
                                                     @if(null!=($user = Auth::user()))
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-4">
-                                                                <label for="mascotas">Mascota:</label>
+                                                                <label for="mascotas">Mascota</label>
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <select id="mascotas" class="custom-select  mb-4 form-control tipo ? ' is-invalid' : '' }}" name="mascotas" required autofocus>
@@ -106,7 +106,7 @@
 
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-4">
-                                                                <label for="tipo">Tipo de servicios:</label>
+                                                                <label for="tipo">Tipo de servicios</label>
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>

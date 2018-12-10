@@ -9,6 +9,7 @@
 }
 .AgrandarLetra{
 	font-size: 25px;
+	align-items: center;
 }
 #vertical{
     height:480px;
