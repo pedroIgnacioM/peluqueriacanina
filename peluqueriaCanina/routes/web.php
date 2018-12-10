@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ReservaCitaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +78,6 @@ Route::post('/catalogo/Filtro', 'ProductosController@catalogoFiltro')->name('cat
 //-------------------------------Rutas reservaCita-----------------------------------
 
 Route::get('/reservaCita', 'ReservaCitaController@index')->name('reservaCita');
-
+Route::get('/reservaCita/{semana}' , 'ReservaCitaController@indexCustom')->name('customFecha');
 
 
