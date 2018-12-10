@@ -17,7 +17,7 @@
                                                 <thead> 
                                                     <tr>
                                                         <th colspan="2"><input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="button" value="<-----"></th> 
-                                                        <th colspan="3" style="font-size:30px; text-align:center"><span class="text-capitalize">{{$mes}}</span></th> 
+                                                        <th colspan="3" style="font-size:30px; text-align:center"><span id="mes" class="text-capitalize">{{$mes}}</span></th> 
                                                         <th colspan="2"><input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="button" value="----->"></th> 
                                                     </tr> 
                                                     <tr>
@@ -38,7 +38,7 @@
                                                                     @if ($j < $diasem)
                                                                         <td class="text-center table-active"></td> 
                                                                     @else
-                                                                        <td class="text-center"><a href="#">{{$horariosLibres[$j][$i]}}</a></td> 
+                                                                        <td class="text-center" id="elementoTabla"><a href="#">{{$horariosLibres[$j][$i]}}</a></td> 
                                                                     @endif
                                                                 @else
                                                                     <td class="text-center"></td> 
@@ -67,7 +67,7 @@
                                                             <label for="hora">Hora</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="hora" id="hora" disabled value="">
+                                                            <input type="text" class="form-control " name="hora" id="horaF" disabled value="">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -76,7 +76,7 @@
                                                             <label for="dia">Día</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="dia" id="dia" disabled value="">
+                                                            <input type="text" class="form-control " name="dia" id="diaF" disabled value="">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -85,7 +85,7 @@
                                                             <label for="mes">Mes</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="mes" id="mes" disabled value="">
+                                                            <input type="text" class="form-control " name="mes" id="mesF" disabled value="">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -95,7 +95,7 @@
                                                                 <label for="mascotas">Mascota</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <select id="mascotas" class="custom-select  mb-4 form-control tipo ? ' is-invalid' : '' }}" name="mascotas" required autofocus>
+                                                                <select id="mascotas" class="custom-select  mb-4 form-control tipo ? ' is-invalid' : '' }}" name="mascotas" required autofocus disabled>
                                                                     <option value="" selected disabled>Seleccionar</option>
                                                                     @for ($i = 0; $i < count($mascotasUsuario); $i++)
                                                                     <option value="mascota">{{$mascotasUsuario[$i]->nombre}}</option>
@@ -109,7 +109,7 @@
                                                                 <label for="tipo">Tipo de servicios</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus>
+                                                                <select id="tipo" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="tipo" required autofocus disabled>
                                                                     <option value="" selected disabled>Seleccionar</option>
                                                                     <option value="solo corte">Solo corte</option>
                                                                     <option value="solo baño">Solo baño</option>
@@ -121,10 +121,10 @@
                                                 </div>
                                                 
                                                 <div class="form-group text-center ">
-                                                    <button type="button" class="btn btn-primary btn-reservacion" disabled><span class="AgrandarLetra">Aceptar</span></button>
+                                                    <button type="button" class="btn btn-primary btn-reservacion" id="botonAceptar" disabled><span class="AgrandarLetra">Aceptar</span></button>
                                                     <br>
                                                     <br>
-                                                    <button type="button" class="btn btn-primary btn-reservacion"><span class="AgrandarLetra">Cancelar</span></button>
+                                                    <button type="button" class="btn btn-primary btn-reservacion" id="botonCancelar" disabled><span class="AgrandarLetra">Cancelar</span></button>
                                                 </div>
                                                 
                                             </form>
@@ -139,4 +139,50 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal-corteFavorito"></div>
+
+<script>
+
+
+
+
+
+$(document).ready(function () {
+
+    //Selección de una hora en la tabla
+    $('#elementoTabla a').click(function(e) {
+        e.preventDefault();
+        var hora = $(this).text();
+        var mes = $('#mes').text();
+
+        var indice = $(this).parent().index();
+        var regex = /(\d+)/g;
+        var diaAux = $("tr th")[indice+3].innerHTML;
+        var dia = diaAux.match(regex);
+        
+        $("#diaF").attr('value',dia);
+        $("#horaF").attr('value',hora);
+        $("#mesF").attr('value',mes);
+        $("#tipo").attr('disabled',false);
+        $("#mascotas").attr('disabled',false);
+        $("#botonAceptar").attr('disabled',false);
+        $("#botonCancelar").attr('disabled',false);
+    });
+
+    $("#botonCancelar").click(function(e){
+        $("#diaF").attr('value',"");
+        $("#horaF").attr('value',"");
+        $("#mesF").attr('value',"");
+        $("#tipo").attr('disabled',true);
+        $("#mascotas").attr('disabled',true);
+        $("#tipo").val('');
+        $("#mascotas").val('');
+        
+        $("#botonAceptar").attr('disabled',true);
+        $("#botonCancelar").attr('disabled',true);
+    });
+
+
+});
+</script>
 @endsection
