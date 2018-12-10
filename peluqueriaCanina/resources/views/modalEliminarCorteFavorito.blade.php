@@ -1,6 +1,6 @@
 {{-- Modal del boton Eliminar  --}}
 
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog2" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Eliminar Corte Favorito</h5>

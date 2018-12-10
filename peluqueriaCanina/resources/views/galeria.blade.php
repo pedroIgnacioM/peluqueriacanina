@@ -163,7 +163,7 @@
 
 {{-- Modal del boton (+) --}}
 <div class="modal fade" id="agregarCortePelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog2" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Agregar Corte de pelo</h4>
