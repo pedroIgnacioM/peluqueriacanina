@@ -22,7 +22,7 @@
                                                     </tr> 
                                                     <tr>
                                                         @foreach (array_combine($nombresDias, $dias) as $nombreDia => $dia)
-                                                            @if ($dia==$diaActual)
+                                                            @if ($dia<=$diaActual)
                                                                 <th class="text-center table-active">{{$nombreDia}} {{$dia}}</th> 
                                                             @else
                                                                 <th class="text-center">{{$nombreDia}} {{$dia}}</th> 
