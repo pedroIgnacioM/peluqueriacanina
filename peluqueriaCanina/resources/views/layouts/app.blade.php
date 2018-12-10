@@ -49,7 +49,7 @@
                                         <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">{{ __('Reserva Aquí') }}</a>
+                                        <a class="nav-link" href="{{ route('reservaCita') }}">{{ __('Reserva Aquí') }}</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('galeria') }}">Galeria</a>
