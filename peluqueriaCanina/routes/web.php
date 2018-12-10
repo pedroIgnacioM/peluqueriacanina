@@ -53,6 +53,9 @@ Route::post('/galeria/agregar','CortePeloController@agregarCorte')->name('agrega
 Route::post('/galeria/editarCorte/{id}','CortePeloController@editarCorte')->name('editarCorte');
 Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->name('eliminarCorte');
 
+//Comentarios
+Route::get('/modal/comentario/{id}','CortePeloController@agregarComentario')->name('agregarComentario');
+
 //------------------------------Rutas CorteFavorito------------------------------------------
 Route::resource('cortesFavoritos', 'CorteFavoritoController');
 

@@ -89,9 +89,7 @@ class CortePeloController extends Controller
                 ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
                 ->select('corte_favoritos.*')
                 ->paginate(12);
-
         }
-
         $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
 
         return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
@@ -113,7 +111,7 @@ class CortePeloController extends Controller
                 ->paginate(12);
                  
             }
-            else
+            printer_draw_elipse(    , ul_x, ul_y, lr_x, lr_y)
             {
                 if(isset($request->tamano))
                 {
@@ -180,7 +178,7 @@ class CortePeloController extends Controller
                 ['corte_favoritos.corte_pelos_id','=', $id]])
             ->select('corte_favoritos.*')->paginate(12);
 
-        $elemento=CortePelo::find($id);
+         $elemento=CortePelo::find($id);
         return view('modalAgregarCorteFavorito',[
             'elemento'=>$elemento ,
             'corteFavoritos' => $corteFavoritos

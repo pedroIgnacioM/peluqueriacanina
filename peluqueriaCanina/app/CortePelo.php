@@ -19,4 +19,7 @@ class CortePelo extends Model
     public function cabello(){
         return $this->belongsTo('App\Tipo_Cabello');
     }
+    public function comentarios(){
+        return $this->hasOne('App\Comentarios');
+    }
 }
