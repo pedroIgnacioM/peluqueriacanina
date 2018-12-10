@@ -4,6 +4,39 @@
     max-height: 250px;
 }
 
+.imagenModal{
+	max-width: 450px;
+    height: auto;
+    width: auto/9;
+	
+}
+
+.ventana{
+	text-align:center;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+	
+.boton-abrir{
+	margin:15px;
+	padding:15px;
+	font-size:1.5em;
+}
+
+.boton-cerrar{
+  width:30px;
+  float: right;
+  position: absolute;
+  background:rgb(20, 20, 20);
+  color:rgb(255, 255, 255);
+  font-weight:bold;
+  font-family:Arial;
+  cursor:pointer;
+	
+}
 #vertical{
     height:480px;
     border-left:1px solid gainsboro;

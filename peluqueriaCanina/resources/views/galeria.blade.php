@@ -99,10 +99,12 @@
                                         <div class="col-sm-4 conFoto">
                                             <div class="container-fluid foto"> 
                                                 <div class="row justify-content-center">  
-                                                    <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
+                                                    <div class="img-container" id="imagenRef" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
-                                                        <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
-                                                        <p>{{$cortePelo->descripcion}}</p>
+                                                        <a href="{{Storage::url($cortePelo->imagen)}}" >
+                                                            <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
+                                                            <p>{{$cortePelo->descripcion}}</p>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">  
@@ -250,14 +252,34 @@
         </div>
     </div>
 </div>
-
+<div class="modal" id="modalImagen">
+    <div class="ventana">
+        
+        <div class="boton-cerrar">X</div>
+        <img class="imagenModal" id="imagenAMostrar" src="" alt="imagen" width="600px">
+        
+        </div>
+    </div>
+</div>
 <div class="modal" id="modal-corte"></div>
 <div class="modal" id="modal-corteFavorito"></div>
 
 <script>
-    // Modal
+   
     $(document).ready(function () {
 
+        $("#imagenRef a").click(function(e){
+            e.preventDefault();
+            var referencia = $(this).attr('href');
+            $('#imagenAMostrar').attr('src',referencia);
+            $('#modalImagen').modal('show');
+        });
+
+        $(".boton-cerrar").click(function(){
+            $("#modalImagen").modal('hide');
+        });
+
+         // Modal
         $(".botonModal").click(function (ev) { // for each edit contact url
             ev.preventDefault(); // prevent navigation
             var url = $(this).data("form"); // get the contact form url
