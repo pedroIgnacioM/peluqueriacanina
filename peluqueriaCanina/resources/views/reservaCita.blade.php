@@ -36,32 +36,17 @@
                                                         </tr> 
                                                 </thead>
                                                 <tbody> 
-                                                        {{-- @for ($i = 0,$k=0; $i < 7 && $k < count($horariosLibres[$i]); $i++,$k++)
-                                                            @if (isset($horariosLibres[$i]))
-                                                                <tr>
+                                                    @for ($i = 0; $i < 9; $i++)
+                                                            <tr>
                                                                 @for ($j = 0; $j < 7; $j++)
-                                                                        @if (isset($horariosLibres[$j][$k]))
-                                                                            <td class="text-center">{{$horariosLibres[$j][$k]}}</td> 
-                                                                        @endif
-                                                                        @endfor 
-                                                                </tr> 
-                                                            @endif
-                                                        @endfor --}}
-                                                        
-                                                        @for ($i = 0; $i < 9; $i++)
-                                                                <tr>
-                                                                    @for ($j = 0; $j < 7; $j++)
-                                                                        @if (isset($horariosLibres[$j][$i]))
-                                                                            <td class="text-center">{{$horariosLibres[$j][$i]}}</td> 
-                                                                        @else
-                                                                        <td></td> 
-                                                                        @endif
-                                                                    @endfor
-                                                                </tr>
-                                                        @endfor
-                                                    
-                                                    
-                                                    
+                                                                    @if (isset($horariosLibres[$j][$i]))
+                                                                        <td class="text-center">{{$horariosLibres[$j][$i]}}</td> 
+                                                                    @else
+                                                                    <td></td> 
+                                                                    @endif
+                                                                @endfor
+                                                            </tr>
+                                                    @endfor
                                                 </tbody>
                                             </table>
                                     </div>
@@ -79,20 +64,8 @@
                                                 <form action="#">
                                                     <div class="form-group ">
                                                         <div class="col-8">
-                                                            <label for="hora" >Hora :</label>
-                                                            <input type="hora" class="form-control " id="hora">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-8">
-                                                            <label for="dia">Dia:</label>
-                                                            <input type="dia" class="form-control" id="dia">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-8">
-                                                            <label for="mes">Mes:</label>
-                                                            <input type="mes" class="form-control" id="mes">
+                                                            <label for="fecha" >Fecha:</label>
+                                                            <input type="text" class="form-control " name="fecha" id="fecha" disabled>
                                                         </div>
                                                     </div>
                                                     @if(null!=($user = Auth::user()))
