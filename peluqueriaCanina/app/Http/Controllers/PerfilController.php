@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
+use App\Actividad;
 
 class PerfilController extends Controller
 {
@@ -57,5 +58,11 @@ class PerfilController extends Controller
         return redirect()->route('perfil',['Usuario']);
     }
 
-
+    public function actividadesModal()
+    {
+        $actividades=Actividad::all();
+        return view('modalActividades',[
+            'actividades'=>$actividades
+        ]);
+    }
 }

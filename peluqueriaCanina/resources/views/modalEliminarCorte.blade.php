@@ -1,15 +1,15 @@
 {{-- Modal del boton Eliminar --}}
 
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog2" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Eliminar Corte de Pelo</h4>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <a type="button" class="close" data-dismiss="modal">
                         <span> <i class="fas fa-times"></i></span>
-                    </button> 
+                    </a> 
                 </div>
                 <div class="modal-body">
-                <div class="form-group row justify-content-md-center">
+                    <div class="form-group row justify-content-md-center">
                         <div class="col-md-12">
                             <div class="form-group row">
                                 <div class="col-md-3">
@@ -52,15 +52,13 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <form class="corte-form" action="{{route('eliminarCorte',['id'=>$elemento->id])}}" method="post">
                     {{csrf_field()}}
-                    
-                    
-                            <div class="modal-footer">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </div>
                     </div>
                 </form>
             </div>

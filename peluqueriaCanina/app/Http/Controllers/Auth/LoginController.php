@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Actividad;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -27,6 +29,13 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {   
+        $user = Auth::user();
+        if(!$user->isAdmin())
+        {
+            Actividad::create([
+                'user_id' => $user->id,
+            ]);
+        }
         return route('home');
     }
     /**
