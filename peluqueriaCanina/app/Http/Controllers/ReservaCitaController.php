@@ -38,9 +38,8 @@ class ReservaCitaController extends Controller
         ->join('users','mascotas.user_id','=','users.id')
         ->where('mascotas.user_id',$id_usuario)
         ->get();
-        // return dd($mascotasUsuario);
         $nombreMes=array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
-        // return dd($horariosDisponibles);
+        
         return view('reservaCita',[
             'dias'=>$diasSemana,
             'mes'=>$mes,
@@ -49,7 +48,8 @@ class ReservaCitaController extends Controller
             'horariosLibres'=>$horariosDisponibles,
             'nombresDias'=>$nombreDias,
             'nombreMes'=>$nombreMes,
-            'mascotasUsuario'=>$mascotasUsuario
+            'mascotasUsuario'=>$mascotasUsuario,
+            'fechaSeleccionada'=>null
             
         ]);
     }

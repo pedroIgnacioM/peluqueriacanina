@@ -3,7 +3,13 @@
     width: 100%;
     max-height: 250px;
 }
-
+.btn-reservacion{
+	width: 250px;
+	height: 60px;
+}
+.AgrandarLetra{
+	font-size: 25px;
+}
 #vertical{
     height:480px;
     border-left:1px solid gainsboro;
@@ -102,6 +108,7 @@ button{
   	left: 50%;
   	/*transform: translate(80%, 10%);*/
 }
+
 .modal-header{
 	background: whitesmoke;
 }
