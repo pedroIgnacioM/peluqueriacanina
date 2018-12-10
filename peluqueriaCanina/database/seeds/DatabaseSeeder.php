@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             MascotasTableSeeder::class,
             Tipo_CabelloTableSeeder::class,
+            ComentariosTableSeeder::class,
             Corte_PelosTableSeeder::class,
             Corte_FavoritosTableSeeder::class,
             Reserva_ProductosTableSeeder::class,

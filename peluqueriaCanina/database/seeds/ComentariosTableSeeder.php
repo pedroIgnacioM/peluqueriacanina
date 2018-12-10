@@ -11,6 +11,7 @@ class ComentariosTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create('es_ES');
         foreach (range(1,10) as $i) {
             DB::table('comentarios')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
