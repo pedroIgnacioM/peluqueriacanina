@@ -106,43 +106,35 @@ class CortePeloController extends Controller
                 ->paginate(12);
 
         }
-        
-        if (!isset($request->tamano) && !isset($request->cabello)) {
-            $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
-        }
-        else
-        {
-            if(isset($request->tamano) && isset($request->cabello))
-            {
-                $cortePelos = CortePelo::orderBy('id','DESC')
-                ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                ->Where('corte_pelos.tamaño','=',$request->tamano)
-                ->orWhere('tipo_cabello.nombre','=',$request->cabello)
-                ->select('corte_pelos.*')
-                ->paginate(12);
-                 
-            }
-            else
-            {
-                if(isset($request->tamano))
-                {
-                    $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                    ->Where('corte_pelos.tamaño','=',$request->tamano)
-                    ->select('corte_pelos.*')
-                    ->paginate(12);
-                }
-                else
-                {
-                    $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                    ->Where('tipo_cabello.nombre',$request->cabello)
-                    ->select('corte_pelos.*')
-                    ->paginate(12);
-                }
-            }
-        }
-        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
+        $tamanoP = $request->tamanoP;
+        $tamanoM = $request->tamanoM;
+        $tamanoG = $request->tamanoG;
+        $cabelloR = $request->cabelloR;
+        $cabelloC = $request->cabelloC;
+        $cabelloN = $request->cabelloN;
+
+
+        $cortePelos = CortePelo::orderBy('id','DESC')
+        ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
+        ->Where('corte_pelos.tamaño','=',  $tamanoP)
+        ->orWhere('corte_pelos.tamaño','=',$tamanoM)
+        ->orWhere('corte_pelos.tamaño','=',$tamanoG)
+        ->orWhere('tipo_cabello.nombre','=',$cabelloR)
+        ->orWhere('tipo_cabello.nombre','=',$cabelloC)
+        ->orWhere('tipo_cabello.nombre','=',$cabelloN)
+        ->select('corte_pelos.*')
+        ->paginate(12);
+         
+        return view('galeria',[
+            'cortePelos'=>$cortePelos,
+            'corteFavoritos'=>$corteFavoritos,
+            'tamanoP'=>$tamanoP, 
+            'tamanoM'=>$tamanoM, 
+            'tamanoG'=>$tamanoG, 
+            'cabelloR'=>$cabelloR,
+            'cabelloC'=>$cabelloC,
+            'cabelloN'=>$cabelloN,
+        ]);
     }
 
     protected function downloadFile($src){
