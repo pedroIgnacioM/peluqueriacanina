@@ -10,6 +10,17 @@
     width: auto/9;
 	
 }
+.bordeado-izquierdo{
+	border-left: 1px solid rgb(202, 201, 201);
+}
+.max-lines {
+	display: block; /* or inline-block */
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	overflow: hidden;
+	max-height: 5.4em;
+	line-height: 1.8em;
+}
 
 .ventana{
 	text-align:center;
@@ -39,7 +50,9 @@
 }
 #vertical{
     height:480px;
-    border-left:1px solid gainsboro;
+	border-left:1px solid gainsboro;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 .col-center{
     float: none;
