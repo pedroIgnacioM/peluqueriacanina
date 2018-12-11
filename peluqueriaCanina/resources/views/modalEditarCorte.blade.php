@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<div class="modal-dialog modal-dialog2">
     <div class="modal-content">
         <div class="modal-header">
             <h4>Modificar Corte de Pelo</h4>
