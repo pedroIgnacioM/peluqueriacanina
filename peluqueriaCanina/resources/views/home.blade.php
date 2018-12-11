@@ -15,8 +15,9 @@
 
                     <div class="row">
                         <div class="col-md-9">
-                        <h5>Ultimos Trabajos</h5>
-                           <div class="row">
+                            <h5>Ultimos Trabajos</h5>
+                            
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                         
@@ -57,8 +58,8 @@
                                     
                                     <h5>Descripción</h5>
                                     <p>
-                                    Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
-                                    cortes las uñas y tratamientos antiparasitarios.
+                                        Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
+                                        cortes las uñas y tratamientos antiparasitarios.
                                     </p>
                                 </div>
                            </div>
