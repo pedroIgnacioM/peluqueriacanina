@@ -13,14 +13,15 @@ class CreateNosotrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('_nosotros', function (Blueprint $table) {
+        Schema::create('nosotros', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo1');
-            $table->string('descripcion1');
+            $table->mediumText('descripcion1',255);
             
             $table->string('titulo2');
-            $table->string('descripcion2');
-            
+            $table->mediumText('descripcion2',255);
+
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateNosotrosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_nosotros');
+        Schema::dropIfExists('nosotros');
     }
 }
