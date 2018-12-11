@@ -236,7 +236,7 @@
                                     <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input id="imagen" type="file" name="imagen">
+                                    <input id="imagen" type="file" name="imagen" required>
                                 </div>
                             </div>
                         </div>
