@@ -10,6 +10,14 @@
     width: auto/9;
 	
 }
+.imagenEvento{
+	max-width: 450px;
+    height: auto;
+    width: auto/9;
+	
+}
+
+
 .bordeado-izquierdo{
 	border-left: 1px solid rgb(202, 201, 201);
 }
