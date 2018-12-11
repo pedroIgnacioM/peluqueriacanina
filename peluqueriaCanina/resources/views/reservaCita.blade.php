@@ -60,7 +60,7 @@
                                     </div>
                                         <div class="row justify-content-center">
                                             <form action="#">
-                                                <div class="form-group ">
+                                                <div class="form-group " action="{{ route('crearCita')}}"  method="POST" >
 
                                                     <div class="row justify-content-center">
                                                         <div class="col-md-4">
@@ -121,7 +121,7 @@
                                                 </div>
                                                 
                                                 <div class="form-group text-center ">
-                                                    <button type="button" class="btn btn-primary btn-reservacion" id="botonAceptar" disabled><span class="AgrandarLetra">Aceptar</span></button>
+                                                    <button type="submit" class="btn btn-primary btn-reservacion" id="botonAceptar" disabled><span class="AgrandarLetra">Aceptar</span></button>
                                                     <br>
                                                     <br>
                                                     <button type="button" class="btn btn-primary btn-reservacion" id="botonCancelar" disabled><span class="AgrandarLetra">Cancelar</span></button>

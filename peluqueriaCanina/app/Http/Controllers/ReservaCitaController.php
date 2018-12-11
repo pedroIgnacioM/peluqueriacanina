@@ -86,4 +86,30 @@ class ReservaCitaController extends Controller
         }
         return $horariosDisponibles;
     }
+    public function crear(Request $request)
+    {
+        $user = \Auth::user();
+        return dd($user);
+        $anno=strftime('%Y');
+        $id_usuario=$user->id;
+        $nombremascota=$request['mascota'];
+        $fecha=$anno.'-'.$request->mes.'-'.$request->dia.$request->hora;
+        $mascota=\DB::table ('mascotas')
+        ->select('mascotas.id','mascotas.nombre','mascotas.user_id')
+        ->join('users','mascotas.user_id','=','users.id')
+        ->where('mascotas.user_id',$id_usuario)
+        ->where('mascota.nombre',$nombremascota)
+        ->get();
+        
+        ReservaCitas::create([
+            'fecha' => $fecha,
+            'servicio' => $request->servicio,
+            'user_id' => $user,
+            'mascota_id' => $mascota->id,
+            
+
+        ]);
+        return redirect()->route('reservaCita')->with('success','Cita registrada  satisfactoriamente');
+        
+    }
 }
