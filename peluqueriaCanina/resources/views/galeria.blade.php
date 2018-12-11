@@ -34,19 +34,31 @@
                                                          <div class="row  ">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="tamano" >
-                                                                <input class="form-check-input" type="checkbox" value="grande"  name="tamanoG">Grande</label>
+                                                                @if (isset($tamanoG))
+                                                                    <input class="form-check-input" type="checkbox" value="grande"  name="tamanoG" checked>Grande</label>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="grande"  name="tamanoG">Grande</label>
+                                                                @endif
                                                             </div>  
                                                         </div>
                                                        <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="mediano">
-                                                                <input class="form-check-input" type="checkbox" value="mediano" name="tamanoM">Mediano</label>
+                                                                @if (isset($tamanoM))
+                                                                    <input class="form-check-input" type="checkbox" value="mediano" name="tamanoM" checked>Mediano</label>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="mediano" name="tamanoM">Mediano</label>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pequeño">
-                                                                <input class="form-check-input" type="checkbox" value="pequeño" name="tamanoP">Pequeño</label>
+                                                                @if (isset($tamanoP))
+                                                                    <input class="form-check-input" type="checkbox" value="pequeño" name="tamanoP" checked>Pequeño</label>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="pequeño" name="tamanoP">Pequeño</label>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -58,21 +70,33 @@
                                                          <div class="row  ">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
-                                                                <input class="form-check-input" type="checkbox" value="rubio" name="cabelloR">
+                                                                @if (isset($cabelloR))
+                                                                    <input class="form-check-input" type="checkbox" value="rubio" name="cabelloR" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="rubio" name="cabelloR">
+                                                                @endif
                                                                 Rubio</label>
                                                             </div>
                                                         </div>
                                                          <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
-                                                                <input class="form-check-input" type="checkbox" value="castaño" name="cabelloC">
+                                                                @if (isset($cabelloC))
+                                                                    <input class="form-check-input" type="checkbox" value="castaño" name="cabelloC" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="castaño" name="cabelloC">
+                                                                @endif
                                                                 Castaño</label>
                                                             </div>
                                                         </div>
                                                            <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pelo_liso">
-                                                                <input class="form-check-input" type="checkbox" value="negro" name="cabelloN" id="negro">
+                                                                @if (isset($cabelloN))
+                                                                    <input class="form-check-input" type="checkbox" value="negro" name="cabelloN" id="negro" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="negro" name="cabelloN" id="negro">
+                                                                @endif
                                                                 Negro</label>
                                                             </div>
                                                         </div>
