@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comentario;
 use App\CortePelo;
 use App\CorteFavorito;
 use App\User;
+use App\Mascota;
+
 
 class CortePeloController extends Controller
 {
@@ -41,7 +44,7 @@ class CortePeloController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -96,6 +99,7 @@ class CortePeloController extends Controller
     }
 
     public function galeriaFiltro(Request $request){
+
         if (!isset($request->tamano) && !isset($request->cabello)) {
             $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
         }
@@ -110,9 +114,7 @@ class CortePeloController extends Controller
                 ->select('corte_pelos.*')
                 ->paginate(12);
                  
-            }
-            printer_draw_elipse(    , ul_x, ul_y, lr_x, lr_y)
-            {
+            }else{
                 if(isset($request->tamano))
                 {
                     $cortePelos = CortePelo::orderBy('id','DESC')
@@ -178,13 +180,26 @@ class CortePeloController extends Controller
                 ['corte_favoritos.corte_pelos_id','=', $id]])
             ->select('corte_favoritos.*')->paginate(12);
 
-         $elemento=CortePelo::find($id);
+        $elemento = CortePelo::find($id);
         return view('modalAgregarCorteFavorito',[
             'elemento'=>$elemento ,
             'corteFavoritos' => $corteFavoritos
         ]);
     }
+    public function verComentarioModal($id){
 
+        $elemento = CortePelo::find($id);
+        $comentario = Comentario::find($elemento->comentario_id);
+        $mascota = Mascota::find($elemento->mascota_id);
+        $usuario = User::find($mascota->user_id);
+
+        return view('modalVerComentario',[
+            'elemento' =>$elemento,
+            'comentario' =>$comentario,
+            'mascota' =>$mascota,
+            'usuario'=> $usuario 
+        ]);  
+    }
     //--------------------------------------------Funciones provisorias--------------------------------------------
 
     public function agregarCorte(Request $request)
@@ -246,7 +261,22 @@ class CortePeloController extends Controller
     
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
+    /*
+    public function agregarComentario(Request $request, $id){
 
+        Comentario::create([
+            'descripcion' => $request->id
+        ]);
 
+        $elemento = CortePelo::find($id);
+        if(!isset($elemento))
+            return redirect()->route('galeria');
+    
+        $elemento->comentario_id = $request->id;
+        
+        $elemento->save();
+
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }*/
 }
     

@@ -114,10 +114,10 @@
                                                         @if(Auth::user()->isDefault() || Auth::user()->isAdmin() )
                                                             {{-- Botón Comentar --}}
                                                             <div class="col-md-2">
-                                                                <a href="#"><span><i class="fas fa-comment iconoGaleria"></i></span></a>
+                                                                <a href="#" class="botonModalComentario" data-toggle="modal" data-form="{{route('verComentarioModal',['id'=>$cortePelo->id])}}"  data-target="#modal-comentario" ><span><i class="fas fa-comment iconoGaleria" ></i></span></a>
                                                             </div>
 
-                                                            {{-- Boton Favorito --}}
+                                                            {{-- Boton favorito --}}
                                                             <?php $cont = 0; ?> 
                                                             @foreach($corteFavoritos as $corteFavorito)
                                                                 @if($corteFavorito->corte_pelos_id == $cortePelo->id)
@@ -253,6 +253,7 @@
 
 <div class="modal" id="modal-corte"></div>
 <div class="modal" id="modal-corteFavorito"></div>
+<div class="modal" id="modal-comentario"></div>
 
 <script>
     // Modal
@@ -297,6 +298,27 @@
                 context: this,
                 success: function (data, status) {
                     $('#modal-corteFavorito').html(data);
+                }
+            });
+        });
+
+         // Modal Comentarios
+        $(".botonModalComentario").click(function (ev) { // for each edit contact url
+            ev.preventDefault(); // prevent navigation
+            var url = $(this).data("form"); // get the contact form url
+            console.log(url);
+            $("#modal-comentario").load(url, function () { // load the url into the modal
+                $(this).modal('show'); // display the modal on url load
+            });
+        });
+        $('.comentario-form').on('submit', function () {
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                context: this,
+                success: function (data, status) {
+                    $('#modal-comentario').html(data);
                 }
             });
         });

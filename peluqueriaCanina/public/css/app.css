@@ -135,7 +135,7 @@ button{
 	padding: 8px;
 	color: #ea3232;
 }
-
+/*galeria*/
 .foto{
 	border: 1px solid rgba(0,0,0,.125);
 	margin-bottom: 20px;
@@ -152,6 +152,18 @@ button{
 .conFoto{
 	padding-left: 10px;
 	padding-right: 5px!important;
+}
+/*comentario*/
+.comentario{
+	padding-top: 15px;
+	border: 1px solid rgba(0,0,0,.125);
+	position: inherit;
+}
+.fotoComentario{
+	width:100px!important;
+    height:100px!important;
+    border-radius:150px!important;
+    position: inherit!important;
 }
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)

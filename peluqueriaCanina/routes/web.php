@@ -54,19 +54,20 @@ Route::post('/galeria/editarCorte/{id}','CortePeloController@editarCorte')->name
 Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->name('eliminarCorte');
 
 //Comentarios
-Route::get('/modal/comentario/{id}','CortePeloController@agregarComentario')->name('agregarComentario');
+Route::get('/modal/verComentario/{id}','CortePeloController@verComentarioModal')->name('verComentarioModal');
+//Route::post('/galeria/comentario/{id}','CortePeloController@agregarComentario')->name('agregarComentario');
 
 //------------------------------Rutas CorteFavorito------------------------------------------
 Route::resource('cortesFavoritos', 'CorteFavoritoController');
 
-Route::get('/corte-favorito', 'CorteFavoritoController@index')->name('cortesFavoritos');
+Route::get('/corteFavorito', 'CorteFavoritoController@index')->name('cortesFavoritos');
 
 //Ruta modal
 Route::get('/modal/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorteModal')->name('eliminarCorteFavoritoModal');
 Route::get('/modal/agregarFavorito/{id}','CortePeloController@agregarCorteFavoritoModal')->name('agregarCorteFavoritoModal');
 
 //Ruta post
-Route::post('/corte-favorito/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorte')->name('eliminarCorteFavorito');
+Route::post('/corteFavorito/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorte')->name('eliminarCorteFavorito');
 Route::post('/galeria/agregarFavorito/{id}','CortePeloController@agregarCorteFavorito')->name('agregarCorteFavorito');
 
 //------------------------------Rutas Registrar Mascota -------------------------------------

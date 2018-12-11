@@ -35,10 +35,10 @@ class CreateCortePelosTable extends Migration
             ->on('tipo_cabello')
             ->onDelete('cascade');
 
-            $table->unsignedInteger('comentario_id');
+            $table->unsignedInteger('comentario_id')->nullable();
             $table->foreign('comentario_id')
             ->references('id')
-            ->on('comentarios')
+            ->on('comentarios')     
             ->onDelete('cascade');
         });
     }
