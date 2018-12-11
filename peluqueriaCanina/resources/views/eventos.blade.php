@@ -30,9 +30,11 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <img class="rounded-circle" src="{{Storage::url($evento->user->imagen)}}" alt="Imagen" width="100px" height="100px">
-                                                @if(Auth::user()->isAdmin())
-                                                    <a href="{{ route('perfil',['nombre'=>$evento->user->id]) }}"><p class="text-center">Ver perfil</p></a>
-                                                @endif
+                                                @auth
+                                                    @if(Auth::user()->isAdmin())
+                                                        <a href="{{ route('perfil',['id'=>$evento->user->id]) }}"><p class="text-center">Ver perfil</p></a>
+                                                    @endif
+                                                @endauth 
                                             </div>
                                         </div>
                                     </div>
