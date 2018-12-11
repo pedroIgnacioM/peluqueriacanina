@@ -127,8 +127,9 @@
                                                         {{-- Imagen --}}
                                                         <a href="{{Storage::url($cortePelo->imagen)}}" >
                                                             <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
-                                                            <p>{{$cortePelo->descripcion}}</p>
                                                         </a>
+                                                            <p>{{$cortePelo->descripcion}}</p>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">  
