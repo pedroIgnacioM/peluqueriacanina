@@ -98,6 +98,15 @@ class CortePeloController extends Controller
     }
 
     public function galeriaFiltro(Request $request){
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
+
+        }
+        
         if (!isset($request->tamano) && !isset($request->cabello)) {
             $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
         }
@@ -133,7 +142,7 @@ class CortePeloController extends Controller
                 }
             }
         }
-        return view('galeria')->with('cortePelos',$cortePelos);
+        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
     }
 
     protected function downloadFile($src){
