@@ -110,6 +110,7 @@
                             <br>
                             @foreach ($anuncios as $anuncio)
                             <div class="container ">
+                                <a href="{{ route('evento_detalle',['id'=>$anuncio->id]) }}">
                                 <div class="row justify-content-center">
                                     <div class="col-md-6 text-capitalize">
                                         <h5>{{$anuncio->titulo}}</h5>
@@ -120,13 +121,20 @@
                                         <img src="{{Storage::url($anuncio->imagen)}}" alt="imagen_evento" width="120px" height="120px">
                                     </div>
                                 </div>
+                                </a>
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
                                         <p class="max-lines">{{$anuncio->descripcion}}</p>
                                     </div>
                                 </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <p class="max-lines">{{$anuncio->fecha}}</p>
+                                    </div>
+                                </div>
                                 <br>
                             </div>
+                            
                             @endforeach
                                 
                         </div>
