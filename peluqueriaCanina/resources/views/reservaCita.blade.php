@@ -16,9 +16,17 @@
                                             <table class="table table-bordered ">
                                                 <thead> 
                                                     <tr>
-                                                        <th colspan="2"><input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="button" value="<-----"></th> 
+                                                        <th colspan="2">
+                                                            <form action="{{route('customFecha',[$semana-1])}}" method="GET">
+                                                                <input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="submit" value="<-----">
+                                                            </form>
+                                                        </th> 
                                                         <th colspan="3" style="font-size:30px; text-align:center"><span id="mes" class="text-capitalize">{{$mes}}</span></th> 
-                                                        <th colspan="2"><input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="button" value="----->"></th> 
+                                                        <th colspan="2">
+                                                        <form action="{{route('customFecha',[$semana+1])}}" method="GET">
+                                                            <input style="font-size:30px; text-align:center" class="btn btn-link active btn-block" type="submit" value="----->"> 
+                                                        </form>
+                                                        </th>
                                                     </tr> 
                                                     <tr>
                                                         @foreach (array_combine($nombresDias, $dias) as $nombreDia => $dia)
@@ -159,7 +167,12 @@ $(document).ready(function () {
         var regex = /(\d+)/g;
         var diaAux = $("tr th")[indice+3].innerHTML;
         var dia = diaAux.match(regex);
-        
+        var mesAlternativo= "{{$mesAlternativo}}";
+        if(dia<7)
+        {
+            if(mesAlternativo!=null)
+            mes=mesAlternativo;
+        }
         $("#diaF").attr('value',dia);
         $("#horaF").attr('value',hora);
         $("#mesF").attr('value',mes);
@@ -181,7 +194,6 @@ $(document).ready(function () {
         $("#botonAceptar").attr('disabled',true);
         $("#botonCancelar").attr('disabled',true);
     });
-
 
 });
 </script>
