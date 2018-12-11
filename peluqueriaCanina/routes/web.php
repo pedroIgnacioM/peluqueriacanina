@@ -28,7 +28,7 @@ Route::get('/contacto', 'ContactoController@index')->name('contacto');
 //Rutas Perfil
 Route::get('/formulario_mascota/agregar', 'MascotaController@formularioAgregar')->name('agregarMascota');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/perfil/{nombre}','PerfilController@index')->name('perfil');
+Route::get('/perfil/{id}','PerfilController@index')->name('perfil');
 Route::get('/modal/actividades','PerfilController@actividadesModal')->name('actividadesModal');
 
 Route::post('/agregarMascota','MascotaController@agregarMascota')->name('insertarMascota');
