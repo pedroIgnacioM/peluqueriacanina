@@ -86,6 +86,9 @@
                             <a class="dropdown-item" href="{{route('perfil',['Usuario'])}}">
                                 Perfil
                             </a>
+                            <a class="dropdown-item" href="{{route('eventos')}}">
+                                    Eventos
+                                </a>
                              <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
