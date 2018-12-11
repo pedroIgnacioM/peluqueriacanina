@@ -51,7 +51,9 @@ class ReservaCitaController extends Controller
             'nombreMes'=>$nombreMes,
             'mascotasUsuario'=>$mascotasUsuario,
             'semana'=>0,
-            'mesAlternativo'=>$mesAlternativo            
+            'mesAlternativo'=>$mesAlternativo,
+            'mesNum'=>$mesNumero           
+         
         ]);
     }
 
@@ -120,7 +122,8 @@ class ReservaCitaController extends Controller
             'nombreMes'=>$nombreMes,
             'mascotasUsuario'=>$mascotasUsuario,
             'semana'=>$semana,
-            'mesAlternativo'=>$mesAlternativo            
+            'mesAlternativo'=>$mesAlternativo,
+            'mesNum'=>$mesNumero           
         ]);
     }
 
@@ -161,27 +164,28 @@ class ReservaCitaController extends Controller
     public function crear(Request $request)
     {
         $user = \Auth::user();
-        return dd($user);
         $anno=strftime('%Y');
         $id_usuario=$user->id;
-        $nombremascota=$request['mascota'];
-        $fecha=$anno.'-'.$request->mes.'-'.$request->dia.$request->hora;
+        $mesNumero=$request->mes;
+        $nombremascota=$request->mascotas;
+        $fecha=$anno . '-' . $mesNumero . '-' . $request->dia . ' ' . $request->hora;
         $mascota=\DB::table ('mascotas')
         ->select('mascotas.id','mascotas.nombre','mascotas.user_id')
         ->join('users','mascotas.user_id','=','users.id')
         ->where('mascotas.user_id',$id_usuario)
-        ->where('mascota.nombre',$nombremascota)
-        ->get();
-        
-        ReservaCitas::create([
-            'fecha' => $fecha,
-            'servicio' => $request->servicio,
-            'user_id' => $user,
-            'mascota_id' => $mascota->id,
-            
+        ->where('mascotas.nombre',$nombremascota)
+        ->first();
+        $tipoServicio=$request->tipo;
+        $id_mascota=$mascota->id;
+        $fechaConFormato = date("Y-m-d H:i", strtotime($fecha));
+        ReservaCita::create([
+            'fecha' => $fechaConFormato,
+            'servicio' => $tipoServicio,
+            'user_id' => $id_usuario,
+            'mascota_id' => $id_mascota,
 
         ]);
-        return redirect()->route('reservaCita')->with('success','Cita registrada  satisfactoriamente');
+        return redirect()->route('reservaCita');
         
     }
 }

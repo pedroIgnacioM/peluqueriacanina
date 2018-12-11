@@ -78,7 +78,7 @@ Route::post('/catalogo/Filtro', 'ProductosController@catalogoFiltro')->name('cat
 //-------------------------------Rutas reservaCita-----------------------------------
 
 Route::get('/reservaCita', 'ReservaCitaController@index')->name('reservaCita');
-Route::post('/reservacionCita', 'ReservaCitaController@crear')->name('crearCita');
+Route::post('/reservaCita', 'ReservaCitaController@crear')->name('crearCita');
 
 Route::get('/reservaCita/{semana}' , 'ReservaCitaController@indexCustom')->name('customFecha');
 

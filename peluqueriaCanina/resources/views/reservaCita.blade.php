@@ -67,35 +67,42 @@
                                         <div class="card-title"> <h2>El horario seria:</h2> </div>
                                     </div>
                                         <div class="row justify-content-center">
-                                            <form action="#">
-                                                <div class="form-group " action="{{ route('crearCita')}}"  method="POST" >
+                                            <form action="{{ route('crearCita')}}"  method="POST">
+                                                @csrf
+                                                <div class="form-group ">
 
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <label for="hora">Hora</label>
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-4">
+                                                                <label for="hora">Hora</label>
+                                                            </div>
+                                                                <div class="col-md-7">
+                                                                    <input type="text" class="form-control " name="horaF" id="horaF" value="" disabled>
+                                                                    <input type="text" class="form-control " name="hora" id="horaForm" value="" hidden>
+                                                                </div>
                                                         </div>
-                                                        <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="hora" id="horaF" disabled value="">
-                                                        </div>
-                                                    </div>
+                                                        
                                                     <br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <label for="dia">Día</label>
+
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-4">
+                                                                <label for="dia">Día</label>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control " name="diaF" id="diaF" disabled value="">
+                                                                <input type="text" class="form-control " name="dia" id="diaForm" hidden value="">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="dia" id="diaF" disabled value="">
-                                                        </div>
-                                                    </div>
                                                     <br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <label for="mes">Mes</label>
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-4">
+                                                                <label for="mes">Mes</label>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control " name="mesF" id="mesF" disabled value="">
+                                                                <input type="text" class="form-control " name="mes" id="mesForm" hidden value="">
+
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-7">
-                                                            <input type="text" class="form-control " name="mes" id="mesF" disabled value="">
-                                                        </div>
-                                                    </div>
                                                     <br>
                                                     @if(null!=($user = Auth::user()))
                                                         <div class="row justify-content-center">
@@ -106,7 +113,7 @@
                                                                 <select id="mascotas" class="custom-select  mb-4 form-control tipo ? ' is-invalid' : '' }}" name="mascotas" required autofocus disabled>
                                                                     <option value="" selected disabled>Seleccionar</option>
                                                                     @for ($i = 0; $i < count($mascotasUsuario); $i++)
-                                                                    <option value="mascota">{{$mascotasUsuario[$i]->nombre}}</option>
+                                                                    <option value="{{$mascotasUsuario[$i]->nombre}}">{{$mascotasUsuario[$i]->nombre}}</option>
                                                                     @endfor
                                                                 </select>
                                                             </div>
@@ -162,6 +169,7 @@ $(document).ready(function () {
         e.preventDefault();
         var hora = $(this).text();
         var mes = $('#mes').text();
+        var mesNum = "{{$mesNum}}";
 
         var indice = $(this).parent().index();
         var regex = /(\d+)/g;
@@ -173,9 +181,16 @@ $(document).ready(function () {
             if(mesAlternativo!=null)
             mes=mesAlternativo;
         }
+        //datos que se ven
         $("#diaF").attr('value',dia);
         $("#horaF").attr('value',hora);
         $("#mesF").attr('value',mes);
+
+        //datos que se mandan
+        $("#diaForm").attr('value',dia);
+        $("#horaForm").attr('value',hora);
+        $("#mesForm").attr('value',mesNum);
+    
         $("#tipo").attr('disabled',false);
         $("#mascotas").attr('disabled',false);
         $("#botonAceptar").attr('disabled',false);
