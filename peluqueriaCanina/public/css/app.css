@@ -29,7 +29,14 @@
 	max-height: 5.4em;
 	line-height: 1.8em;
 }
-
+.max-lines-eventos {
+	display: block; /* or inline-block */
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	overflow: hidden;
+	max-height: 3.0em;
+	line-height: 1.5em;
+}
 .ventana{
 	text-align:center;
 	position:absolute;
