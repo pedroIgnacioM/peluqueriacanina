@@ -66,6 +66,8 @@ Route::get('/modal/agregarFavorito/{id}','CortePeloController@agregarCorteFavori
 Route::post('/corte-favorito/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorte')->name('eliminarCorteFavorito');
 Route::post('/galeria/agregarFavorito/{id}','CortePeloController@agregarCorteFavorito')->name('agregarCorteFavorito');
 
+Route::post('/corte-favorito/Filtro', 'CorteFavoritoController@corteFavoritoFiltro')->name('cortesFavoritosFiltro');
+
 //------------------------------Rutas Registrar Mascota -------------------------------------
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
 

@@ -105,4 +105,60 @@ class CorteFavoritoController extends Controller
         return redirect()->route('cortesFavoritos')->with('success','Registro creado satisfactoriamente');
     }
     
+    public function corteFavoritoFiltro(Request $request){
+        
+        
+        $id_usuario=\Auth::user()->id;
+        
+        if (!isset($request->tamano) && !isset($request->cabello)) {
+
+            $cortePelos = CortePelo::orderBy('id','DESC')
+                ->join('corte_favoritos','corte_favoritos.corte_pelos_id','=','corte_pelos.id')
+                ->Where('corte_favoritos.user_id','=', $id_usuario)
+                ->select('corte_pelos.*')
+                ->paginate(12);
+                
+        }
+        
+        else
+        {
+            if(isset($request->tamano) && isset($request->cabello))
+            {
+                $cortePelos = CortePelo::orderBy('id','DESC')
+                ->join('corte_favoritos','corte_favoritos.corte_pelos_id','=','corte_pelos.id')
+                ->join('tipo_cabello','corte_pelos.tipo_cabello_id','=','tipo_cabello.id')
+                ->Where([['corte_favoritos.user_id','=', $id_usuario],
+                        ['corte_pelos.tamaño','=',$request->tamano],
+                        ['tipo_cabello.nombre','=',$request->cabello]])
+                ->select('corte_pelos.*')
+                ->get();
+                 
+            }
+            else
+            {
+                if(isset($request->tamano))
+                {
+                    $cortePelos = CortePelo::orderBy('id','DESC')
+                    ->join('corte_favoritos','corte_favoritos.corte_pelos_id','=','corte_pelos.id')
+                    ->join('tipo_cabello','corte_pelos.tipo_cabello_id','=','tipo_cabello.id')
+                    ->Where([['corte_favoritos.user_id','=', $id_usuario],
+                            ['corte_pelos.tamaño','=',$request->tamano]])
+                    ->select('corte_pelos.*')
+                    ->get();
+                  
+                }
+                else
+                {
+                    $cortePelos = CortePelo::orderBy('id','DESC')
+                    ->join('corte_favoritos','corte_favoritos.corte_pelos_id','=','corte_pelos.id')
+                    ->join('tipo_cabello','corte_pelos.tipo_cabello_id','=','tipo_cabello.id')
+                    ->Where([['corte_favoritos.user_id','=', $id_usuario],
+                            ['tipo_cabello.nombre','=',$request->cabello]])
+                    ->select('corte_pelos.*')
+                    ->get();
+                }
+            }
+        }
+        return view('cortesFavoritos')->with('cortePelos',$cortePelos);
+    }
 }

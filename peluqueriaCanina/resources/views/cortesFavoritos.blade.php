@@ -8,36 +8,24 @@
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-2">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row justify-content-center">
-                                        @auth
-                                            @if(Auth::user()->isAdmin())
-                                                {{-- Botón Agregar --}}
-                                                <button class="btn btn-lg btn-primary" href="{{ route('galeria') }}">Agregar Imagen <i class="fas fa-plus"></i></button>
-                                            @endif
-                                        @endauth   
-                                    </div>
-                                </div> 
-                            </div>
-                            <br>
                             <div class="row justify-content-center">
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-header text-center">Filtro</div>
                                         <div class="card-body">
-                                            <form action="{{ route('galeriaFiltro') }}" method="POST" >
+                                            
+                                            <form action="{{ route('cortesFavoritosFiltro') }}" method="POST" >
                                                 @csrf
                                                 <label class="label text-center">Tamaño</label>
                                                 <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
-                                                         <div class="row  ">
+                                                            <div class="row  ">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="tamano" >
                                                                 <input class="form-check-input" type="checkbox" value="grande"  name="tamano">Grande</label>
                                                             </div>  
                                                         </div>
-                                                       <div class="row">
+                                                        <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="mediano">
                                                                 <input class="form-check-input" type="checkbox" value="mediano" name="tamano">Mediano</label>
@@ -55,21 +43,21 @@
                                                 <label class="label">Cabello</label>
                                                 <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
-                                                         <div class="row  ">
+                                                            <div class="row  ">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
                                                                 <input class="form-check-input" type="checkbox" value="rubio" name="cabello">
                                                                 Rubio</label>
                                                             </div>
                                                         </div>
-                                                         <div class="row">
+                                                            <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
                                                                 <input class="form-check-input" type="checkbox" value="castaño" name="cabello">
                                                                 Castaño</label>
                                                             </div>
                                                         </div>
-                                                           <div class="row">
+                                                            <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pelo_liso">
                                                                 <input class="form-check-input" type="checkbox" value="pelo_liso" name="cabello" id="negro">
@@ -84,7 +72,7 @@
                                                         <button type="submit" class="btn btn-primary">{{ __('Buscar') }}</button>
                                                     </div>
                                                 </div>
-                                                
+
                                             </form>
                                         </div>
                                     </div>
