@@ -20,7 +20,7 @@ class Reserva_CitasTableSeeder extends Seeder
                 'fecha'=>$faker->dateTimeThisMonth($max="2018-12-31 20:00")->format('Y-m-d H:i'),
                 'servicio'=>$faker->randomElement($servicios),
                 'user_id'=>$faker->numberBetween($min = 1, $max = 10),
-                'mascota_id'=>$faker->numberBetween($min = 1, $max = 10),
+                'mascota_id'=>$faker->numberBetween($min = 1, $max = 40),
             ]);   
         }
     }
