@@ -130,8 +130,8 @@ class ReservaCitaController extends Controller
     private function horariosDisponibles($dias,$mes)
     {
         $i=0;
-        $lunesSabado=['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
-        $domingo=['9:00','10:00','11:00','12:00','13:00'];
+        $lunesSabado=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+        $domingo=['09:00','10:00','11:00','12:00','13:00'];
         
         //Se recorren los dias de la semana recibida
         foreach ($dias as $dia) {
