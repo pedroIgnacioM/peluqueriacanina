@@ -35,6 +35,38 @@ class ProductosController extends Controller
         return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
     }
 
+    public function editar(Request $request, $id){
+
+        $elemento = Producto::find($id);
+        if(!isset($elemento))
+            return redirect()->route('catalogo');
+
+            
+        if($request->file('imagen')!=null)
+        {
+            $imagen = $request->file('imagen')->store('public/productos'); 
+            $elemento->imagen = $imagen;
+        }
+        
+        $elemento->nombre = $request->nombre;
+        $elemento->precio = $request->precio;
+        $elemento->descripcion = $request->descripcion;
+        $elemento->save();
+
+        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
+    }
+
+    public function eliminar(Request $request, $id){
+
+        $elemento = Producto::find($id);
+        if(!isset($elemento))
+            return redirect()->route('catalogo');
+
+        $elemento->delete();
+
+        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
+    }
+
     public function catalogoFiltro(Request $request){
 
         $alfabeticoCheck = $request->alfabeticoCheck;
@@ -77,6 +109,22 @@ class ProductosController extends Controller
             'precioCheck'=>$precioCheck,
             'ascendente'=>$ascendente,
             'desbloqueado'=>'verdadero'
+        ]);
+    }
+
+    public function eliminarProductoModal($id)
+    {
+        $elemento=Producto::find($id);
+        return view('modalEliminarProducto',[
+            'elemento'=>$elemento
+        ]);
+    }
+
+    public function editarProductoModal($id)
+    {
+        $elemento=Producto::find($id);
+        return view('modalEditarProducto',[
+            'elemento'=>$elemento
         ]);
     }
 }
