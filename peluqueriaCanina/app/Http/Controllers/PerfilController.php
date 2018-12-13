@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
+use App\Actividad;
+use App\User;
+
 
 class PerfilController extends Controller
 {
-    public function index($nombre)
+    public function index($id)
     {
-        if($nombre=='Usuario'){
+
+            $user = User::find($id);
+            $userActual= \Auth::user();
+            if(!isset($user))
+                return redirect()->route('home');
+            $actual=false;
+
+            $nombresColumnas=array('nombres','apellidos','email','telefono');
+            $titulos=array('Nombres','Apellidos','Email','Telefono');
             
-            $user=\Auth::user();
-            $nombresColumnas=array('name','email','nickname','rut','telefono','ciudad','direccion','edad','sexo');
-            $titulos=array('Nombre','Correo ','Nickname','Rut','Telefono','Ciudad','Direccion','Edad','Sexo');
-            $id=$user->id;
             $nombresColumnasMascotas=array('nombre','sexo','edad','color');
             $mascotasUsuario=\DB::table ('mascotas')
             ->select('mascotas.id','mascotas.nombre','mascotas.sexo','mascotas.edad','mascotas.color','mascotas.user_id','mascotas.imagenMascota')
@@ -21,9 +28,20 @@ class PerfilController extends Controller
             ->where('mascotas.user_id',$id)
             ->get();
             
-            return view('perfilUsuario',['nombresColumnas'=>$nombresColumnas,'titulos'=>$titulos,'usuario'=>$user,'nombresColumnasMascotas'=>$nombresColumnasMascotas,'mascotas'=>$mascotasUsuario]);
+            if($id==$userActual->id)
+                $actual=true;
+            else {
+                if(!$userActual->isAdmin())
+                    return redirect()->route('home');
+            }
 
-        }
+            return view('perfilUsuario',[
+                'nombresColumnas'=>$nombresColumnas,
+                'titulos'=>$titulos,'usuario'=>$user,
+                'nombresColumnasMascotas'=>$nombresColumnasMascotas,
+                'mascotas'=>$mascotasUsuario,
+                'actual'=>$actual
+            ]);
  
     }
 
@@ -38,7 +56,7 @@ class PerfilController extends Controller
         $user->imagen=$imagen;
         $user->save();
 
-        return redirect()->route('perfil',['Usuario']);
+        return redirect()->route('perfil',[$user->id]);
     }
 
     public function editarPerfil(Request $request)
@@ -47,14 +65,9 @@ class PerfilController extends Controller
         if(!isset($user))
             abort(404);
 
-        $user->name = $request->name;
-        $user->nickname = $request->nickname;
+        $user->nombres = $request->nombres;
+        $user->apellidos = $request->apellidos;
         $user->telefono = $request->telefono;
-        $user->rut = $request->rut;
-        $user->ciudad = $request->ciudad;
-        $user->direccion = $request->direccion;
-        $user->edad = $request->edad;
-        $user->sexo = $request->sexo;
         $user->email = $request->email;
 
         $user->save();
@@ -62,5 +75,11 @@ class PerfilController extends Controller
         return redirect()->route('perfil',['Usuario']);
     }
 
-
+    public function actividadesModal()
+    {
+        $actividades=Actividad::all();
+        return view('modalActividades',[
+            'actividades'=>$actividades
+        ]);
+    }
 }

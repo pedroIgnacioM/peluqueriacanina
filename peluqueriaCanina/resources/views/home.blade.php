@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-sm-10">
             <div class="card">
                 
                 <div class="card-body">
@@ -15,8 +15,8 @@
 
                     <div class="row">
                         <div class="col-md-9">
-                        <h5>Ultimos Trabajos</h5>
-                           <div class="row">
+                            <h5>Ultimos Trabajos</h5>
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                         
@@ -27,17 +27,18 @@
                                         </ol>
                                         
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img class="img-responsive" src="FotosSlider/matyNvl1.jpg"  alt="First slide">
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <img class="img-responsive" src="FotosSlider/matyNvl7.jpg"  alt="Second slide">
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <img class="img-responsive" src="FotosSlider/reina.jpg" alt="Third slide">
-                                            </div>
+                                            @foreach ($cortes as $corte)
+                                            @if($loop->first)
+                                                <div class="carousel-item active">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60" width="150" height="230">
+                                                </div>
+                                            @else
+                                                <div class="carousel-item">
+                                                    <img src="{{Storage::url($corte->imagen)}}" class="d-block w-60" width="150" height="230">
+                                                </div>
+                                            @endif
+                                                
+                                            @endforeach
                                         </div>
                                         
                                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -81,38 +82,63 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h5>¿Buscas un Juguete para tu mascota?</h5>
-                                    <img class="img-responsive" alt="" src="Productos/cuerda.jpg" width="150" />
-                                    <img class="img-responsive" alt="" src="Productos/bolsa.jpg" width="150" />
-                                    <br>
-                                    <!-- Aca falta la referencia a productos-->
-                                    <a href="">Ver Precios</a>
+                                    <div class="row justify-content-center">
+                                        <h5>¿Buscas un Juguete para tu mascota?</h5>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        @foreach ($productos as $producto)
+                                            <div class="col-md-6">
+                                                <img class="img-fluid" src="{{Storage::url($producto->imagen)}}">
+                                            </div>
+                                        @endforeach
+                                        <br>
+                                        <!-- Aca falta la referencia a productos-->
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <a href="{{ route('catalogo') }}">Ver Precios</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <hr id="vertical">
-                        <div class ="col">
-                            <h5>Anuncios de Usuarios</h5>        
+                        <div class ="col-md-3 bordeado-izquierdo">
+                            <div class="row justify-content-end">
+                                <div class="col-md-8">
+                                    <h4>Eventos</h4>        
+                                </div>
+                            </div>
+                            <br>
+                            @foreach ($anuncios as $anuncio)
+                            <div class="container ">
+                                <a href="{{ route('evento_detalle',['id'=>$anuncio->id]) }}">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-capitalize">
+                                        <h5>{{$anuncio->titulo}}</h5>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <img src="{{Storage::url($anuncio->imagen)}}" alt="imagen_evento" width="120px" height="120px">
+                                    </div>
+                                </div>
+                                </a>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <p class="max-lines">{{$anuncio->descripcion}}</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <p class="max-lines">{{$anuncio->fecha}}</p>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
                             
-                            <div class="row">
-                                <div class ="col">
-                                    <h5>Titulo Anuncio 1</h5>
-                                    <p>
-                                    <i class="fas fa-image"></i>   numero 1
-                                    </p>
-                                </div>
-                            </div>
+                            @endforeach
                                 
-                            <div class="row">
-                                <div class ="col">
-                                    <h5>Titulo Anuncio 2</h5>
-                                    <p>
-                                    <i class="fas fa-image"></i>   numero 2
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>   
+                        </div>
+                          
                     </div> 
                 </div>
 

@@ -56,12 +56,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'nickname' => ['required', 'string', 'max:40', 'unique:users'],
-            'rut' => ['required', 'string', 'max:10'],
+            'nombres' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'type' => User::DEFAULT_TYPE,
         ]);
     }
 
@@ -73,22 +70,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        $imagen = $data['imagen']->store('public/perfiles');
+        if(!isset($data['imagen'])){
+            $imagen = "public/perfiles/avatar.png";
+        }else{
+            $imagen = $data['imagen']->store('public/perfiles');
+        }
         $user=User::create([
-            'name' => $data['name'],
-            'nickname' => $data['nickname'],
-            'rut' => $data['rut'],
+            'nombres' => $data['nombres'],
+            'apellidos' => $data['apellidos'],
             'telefono' => $data['telefono'],
-            'ciudad' => $data['ciudad'],
-            'direccion' => $data['direccion'],
-            'edad' => $data['edad'],
-            'sexo' => $data['sexo'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'imagen'=>$imagen,
         ]);
-        $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
+        if(!isset($data['imagenMascota'])){
+            $imagenMascota = "public/mascotas/avatarMascota.png";
+        }else{
+            $imagenMascota = $data['imagenMascota']->store('public/mascotas'); 
+        }
             Mascota::create([
             'nombre' => $data['nombre'],
             'raza' => $data['raza'],

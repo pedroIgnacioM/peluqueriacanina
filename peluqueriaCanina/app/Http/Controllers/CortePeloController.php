@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CortePelo;
+use App\CorteFavorito;
 use App\User;
 
 class CortePeloController extends Controller
@@ -27,7 +28,7 @@ class CortePeloController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[ 'tipo'=>'required', 'tamano'=>'required', 'descripcion'=>'required' , 'imagen' =>'required', 'tipo_cabello_id' =>'required']);
+        $this->validate($request,[ 'tipo'=>'required', 'tamano'=>'required', 'descripcion'=>'required' , 'imagen' =>'required', 'tipo_cabello_id' =>'required']);
         CortePelo::create($request->all());
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
@@ -81,49 +82,59 @@ class CortePeloController extends Controller
         return redirect()->wiew('galeria')->with('success','Registro eliminado satisfactoriamente');
     }
 
-    public function index_default(){
- 
+    public function index(){
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
+
+        }
+
         $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
-        return view('galeria')->with('cortePelos',$cortePelos);
+
+        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
     }
 
     public function galeriaFiltro(Request $request){
-        if (!isset($request->tamano) && !isset($request->cabello)) {
-            $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
-        }
-        else
-        {
-            if(isset($request->tamano) && isset($request->cabello))
-            {
-                $cortePelos = CortePelo::orderBy('id','DESC')
-                ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                ->Where('corte_pelos.tamaño','=',$request->tamano)
-                ->orWhere('tipo_cabello.nombre','=',$request->cabello)
-                ->select('corte_pelos.*')
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
                 ->paginate(12);
-                 
-            }
-            else
-            {
-                if(isset($request->tamano))
-                {
-                    $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                    ->Where('corte_pelos.tamaño','=',$request->tamano)
-                    ->select('corte_pelos.*')
-                    ->paginate(12);
-                }
-                else
-                {
-                    $cortePelos = CortePelo::orderBy('id','DESC')
-                    ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
-                    ->Where('tipo_cabello.nombre',$request->cabello)
-                    ->select('corte_pelos.*')
-                    ->paginate(12);
-                }
-            }
+
         }
-        return view('galeria')->with('cortePelos',$cortePelos);
+        $tamanoP = $request->tamanoP;
+        $tamanoM = $request->tamanoM;
+        $tamanoG = $request->tamanoG;
+        $cabelloR = $request->cabelloR;
+        $cabelloC = $request->cabelloC;
+        $cabelloN = $request->cabelloN;
+
+
+        $cortePelos = CortePelo::orderBy('id','DESC')
+        ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
+        ->Where('corte_pelos.tamaño','=',  $tamanoP)
+        ->orWhere('corte_pelos.tamaño','=',$tamanoM)
+        ->orWhere('corte_pelos.tamaño','=',$tamanoG)
+        ->orWhere('tipo_cabello.nombre','=',$cabelloR)
+        ->orWhere('tipo_cabello.nombre','=',$cabelloC)
+        ->orWhere('tipo_cabello.nombre','=',$cabelloN)
+        ->select('corte_pelos.*')
+        ->paginate(12);
+         
+        return view('galeria',[
+            'cortePelos'=>$cortePelos,
+            'corteFavoritos'=>$corteFavoritos,
+            'tamanoP'=>$tamanoP, 
+            'tamanoM'=>$tamanoM, 
+            'tamanoG'=>$tamanoG, 
+            'cabelloR'=>$cabelloR,
+            'cabelloC'=>$cabelloC,
+            'cabelloN'=>$cabelloN,
+        ]);
     }
 
     protected function downloadFile($src){
@@ -154,6 +165,7 @@ class CortePeloController extends Controller
             'elemento'=>$elemento
         ]);
     }
+
     public function editarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
@@ -162,12 +174,21 @@ class CortePeloController extends Controller
         ]);
     }
 
+    public function agregarCorteFavoritoModal($id){
+        $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+            ->Where([
+                ['corte_favoritos.user_id','=', \Auth::user()->id],
+                ['corte_favoritos.corte_pelos_id','=', $id]])
+            ->select('corte_favoritos.*')->paginate(12);
+
+        $elemento=CortePelo::find($id);
+        return view('modalAgregarCorteFavorito',[
+            'elemento'=>$elemento ,
+            'corteFavoritos' => $corteFavoritos
+        ]);
+    }
+
     //--------------------------------------------Funciones provisorias--------------------------------------------
-
-
-
-
-
 
     public function agregarCorte(Request $request)
     {
@@ -182,8 +203,6 @@ class CortePeloController extends Controller
 
         ]);
     
-   
-
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
 
@@ -193,18 +212,17 @@ class CortePeloController extends Controller
         if(!isset($elemento))
             return redirect()->route('galeria');
 
-        $imagen = $request->file('imagen');
-        if(isset($imagen))
+            
+        if($request->file('imagen')!=null)
         {
-            $elemento->imagen = $imagen;
             $imagen = $request->file('imagen')->store('public/cortePelo'); 
+            $elemento->imagen = $imagen;
         }
         
         $elemento->tipo = $request->tipo;
         $elemento->tamaño = $request->tamano;
         $elemento->descripcion = $request->descripcion;
         $elemento->tipo_cabello_id = $request->cabello;
-        
         $elemento->save();
 
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
@@ -212,7 +230,6 @@ class CortePeloController extends Controller
     
     public function eliminarCorte(Request $request , $id)
     {
-
         $elemento = CortePelo::find($id);
         if(!isset($elemento))
             return redirect()->route('galeria');
@@ -222,7 +239,15 @@ class CortePeloController extends Controller
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
     
-
+    public function agregarCorteFavorito(Request $request, $id)
+    {
+        CorteFavorito::create([
+            'corte_pelos_id' => $id,
+            'user_id' => \Auth::user()->id,
+        ]);
+    
+        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }
 
 
 }

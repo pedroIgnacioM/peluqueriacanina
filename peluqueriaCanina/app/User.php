@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','nickname','rut','telefono','ciudad','direccion','edad','sexo','imagen',
+        'nombres', 'email', 'password','telefono','apellidos','tipo','imagen',
     ];
     protected $primaryKey = 'id';
 
@@ -28,6 +28,9 @@ class User extends Authenticatable
     public function reservaCita(){
         return $this->hasMany('App\reservaCita');
     }
+    public function anuncios(){
+        return $this->hasMany('App\Anuncio');
+    }
     public function reservaProducto(){
         return $this->hasMany('App\reservaProducto');
     }
@@ -35,10 +38,10 @@ class User extends Authenticatable
         return $this->hasMany('App\corteFavorito');
     }
     public function isAdmin()    {        
-        return $this->type === self::ADMIN_TYPE;    
+        return $this->tipo === self::ADMIN_TYPE;    
     }
      public function isDefault()    {        
-        return $this->type === self::DEFAULT_TYPE;    
+        return $this->tipo === self::DEFAULT_TYPE;    
     }
     /**
      * The attributes that should be hidden for arrays.

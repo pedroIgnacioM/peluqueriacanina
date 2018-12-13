@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<div class="modal-dialog modal-dialog2">
     <div class="modal-content">
         <div class="modal-header">
             <h4>Modificar Corte de Pelo</h4>
@@ -6,7 +6,7 @@
                 <span> <i class="fas fa-times"></i></span>
             </button> 
         </div>
-        <form class="corte-form" method="POST" action="{{ route('editarCorte', ['id'=>$elemento->id])}}"  role="form">
+        <form class="corte-form" method="POST" action="{{ route('editarCorte', ['id'=>$elemento->id])}}" enctype="multipart/form-data"  role="form">
             {{ csrf_field() }}
             <div class="modal-body">
                 <div class="form-group row justify-content-md-center">

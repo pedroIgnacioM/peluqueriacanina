@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\cortePelo;
+use App\Producto;
+use App\Anuncio;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-        
+        $cortes = CortePelo::orderBy('id','DESC')->paginate(3);
+        $productos = Producto::orderBy('id','DESC')->paginate(2);
+        $anuncios = Anuncio::orderBy('id','DESC')->paginate(2);
+        return view('home',[
+            'cortes'=>$cortes,
+            'productos'=>$productos,
+            'anuncios'=>$anuncios
+        ]);
     }
 }
