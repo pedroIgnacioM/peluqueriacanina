@@ -14,8 +14,10 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Producto::orderBy('id','DESC')->paginate(9);
-        return view('catalogo')->with('productos',$productos);
+        $productos = Producto::orderBy('id','DESC')->get();
+        return view('catalogo',[
+            'productos'=>$productos
+        ]);
     }
 
     
@@ -35,18 +37,46 @@ class ProductosController extends Controller
 
     public function catalogoFiltro(Request $request){
 
- 
-        if(isset($request->Por_precio))
-        {
-            $productos = Producto::orderBy('precio', 'asc')
-            ->paginate(9);
-        }
-        else if(isset($request->Orden_Alfabetico))
-        {
-            $productos = Producto::orderBy('nombre','asc')
-            ->paginate(9);
-        }
+        $alfabeticoCheck = $request->alfabeticoCheck;
+        $precioCheck = $request->precioCheck;
         
-        return view('catalogo')->with('productos',$productos);
+        $ascendente = $request->ascendente;
+        
+        if(isset($precioCheck))
+        {
+            if(isset($ascendente))
+            {
+                $productos = Producto::orderBy('precio', 'asc')
+                ->get();
+            }
+            else {
+                $productos = Producto::orderBy('precio', 'desc')
+                ->get();
+            }
+            
+        }
+        else if(isset($alfabeticoCheck))
+        {
+            if(isset($ascendente)){
+                $productos = Producto::orderBy('nombre','asc')
+                ->get();
+            }
+            else{
+                $productos = Producto::orderBy('nombre','desc')
+                ->get();
+            }
+        }
+        else {
+            return redirect()->route('catalogo');
+        }
+
+        
+        return view('catalogo',[
+            'productos'=>$productos,
+            'alfabeticoCheck'=>$alfabeticoCheck,
+            'precioCheck'=>$precioCheck,
+            'ascendente'=>$ascendente,
+            'desbloqueado'=>'verdadero'
+        ]);
     }
 }

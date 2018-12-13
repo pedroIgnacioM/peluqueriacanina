@@ -34,15 +34,35 @@
                                                         <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="Por_precio" >
-                                                                <input class="form-check-input" type="checkbox" value="Por_precio" name="Por_precio" id="checkPrecio">
+                                                                @if (isset($precioCheck))
+                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="precioCheck" id="checkPrecio" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="precioCheck" id="checkPrecio">
+                                                                @endif
                                                                 Por precio</label>
                                                             </div>
                                                         </div>
-                                                            <div class="row">
+                                                        <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="Orden_Alfabetico">
-                                                                <input class="form-check-input" type="checkbox" value="Orden_Alfabetico" name="Orden_Alfabetico" id="checkAlfabe">
+                                                                @if (isset($alfabeticoCheck))
+                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="alfabeticoCheck" id="checkAlfabe" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="alfabeticoCheck" id="checkAlfabe">
+                                                                @endif
                                                                 Orden Alfabetico</label>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="form-check">
+                                                                <label class="form-check-label" for="ascendente">
+                                                                @if (isset($ascendente))
+                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="ascendente" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="ascendente" >
+                                                                @endif
+                                                                Ascendente</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -50,7 +70,11 @@
                                                 <br>
                                                 <div class="row justify-content-center">  
                                                     <div class="col-sm-8">
+                                                        @if (isset($desbloqueado))
+                                                        <button id="btnFiltrar" type="submit" class="btn btn-primary">{{ __('Buscar') }}</button>
+                                                        @else
                                                         <button id="btnFiltrar" type="submit" class="btn btn-primary" disabled>{{ __('Buscar') }}</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </form>
