@@ -86,7 +86,35 @@
                         <div class="col-md-10">
                             <div class="row">
                             @foreach($productos as $producto)
-                            <div class="col-md-4">
+                                <div class="col-sm-4 conFoto">
+                                    <div class="container-fluid foto"> 
+                                        <div class="row justify-content-center">  
+                                            <div class="img-container" id="imagenRef" style="background-image:url({{Storage::url($producto->imagen)}});">
+                                                {{-- Imagen --}}
+                                                <a href="{{Storage::url($producto->imagen)}}" >
+                                                    <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
+                                                    <p>{{$producto->descripcion}}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">  
+                                            @auth
+                                                @if(Auth::user()->isAdmin())
+                                                    {{-- Botón Eliminar --}}
+                                                    <div class="col-md-2">
+                                                        <a href="" class="botonModal" data-toggle="modal" data-form="{{route('eliminarProductoModal',['id'=>$producto->id])}}"  data-target="#modal-producto"><span><i class="fas fa-trash iconoGaleria"></i></span></a>
+                                                    </div>
+                                                    {{-- Botón Editar --}}
+                                                    <div class="col-md-2">
+                                                        <a href="" class="botonModal" data-form="{{route('editarProductoModal',['id'=>$producto->id])}}" data-toggle="modal" data-target="#modal-producto">
+                                                        <span><i class="fas fa-edit iconoGaleria" ></i></span></a>
+                                                    </div>
+                                                @endif
+                                            @endauth  
+                                        </div>
+                                    </div>
+                                </div>
+                            {{-- <div class="col-md-4">
                                 <div class="container-fluid">  
                                     <div class="img-container" style="background-image:url({{Storage::url($producto->imagen)}});">
                                         <div>
@@ -109,7 +137,7 @@
                                     </div>   
                                 </div> 
                                            
-                            </div>
+                            </div> --}}
                             @endforeach       
                     </div>
                 </div>
@@ -182,6 +210,7 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal-producto"></div>
 
 <script>
 $(document).ready(function(){ 
@@ -229,7 +258,38 @@ $(document).ready(function(){
         }
     });
 
+    $("#imagenRef a").click(function(e){
+            e.preventDefault();
+            var referencia = $(this).attr('href');
+            $('#imagenAMostrar').attr('src',referencia);
+            $('#modalImagen').modal('show');
+        });
 
+        $(".boton-cerrar").click(function(){
+            $("#modalImagen").modal('hide');
+        });
+
+         // Modal
+        $(".botonModal").click(function (ev) { // for each edit contact url
+            ev.preventDefault(); // prevent navigation
+            var url = $(this).data("form"); // get the contact form url
+            console.log(url);
+            $("#modal-producto").load(url, function () { // load the url into the modal
+                $(this).modal('show'); // display the modal on url load
+            });
+        });
+
+        $('.producto-form').on('submit', function () {
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                context: this,
+                success: function (data, status) {
+                    $('#modal-producto').html(data);
+                }
+            });
+        });
 
 
 });
