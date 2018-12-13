@@ -16,7 +16,7 @@ class CreateAnunciosTable extends Migration
         Schema::create('anuncios', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
-            $table->string('descripcion');
+            $table->mediumText('descripcion');
             $table->string('direccion');
             $table->string('estado')->default('activado');
             $table->string('titulo');
