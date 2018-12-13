@@ -6,8 +6,21 @@
         <div class="col-sm-10">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <div class="col-md-2">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row justify-content-center">
+                                        @auth
+                                            @if(Auth::user()->isAdmin())
+                                                {{-- Botón Agregar --}}
+                                                <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#agregarProducto">Agregar Producto <i class="fas fa-plus"></i></button>
+                                            @endif
+                                        @endauth
+                                    </div>
+                                </div> 
+                            </div>
+                            <br>
                             <div class="row justify-content-center">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -79,6 +92,69 @@
             </div>
         </div>
 
+        </div>
+    </div>
+</div>
+
+{{-- Modal del boton Agregar Producto(+) --}}
+<div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog2" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span> <i class="fas fa-times"></i></span>
+                </button> 
+            </div>
+            <form action="{{route('agregarProducto')}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <div class="form-group row justify-content-md-center">
+                        <div class="col-md-12">
+                            {{-- Nombre --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="nombre" class="col-form-label text-md-right">{{ __('Nombre') }}</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="nombre" type="text" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="nombre" required autofocus>
+                                </div>
+                            </div>
+                            {{-- Descripción --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="descripcion" class="col-form-label text-md-right">{{ __('Descripción') }}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea id="descripcion" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus></textarea>
+                                </div>
+                            </div>
+                            {{-- Precio --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="precio" class="col-form-label text-md-right">{{ __('Precio') }}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input id="precio" type="text" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="precio" required autofocus>
+                                </div>
+                            </div>
+                            {{-- Imagen --}}
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input id="imagen" type="file" name="imagen" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
