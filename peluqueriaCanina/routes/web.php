@@ -71,10 +71,12 @@ Route::post('/corte-favorito/Filtro', 'CorteFavoritoController@corteFavoritoFilt
 //------------------------------Rutas Registrar Mascota -------------------------------------
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');
 
+
+//------------------------------Rutas Catalogo ----------------------------------------------
 Route::resource('catalogo', 'ProductosController');
 Route::get('/catalogo', 'ProductosController@index')->name('catalogo');
 Route::post('/catalogo/Filtro', 'ProductosController@catalogoFiltro')->name('catalogoFiltro');
-
+Route::post('/catalogo/agregar/producto','ProductosController@agregar')->name('agregarProducto');
 
 //------------------------------Rutas Eventos ---------------------------------------
 Route::get('/eventos', 'EventosController@index')->name('eventos');
