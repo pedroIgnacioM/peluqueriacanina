@@ -75,8 +75,18 @@ Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name(
 //------------------------------Rutas Catalogo ----------------------------------------------
 Route::resource('catalogo', 'ProductosController');
 Route::get('/catalogo', 'ProductosController@index')->name('catalogo');
+
+//Rutas post
 Route::post('/catalogo/Filtro', 'ProductosController@catalogoFiltro')->name('catalogoFiltro');
 Route::post('/catalogo/agregar/producto','ProductosController@agregar')->name('agregarProducto');
+
+Route::post('/galeria/editarProducto/{id}','ProductosController@editar')->name('editarProducto');
+Route::post('/galeria/eliminarProducto/{id}','ProductosController@eliminar')->name('eliminarProducto');
+
+// Rutas modales
+Route::get('/modal/eliminarProducto/{id}','ProductosController@eliminarProductoModal')->name('eliminarProductoModal');
+Route::get('/modal/editarProducto/{id}','ProductosController@editarProductoModal')->name('editarProductoModal');
+
 
 //------------------------------Rutas Eventos ---------------------------------------
 Route::get('/eventos', 'EventosController@index')->name('eventos');
