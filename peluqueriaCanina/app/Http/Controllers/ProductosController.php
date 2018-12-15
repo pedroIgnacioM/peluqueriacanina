@@ -112,6 +112,14 @@ class ProductosController extends Controller
         ]);
     }
 
+    public function detalles($id)
+    {
+        $producto=Producto::find($id);
+        return view('detalle_producto',[
+            'producto'=>$producto
+        ]);
+    }
+
     public function eliminarProductoModal($id)
     {
         $elemento=Producto::find($id);
