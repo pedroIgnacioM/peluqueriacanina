@@ -16,7 +16,10 @@
     width: auto/9;
 	
 }
-
+a.hipervinculo-foto:link 
+{ 
+text-decoration:none; 
+} 
 
 .bordeado-izquierdo{
 	border-left: 1px solid rgb(202, 201, 201);

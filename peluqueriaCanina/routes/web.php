@@ -75,6 +75,7 @@ Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name(
 //------------------------------Rutas Catalogo ----------------------------------------------
 Route::resource('catalogo', 'ProductosController');
 Route::get('/catalogo', 'ProductosController@index')->name('catalogo');
+Route::get('/catalogo/producto/{id}','ProductosController@detalles')->name('detallesProducto');
 
 //Rutas post
 Route::post('/catalogo/Filtro', 'ProductosController@catalogoFiltro')->name('catalogoFiltro');
