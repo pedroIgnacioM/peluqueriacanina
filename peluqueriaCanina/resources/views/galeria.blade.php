@@ -125,7 +125,7 @@
                                                 <div class="row justify-content-center">  
                                                     <div class="img-container" id="imagenRef" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
-                                                        <a href="{{Storage::url($cortePelo->imagen)}}" >
+                                                        <a class="hipervinculo-foto" href="{{Storage::url($cortePelo->imagen)}}" >
                                                             <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
                                                             <p>{{$cortePelo->descripcion}}</p>
                                                         </a>
