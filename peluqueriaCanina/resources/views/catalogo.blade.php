@@ -88,16 +88,23 @@
                             @foreach($productos as $producto)
                                 <div class="col-sm-4 conFoto">
                                     <div class="container-fluid foto"> 
-                                        <div class="row justify-content-center">  
-                                            <div class="img-container" id="imagenRef" style="background-image:url({{Storage::url($producto->imagen)}});">
-                                                {{-- Imagen --}}
-                                                <a href="{{Storage::url($producto->imagen)}}" >
-                                                    <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
-                                                    <p>{{$producto->descripcion}}</p>
-                                                </a>
-                                            </div>
+                                        <div class="row justify-content-center"> 
+                                            <h5 class="text-capitalize">{{$producto->nombre}}</h5>
                                         </div>
-                                        <div class="row justify-content-center">  
+                                        <div class="row justify-content-center">
+                                            <a class="hipervinculo-foto" href="{{route('detallesProducto',[$producto->id])}}">  
+                                            <div class="img-container" id="imagenRef" style="background-image:url({{Storage::url($producto->imagen)}});">
+                                                <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
+                                                <p>{{$producto->descripcion}}</p>
+                                            </div>
+                                            </a>
+                                        </div>
+                                        <div class="row justify-content-end">
+                                            <div class="col-md-5">
+                                                <a style="font-size:125%;" href="{{route('detallesProducto',[$producto->id])}}">Ver Más</a>
+                                            </div>
+                                            <p style="font-size:125%;">$ {{$producto->precio}}</p>
+                                            
                                             @auth
                                                 @if(Auth::user()->isAdmin())
                                                     {{-- Botón Eliminar --}}
@@ -114,40 +121,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            {{-- <div class="col-md-4">
-                                <div class="container-fluid">  
-                                    <div class="img-container" style="background-image:url({{Storage::url($producto->imagen)}});">
-                                        <div>
-                                            <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($producto->imagen)}}"> </a>                                           </a> 
-                                        </div>
-                                    </div>
-                                
-                                <div class="row justify-content-center">
-                                    <div class="">
-                                        <label class="label">{{$producto->nombre}}</label>
-                                    </div>  
-                                </div> 
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-12">
-                                        <p>{{$producto->descripcion}}</p>   
-                                    </div>                   
-                                </div>
-                                    <div class="row justify-content-center">
-                                        <label class="label">${{$producto->precio}}</label>
-                                    </div>   
-                                </div> 
-                                           
-                            </div> --}}
                             @endforeach       
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        </div>
     </div>
 </div>
-
 {{-- Modal del boton Agregar Producto(+) --}}
 <div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog2" role="document">
