@@ -83,17 +83,21 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('perfil',['Usuario'])}}">
+                            <a class="dropdown-item" href="{{route('eventos')}}">
+                                Eventos
+                            </a>
+                            <a class="dropdown-item" href="{{route('perfil',[Auth::user()->id])}}">
                                 Perfil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('cortesFavoritos') }}">
+                                {{ __('Cortes Favoritos') }}
                             </a>
                              <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('cortesFavoritos') }}">
-                                {{ __('Cortes Favoritos') }}
-                            </a>
+                            
                                             
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

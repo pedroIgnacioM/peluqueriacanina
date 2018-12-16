@@ -28,6 +28,9 @@ class User extends Authenticatable
     public function reservaCita(){
         return $this->hasMany('App\reservaCita');
     }
+    public function anuncios(){
+        return $this->hasMany('App\Anuncio');
+    }
     public function reservaProducto(){
         return $this->hasMany('App\reservaProducto');
     }

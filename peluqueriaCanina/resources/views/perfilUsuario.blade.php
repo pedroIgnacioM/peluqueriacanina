@@ -2,12 +2,12 @@
 
 @section('content')
 
-@if(Auth::user()->isAdmin())
+@if(Auth::user()->isAdmin() && $actual)
 <div class="container row">
 @else
 <div class="container">
 @endif
-        @if(Auth::user()->isAdmin())
+        @if(Auth::user()->isAdmin() && $actual)
         <div class="col-md-3">
                 <div class="card">
                         <div class="card-body">
@@ -22,17 +22,11 @@
                                         </div>
                                 </div>
                                 <br>
-                                <div class="row justify-content-md-center">
-                                        <div class="col-md-9">
-                                                <button class="btn btn-primary btn-block">Tema Página</button>
-                                        </div>
-                                </div>
-                                <br>
                         </div>
                 </div>
         </div>
         @endif
-        @if(Auth::user()->isAdmin())
+        @if(Auth::user()->isAdmin() && $actual)
         <div class="card col-md-9">
         @else
         <div class="card">
@@ -43,10 +37,12 @@
                                 <div class="col-md-4">
                                         <div class="card">
                                                 <div class="card-body">                            
-                                                        <img src="{{Storage::url($usuario->imagen)}}" alt="avatar" class="img-thumbnail">
+                                                        <img src="{{Storage::url($usuario->imagen)}}" alt="avatar" class="img-thumbnail rounded-circle">
+                                                        @if ($actual)
                                                         <p><a class="text" href="#" data-toggle="modal" data-target="#editarPerfilModal">Editar</a> 
-                                                                <br>
+                                                        <br>
                                                         <a class="text" data-toggle="modal" data-target="#subirImagenModal" href="#">Subir Foto</a></p>
+                                                        @endif
                                                 </div>
                                         </div>
                                 </div>
@@ -87,9 +83,11 @@
                                                                 <td class="text-center"><img src="{{Storage::url($mascota->imagenMascota)}}" alt="avatarMascota" class="img-thumbnail" width="60"></td>
                                                         @endforeach
                                                 </tr>
+                                                @if ($actual)
                                                         <tr>
                                                                 <td colspan="5"><a href="{{route('agregarMascota') }}">agregar...</a></td>
                                                         </tr>
+                                                @endif
                                                 </table>
                                         </div>
                                 </div>

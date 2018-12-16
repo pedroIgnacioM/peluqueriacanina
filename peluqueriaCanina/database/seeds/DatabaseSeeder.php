@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             Corte_FavoritosTableSeeder::class,
             Reserva_ProductosTableSeeder::class,
             Reserva_CitasTableSeeder::class,
-            
+            AnunciosTableSeeder::class,
         ]);
 
     }

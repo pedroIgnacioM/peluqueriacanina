@@ -34,19 +34,31 @@
                                                          <div class="row  ">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="tamano" >
-                                                                <input class="form-check-input" type="checkbox" value="grande"  name="tamano">Grande</label>
+                                                                @if (isset($tamanoG))
+                                                                    <input class="form-check-input" type="checkbox" value="grande"  name="tamanoG" checked>Grande</label>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="grande"  name="tamanoG">Grande</label>
+                                                                @endif
                                                             </div>  
                                                         </div>
                                                        <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="mediano">
-                                                                <input class="form-check-input" type="checkbox" value="mediano" name="tamano">Mediano</label>
+                                                                @if (isset($tamanoM))
+                                                                    <input class="form-check-input" type="checkbox" value="mediano" name="tamanoM" checked>Mediano</label>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="mediano" name="tamanoM">Mediano</label>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pequeño">
-                                                                <input class="form-check-input" type="checkbox" value="pequeño" name="tamano">Pequeño</label>
+                                                                @if (isset($tamanoP))
+                                                                    <input class="form-check-input" type="checkbox" value="pequeño" name="tamanoP" checked>Pequeño</label>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="pequeño" name="tamanoP">Pequeño</label>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -58,21 +70,33 @@
                                                          <div class="row  ">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
-                                                                <input class="form-check-input" type="checkbox" value="rubio" name="cabello">
+                                                                @if (isset($cabelloR))
+                                                                    <input class="form-check-input" type="checkbox" value="rubio" name="cabelloR" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="rubio" name="cabelloR">
+                                                                @endif
                                                                 Rubio</label>
                                                             </div>
                                                         </div>
                                                          <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="cabello">
-                                                                <input class="form-check-input" type="checkbox" value="castaño" name="cabello">
+                                                                @if (isset($cabelloC))
+                                                                    <input class="form-check-input" type="checkbox" value="castaño" name="cabelloC" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="castaño" name="cabelloC">
+                                                                @endif
                                                                 Castaño</label>
                                                             </div>
                                                         </div>
                                                            <div class="row">
                                                             <div class="form-check">
                                                                 <label class="form-check-label" for="pelo_liso">
-                                                                <input class="form-check-input" type="checkbox" value="pelo_liso" name="cabello" id="negro">
+                                                                @if (isset($cabelloN))
+                                                                    <input class="form-check-input" type="checkbox" value="negro" name="cabelloN" id="negro" checked>
+                                                                @else
+                                                                    <input class="form-check-input" type="checkbox" value="negro" name="cabelloN" id="negro">
+                                                                @endif
                                                                 Negro</label>
                                                             </div>
                                                         </div>
@@ -99,10 +123,12 @@
                                         <div class="col-sm-4 conFoto">
                                             <div class="container-fluid foto"> 
                                                 <div class="row justify-content-center">  
-                                                    <div class="img-container" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
+                                                    <div class="img-container" id="imagenRef" style="background-image:url({{Storage::url($cortePelo->imagen)}});">
                                                         {{-- Imagen --}}
-                                                        <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
-                                                        <p>{{$cortePelo->descripcion}}</p>
+                                                        <a class="hipervinculo-foto" href="{{Storage::url($cortePelo->imagen)}}" >
+                                                            <div class="thumbnail fancybox" rel="ligthbox" href="#"></div> 
+                                                            <p>{{$cortePelo->descripcion}}</p>
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">  
@@ -236,7 +262,7 @@
                                     <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input id="imagen" type="file" name="imagen">
+                                    <input id="imagen" type="file" name="imagen" required>
                                 </div>
                             </div>
                         </div>
@@ -250,15 +276,35 @@
         </div>
     </div>
 </div>
-
+<div class="modal" id="modalImagen">
+    <div class="ventana">
+        
+        <div class="boton-cerrar">X</div>
+        <img class="imagenModal" id="imagenAMostrar" src="" alt="imagen" width="600px">
+        
+        </div>
+    </div>
+</div>
 <div class="modal" id="modal-corte"></div>
 <div class="modal" id="modal-corteFavorito"></div>
 <div class="modal" id="modal-comentario"></div>
 
 <script>
-    // Modal
+   
     $(document).ready(function () {
 
+        $("#imagenRef a").click(function(e){
+            e.preventDefault();
+            var referencia = $(this).attr('href');
+            $('#imagenAMostrar').attr('src',referencia);
+            $('#modalImagen').modal('show');
+        });
+
+        $(".boton-cerrar").click(function(){
+            $("#modalImagen").modal('hide');
+        });
+
+         // Modal
         $(".botonModal").click(function (ev) { // for each edit contact url
             ev.preventDefault(); // prevent navigation
             var url = $(this).data("form"); // get the contact form url

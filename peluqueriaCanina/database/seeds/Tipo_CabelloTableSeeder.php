@@ -12,7 +12,7 @@ class Tipo_CabelloTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('es_ES');
-        $tiposCabellos=["rubio","castaño","pelo liso"];
+        $tiposCabellos=["rubio","castaño","negro"];
         foreach ($tiposCabellos as $cabello) {
             
             DB::table('tipo_cabello')->insert([
