@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CortePelo extends Model
 {
     protected $fillable = [
-        'tipo','tamaño','descripcion','imagen','tipo_cabello_id'
+        'tipo','tamaño','descripcion','imagen','tipo_cabello_id','id_comentario'
     ];
 
     public function corteFavorito(){

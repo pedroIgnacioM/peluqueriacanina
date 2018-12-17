@@ -195,7 +195,7 @@ class CortePeloController extends Controller
         $mascota = Mascota::find($elemento->mascota_id);
         $usuario = User::find($mascota->user_id);
 
-        return view('modalVerComentario',[
+        return view('modalComentario',[
             'elemento' =>$elemento,
             'comentario' =>$comentario,
             'mascota' =>$mascota,
@@ -262,22 +262,23 @@ class CortePeloController extends Controller
     
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
     }
-    /*
+    
     public function agregarComentario(Request $request, $id){
 
         Comentario::create([
-            'descripcion' => $request->id
+            'id' => $request->id,
+            'descripcion' => $request->descripcion,
         ]);
 
         $elemento = CortePelo::find($id);
         if(!isset($elemento))
             return redirect()->route('galeria');
     
-        $elemento->comentario_id = $request->id;
+        $elemento->comentario_id = $id;
         
         $elemento->save();
-
+        
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
-    }*/
+    }
 }
     

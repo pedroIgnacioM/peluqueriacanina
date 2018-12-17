@@ -55,7 +55,7 @@ Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->
 
 //Comentarios
 Route::get('/modal/verComentario/{id}','CortePeloController@verComentarioModal')->name('verComentarioModal');
-//Route::post('/galeria/comentario/{id}','CortePeloController@agregarComentario')->name('agregarComentario');
+Route::post('/galeria/comentario/{id}','CortePeloController@agregarComentario')->name('agregarComentario');
 
 //------------------------------Rutas CorteFavorito------------------------------------------
 Route::resource('cortesFavoritos', 'CorteFavoritoController');
