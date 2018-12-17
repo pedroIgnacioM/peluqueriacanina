@@ -32,6 +32,8 @@ Route::get('/formulario_mascota/agregar', 'MascotaController@formularioAgregar')
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/perfil/{id}','PerfilController@index')->name('perfil');
 Route::get('/modal/actividades','PerfilController@actividadesModal')->name('actividadesModal');
+Route::get('/modal/citas','PerfilController@citasModal')->name('citasModal');
+
 
 Route::post('/agregarMascota','MascotaController@agregarMascota')->name('insertarMascota');
 Route::post('/subirImagenPerfil','PerfilController@subirImagen')->name('subirImagenPerfil');
