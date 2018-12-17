@@ -68,7 +68,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <!-- Referenecia a Reserva -->
-                                            <a href="">Reserva Aquí</a>
+                                            <a href="{{ route('reservaCita') }}">Reserva Aquí</a>
                                             <i class="fas fa-calendar-alt"></i>
                                             <br>
                                             <b>Horarios de atención</b>

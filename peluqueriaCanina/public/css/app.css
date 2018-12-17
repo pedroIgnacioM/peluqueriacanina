@@ -65,6 +65,13 @@ text-decoration:none;
   font-family:Arial;
   cursor:pointer;
 	
+.btn-reservacion{
+	width: 250px;
+	height: 60px;
+}
+.AgrandarLetra{
+	font-size: 25px;
+	align-items: center;
 }
 #vertical{
     height:480px;
@@ -166,6 +173,7 @@ button{
   	left: 50%;
   	transform: translate(80%, 10%);
 }
+
 .modal-header{
 	background: whitesmoke;
 }

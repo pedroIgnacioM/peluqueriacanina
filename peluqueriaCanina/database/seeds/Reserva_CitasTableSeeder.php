@@ -17,11 +17,10 @@ class Reserva_CitasTableSeeder extends Seeder
             DB::table('reserva_citas')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
                 'updated_At'=>$faker->dateTimeThisYear,
-                'hora'=>$faker->time($format = 'H:i', $max = '20:00'),
                 'fecha'=>$faker->dateTimeThisMonth($max="2018-12-31 20:00")->format('Y-m-d H:i'),
                 'servicio'=>$faker->randomElement($servicios),
                 'user_id'=>$faker->numberBetween($min = 1, $max = 10),
-                'mascota_id'=>$faker->numberBetween($min = 1, $max = 10),
+                'mascota_id'=>$faker->numberBetween($min = 1, $max = 40),
             ]);   
         }
     }

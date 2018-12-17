@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ReservaCitaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,3 +94,12 @@ Route::get('/modal/editarProducto/{id}','ProductosController@editarProductoModal
 //------------------------------Rutas Eventos ---------------------------------------
 Route::get('/eventos', 'EventosController@index')->name('eventos');
 Route::get('/eventos/{id}','EventosController@detalles')->name('evento_detalle');
+
+//-------------------------------Rutas reservaCita-----------------------------------
+
+Route::get('/reservaCita', 'ReservaCitaController@index')->name('reservaCita');
+Route::post('/reservaCita', 'ReservaCitaController@crear')->name('crearCita');
+
+Route::get('/reservaCita/{semana}' , 'ReservaCitaController@indexCustom')->name('customFecha');
+
+
