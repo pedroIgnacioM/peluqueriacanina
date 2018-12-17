@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog2" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Comentario</h4>
+                <h4 class="modal-title" id="myModalLabel">Opinión del servicio recibido</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span> <i class="fas fa-times"></i></span>
                 </button> 
@@ -68,7 +68,7 @@
                     </form>
                 @else
                     <div class="modal-body">
-                        <p>No hay ningun comentario</p>  
+                        <p>Aún no se encuentra la opinión del usuario.</p>  
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
