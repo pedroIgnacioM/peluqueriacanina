@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-md-5">
                                 <select id="mascota" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="mascota" autofocus>>
-                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="" selected>Ninguna</option>
                                     <optgroup label="Nombre mascota | Nombre usuario">
                                     @foreach ($mascotas as $mascota)
                                         <option value="{{$mascota->id}}">{{$mascota->identificador()}}</option>
