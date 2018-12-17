@@ -21,7 +21,6 @@
                                             <div class="col-md-6">
                                                 <p>Horario Seleccionado: {{$evento->fecha}}</p>
                                                 <p>Usuario creador: {{$evento->user->nombres}} {{$evento->user->apellidos}}</p>
-                                                <p>Administrador encargado: {{$nombreAdm}}</p>
                                             </div>
                                             <div class="col-md-4">
                                                 <p class="text-center text-capitalize">Evento: {{$evento->titulo}}</p>
