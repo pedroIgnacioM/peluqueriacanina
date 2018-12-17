@@ -118,7 +118,14 @@
                             </div>   
                         </div>
 
-                        <div class="col-md-10">
+                        <div class="col-md-10 ">
+                            <div class="row justify-content-end">
+                                <div class="col-sm-1 icon-right">
+                                    <a><i class="fas fa-long-arrow-alt-up " ></i></a>
+                                    <a><i class="fas fa-long-arrow-alt-down " ></i></a>  
+                                </div>
+                            </div>
+                            
                             <div class="row">
                                 @if($cortePelos->count())
                                     @foreach($cortePelos as $cortePelo)

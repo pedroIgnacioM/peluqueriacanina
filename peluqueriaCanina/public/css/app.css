@@ -23,6 +23,7 @@ text-decoration:none;
 
 .bordeado-izquierdo{
 	border-left: 1px solid rgb(202, 201, 201);
+	padding-left: 10px;
 }
 .max-lines {
 	display: block; /* or inline-block */
@@ -206,6 +207,10 @@ button{
 	font-size: 20px!important; 
 	padding: 8px;
 	color: #ea3232;
+}
+.icon-right{
+	padding-left: 42px!important;
+	color: grey;
 }
 /*galeria*/
 .foto{
