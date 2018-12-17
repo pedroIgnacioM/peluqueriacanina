@@ -304,6 +304,12 @@
                 }
             });
         });
+        $('#modal-corte').on('hidden.bs.modal', function (e) {
+	        $(this).find('.modal-content').empty();
+	    });
+        $('#modal-comentario').on('hidden.bs.modal', function (e) {
+	        $(this).find('.modal-content').empty();
+	    });
     });
 </script>
 @endsection
