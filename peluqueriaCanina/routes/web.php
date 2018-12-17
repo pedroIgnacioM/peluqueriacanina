@@ -49,6 +49,7 @@ Route::get('cortePelo/', 'CortePeloController@download');
 // Rutas modales
 Route::get('/modal/eliminarCorte/{id}','CortePeloController@eliminarCorteModal')->name('eliminarCorteModal');
 Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->name('editarCorteModal');
+Route::get('/modal/agregarCorte','CortePeloController@agregarCorteModal')->name('agregarCorteModal');
 
 //Rutas post
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
