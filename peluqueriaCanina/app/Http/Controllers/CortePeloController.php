@@ -193,14 +193,23 @@ class CortePeloController extends Controller
         $elemento = CortePelo::find($id);
         $comentario = Comentario::find($elemento->comentario_id);
         $mascota = Mascota::find($elemento->mascota_id);
-        $usuario = User::find($mascota->user_id);
 
-        return view('modalComentario',[
-            'elemento' =>$elemento,
-            'comentario' =>$comentario,
-            'mascota' =>$mascota,
-            'usuario'=> $usuario 
-        ]);  
+        if($elemento->mascota_id != null){
+            $usuario = User::find($mascota->user_id);
+
+            return view('modalComentario',[
+                'elemento' =>$elemento,
+                'comentario' =>$comentario,
+                'mascota' =>$mascota,
+                'usuario'=> $usuario ,
+            ]);  
+        }else{  
+             return view('modalComentario',[
+                'elemento' =>$elemento,
+                'comentario' =>$comentario,
+                'usuario'=> null,
+            ]);  
+        }
     }
     //--------------------------------------------Funciones provisorias--------------------------------------------
 
@@ -213,8 +222,7 @@ class CortePeloController extends Controller
             'tamaño' => $request->tamano,
             'descripcion' => $request->descripcion,
             'tipo_cabello_id'=>$request->cabello,
-            'imagen'=>$imagen,
-
+            'imagen'=>$imagen
         ]);
     
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
