@@ -41,30 +41,27 @@
         
                 </ul>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Pestañas peluqueria Canina-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ __('Reserva Aquí') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('galeria') }}">Galeria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('catalogo') }}">{{ __('Catálogo') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ __('Nosotros') }}</a>
-                    </li>
-                    <li class>
-                        <a class="nav-link" href="{{ route('contacto') }}">{{ __('Contacto') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" >|</a>
-                    </li>
+                            <!-- Right Side Of Navbar -->
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Pestañas peluqueria Canina-->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('reservaCita') }}">{{ __('Reserva Aquí') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('galeria') }}">Galeria</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('catalogo') }}">{{ __('Catálogo') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">{{ __('Nosotros') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('contacto') }}">{{ __('Contacto') }}</a>
+                                    </li>
 
                     <!-- Authentication Links -->
                     @guest

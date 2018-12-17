@@ -64,7 +64,14 @@ text-decoration:none;
   font-weight:bold;
   font-family:Arial;
   cursor:pointer;
-	
+}
+.btn-reservacion{
+	width: 250px;
+	height: 60px;
+}
+.AgrandarLetra{
+	font-size: 25px;
+	align-items: center;
 }
 #vertical{
     height:480px;
@@ -85,7 +92,7 @@ text-decoration:none;
 	position: fixed;
 }
 .navbar-nav{
-	margin-right: 100px!important;*/
+	margin-right: 100px!important;
 }
 .navbar-brand{
 	font-size: 20px!important;
@@ -166,6 +173,7 @@ button{
   	left: 50%;
   	transform: translate(80%, 10%);
 }
+
 .modal-header{
 	background: whitesmoke;
 }
