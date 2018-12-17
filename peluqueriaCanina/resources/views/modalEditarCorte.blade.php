@@ -111,7 +111,7 @@
                             </div>
                             <div class="col-md-5">
                                 <select id="mascota" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="mascota" autofocus>>
-                                    <option value="" selected disabled>Ninguna</option>
+                                    <option value="" selected>Ninguna</option>
                                     <optgroup label="Mascotas">
                                     @foreach ($mascotas as $mascota)
                                         @if ($mascota->id==$elemento->mascota_id)
@@ -126,10 +126,10 @@
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
         </form>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Editar</button>
-        </div>
     </div>
 </div>

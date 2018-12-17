@@ -258,6 +258,8 @@ class CortePeloController extends Controller
         $elemento->tamaño = $request->tamano;
         $elemento->descripcion = $request->descripcion;
         $elemento->tipo_cabello_id = $request->cabello;
+        $elemento->mascota_id = $request->mascota;
+
         $elemento->save();
 
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
