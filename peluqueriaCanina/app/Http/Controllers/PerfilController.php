@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Actividad;
+use App\ReservaCita;
 use App\User;
 
 
@@ -80,6 +81,14 @@ class PerfilController extends Controller
         $actividades=Actividad::all();
         return view('modalActividades',[
             'actividades'=>$actividades
+        ]);
+        
+    }
+     public function citasModal()
+    {
+        $reserva_citas=ReservaCita::all();
+        return view('modalCitas',[
+            'reserva_citas'=>$reserva_citas
         ]);
     }
 }

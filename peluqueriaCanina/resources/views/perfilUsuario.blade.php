@@ -22,6 +22,13 @@
                                         </div>
                                 </div>
                                 <br>
+                                <div class="row justify-content-md-center">
+                                        <div class="col-md-9">
+                                                <a href="" class="botonModalCita" data-form="{{route('citasModal')}}" data-toggle="modal" data-target="#modal-citas">
+                                                        <button class="btn btn-primary btn-block">Lista Citas</button>
+                                                </a>
+                                        </div>
+                                </div>
                         </div>
                 </div>
         </div>
@@ -162,8 +169,9 @@
         </div>
 </div>
 <div class="modal" id="modal-actividades"></div>
+<div class="modal" id="modal-citas"></div>
 
-<script>
+ <script>
 // Modal
 $(document).ready(function () {
 
@@ -176,17 +184,17 @@ $(".botonModal").click(function (ev) { // for each edit contact url
     });
 });
 
-// $('.corte-form').on('submit', function () {
-//     $.ajax({
-//         type: $(this).attr('method'),
-//         url: $(this).attr('action'),
-//         data: $(this).serialize(),
-//         context: this,
-//         success: function (data, status) {
-//             $('#modal-actividades').html(data);
-//         }
-//     });
-// });
+$(".botonModalCita").click(function (ev) { // for each edit contact url
+    ev.preventDefault(); // prevent navigation
+    var url = $(this).data("form"); // get the contact form url
+    console.log(url);
+    $("#modal-citas").load(url, function () { // load the url into the modal
+        $(this).modal('show'); // display the modal on url load
+    });
 });
+});
+
+
 </script>
+
 @endsection
