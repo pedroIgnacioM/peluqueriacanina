@@ -170,8 +170,10 @@ class CortePeloController extends Controller
     public function editarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
+        $mascotas = Mascota::orderBy('nombre','asc')->get();
         return view('modalEditarCorte',[
-            'elemento'=>$elemento
+            'elemento'=>$elemento,
+            'mascotas'=>$mascotas
         ]);
     }
 
@@ -211,18 +213,29 @@ class CortePeloController extends Controller
             ]);  
         }
     }
+
+    public function agregarCorteModal(){
+
+        $mascotas = Mascota::orderBy('nombre','asc')->get();
+        return view('modalAgregarCorte',[
+            'mascotas'=>$mascotas
+        ]);
+    }
+
+    
+
     //--------------------------------------------Funciones provisorias--------------------------------------------
 
     public function agregarCorte(Request $request)
     {
-
         $imagen = $request->file('imagen')->store('public/cortePelo'); 
             CortePelo::create([
             'tipo' => $request->tipo,
             'tamaño' => $request->tamano,
             'descripcion' => $request->descripcion,
             'tipo_cabello_id'=>$request->cabello,
-            'imagen'=>$imagen
+            'imagen'=>$imagen,
+            'mascota_id'=>$request->mascota
         ]);
     
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
