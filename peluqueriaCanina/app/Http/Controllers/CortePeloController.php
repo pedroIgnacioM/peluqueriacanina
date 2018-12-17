@@ -192,19 +192,22 @@ class CortePeloController extends Controller
 
         $elemento = CortePelo::find($id);
         $comentario = Comentario::find($elemento->comentario_id);
-        if($comentario != null){
-            $mascota = Mascota::find($elemento->mascota_id);
+        $mascota = Mascota::find($elemento->mascota_id);
+
+        if($elemento->mascota_id != null){
             $usuario = User::find($mascota->user_id);
+
             return view('modalComentario',[
                 'elemento' =>$elemento,
                 'comentario' =>$comentario,
                 'mascota' =>$mascota,
-                'usuario'=> $usuario 
+                'usuario'=> $usuario ,
             ]);  
-        }else{
+        }else{  
              return view('modalComentario',[
                 'elemento' =>$elemento,
                 'comentario' =>$comentario,
+                'usuario'=> null,
             ]);  
         }
     }

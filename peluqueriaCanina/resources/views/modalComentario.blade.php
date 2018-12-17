@@ -35,7 +35,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                 </div>
             @else
-                @if($usuario->id == Auth::user()->id)
+                @if( $usuario != null && $usuario->id == Auth::user()->id) 
                     <form class="comentario-form" method="POST" action="{{ route('agregarComentario', ['id'=>$elemento->id])}}" enctype="multipart/form-data" role="form">   
                         {{ csrf_field() }}
                         <div class="modal-body">
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                   
+                       
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                             <button type="submit" class="btn btn-primary">Comentar</button>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                    </div>
+                    </div>                
                 @endif
             @endif
         </div>
