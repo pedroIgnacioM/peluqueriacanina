@@ -18,4 +18,9 @@ class Mascota extends Model
     public function cortePelo(){
         return $this->hasMany('App\cortePelo');
     }
+
+    public function identificador(){
+        $usuario = $this->user->identificador();
+        return " ".$this->nombre."| ".$usuario;
+    }
 }
