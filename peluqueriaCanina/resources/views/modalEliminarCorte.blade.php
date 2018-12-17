@@ -48,7 +48,7 @@
                                     <label class="col-form-label text-md-right">{{ __('Foto') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <img class="img-responsive" alt="{{$elemento->imagen}}" src="{{Storage::url($elemento->imagen)}}"/>
+                                    <img class="img-fluid" alt="{{$elemento->imagen}}" src="{{Storage::url($elemento->imagen)}}"/>
                                 </div>
                             </div>
                         </div>
