@@ -43,6 +43,10 @@ class User extends Authenticatable
      public function isDefault()    {        
         return $this->tipo === self::DEFAULT_TYPE;    
     }
+    public function identificador(){
+        return $this->nombres." ".$this->apellidos;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
