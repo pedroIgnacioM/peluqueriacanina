@@ -6,41 +6,51 @@
                 <span> <i class="fas fa-times"></i></span>
             </button> 
         </div>
-        <form class="producto-form" method="POST" action="{{ route('editarProducto', ['id'=>$elemento->id])}}" enctype="multipart/form-data"  role="form">
+        <form class="nosotros-form" method="POST" action="{{ route('editarNosotros', ['id'=>$nosotros->id])}}" enctype="multipart/form-data"  role="form">
             {{ csrf_field() }}
             <div class="modal-body">
                 <div class="form-group row justify-content-md-center">
                     <div class="col-md-12">
                         
-                        {{-- Nombre --}}
+                        {{-- titulo1 --}}
                         <div class="form-group row">
                                 <div class="col-md-3">
-                                    <label for="nombre" class="col-form-label text-md-right">{{ __('Nombre') }}</label>
+                                    <label for="titulo1" class="col-form-label text-md-right">{{ __('titulo1') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="nombre" class="form-control tipo ? ' is-invalid' : '' }}" name="nombre" required autofocus placeholder="nombre" value="{{$elemento->nombre}}">
+                                    <input type="text" id="titulo1" class="form-control tipo ? ' is-invalid' : '' }}" name="titulo1" required autofocus placeholder="titulo1" value="{{$nosotros->titulo1}}">
                                 </div>
                         </div>
 
                         {{-- Descripción --}}
                         <div class="form-group row">
                                 <div class="col-md-3">
-                                    <label for="descripcion" class="col-form-label text-md-right">{{ __('Descripción') }}</label>
+                                    <label for="descripcion1" class="col-form-label text-md-right">{{ __('descripcion1') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea id="descripcion" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion" required autofocus placeholder="descripcion">{{$elemento->descripcion}}</textarea>
+                                    <textarea id="descripcion1" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion1" required autofocus placeholder="descripcion2">{{$nosotros->descripcion1}}</textarea>
+                                </div>
+                        </div>
+                        {{-- titulo1 --}}
+                        <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="titulo2" class="col-form-label text-md-right">{{ __('titulo2') }}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" id="titulo2" class="form-control tipo ? ' is-invalid' : '' }}" name="titulo2" required autofocus placeholder="titulo2" value="{{$nosotros->titulo2}}">
                                 </div>
                         </div>
 
-                        {{-- Precio --}}
+                        {{-- Descripción --}}
                         <div class="form-group row">
                                 <div class="col-md-3">
-                                    <label for="precio" class="col-form-label text-md-right">{{ __('Precio') }}</label>
+                                    <label for="descripcion2" class="col-form-label text-md-right">{{ __('descripcion2') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="precio" class="form-control tipo ? ' is-invalid' : '' }}" name="precio" required autofocus placeholder="precio" value="{{$elemento->precio}}">
+                                    <textarea id="descripcion2" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion2" required autofocus placeholder="descripcion2">{{$nosotros->descripcion2}}</textarea>
                                 </div>
                         </div>
+
 
                         {{-- Imagen --}}
                         <div class="form-group row">
@@ -48,7 +58,7 @@
                                 <label for="imagen" class="col-form-label text-md-right">{{ __('Imagen') }}</label>
                             </div>
                             <div class="col-md-9">
-                                <input id="imagen" type="file" name="imagen" value="{{$elemento->imagen}}">
+                                <input id="imagen" type="file" name="imagen" value="{{$nosotros->imagen}}">
                             </div>
                         </div>    
             </form>

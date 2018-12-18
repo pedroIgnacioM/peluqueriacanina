@@ -31,7 +31,9 @@ Route::get('/contacto', 'ContactoController@index')->name('contacto');
 //Rutas del Nosotros
 Route::get('/nosotros', 'NosotrosController@index')->name('nosotros');
 Route::post('/subirImagenNosotros','PerfilController@subirImagen')->name('subirImagenNosotros');
-Route::post('/editarNosotros','NosotrosController@editarNosotros')->name('editarNosotros');
+Route::post('/editarNosotros/{id}','NosotrosController@editar')->name('editarNosotros');
+Route::get('/modal/editarNosotros/{id}','NosotrosController@editarNosotrosModal')->name('editarNosotrosModal');
+
 
 //Rutas Perfil
 Route::get('/formulario_mascota/agregar', 'MascotaController@formularioAgregar')->name('agregarMascota');
