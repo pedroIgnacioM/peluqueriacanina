@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Nosotros;
 use Illuminate\Http\Request;
 
 class NosotrosController extends Controller
 {
     public function index()
     {
-        return view('nosotros');
+
+        $nosotros=Nosotros::first();
+        return view('nosotros',['nosotros'=>$nosotros]);
     }
 
     public function subirImagen(Request $request)
@@ -16,12 +18,12 @@ class NosotrosController extends Controller
         $user = \Auth::user();
         if(!isset($user))
             abort(404);
-        $imagen = $request->file('imagen')->store('public/Nosotros');
+        $imagen = $request->file('imagen')->store('public/');
 
         $nosotros->imagen=$imagen;
         $nosotros->save();
 
-        return redirect()->route('nosotros',['Usuario']);
+        return redirect()->route('nosotros');
     }
 
     public function editarNosotros(Request $request)
