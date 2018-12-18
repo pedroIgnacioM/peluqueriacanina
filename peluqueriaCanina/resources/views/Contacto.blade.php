@@ -7,7 +7,15 @@
         
             <div class="card">
                 <div class="card-header"> <h3>Donde Encontrarnos</h3> </div>
-
+                @auth
+                    @if(Auth::user()->isAdmin())
+                        {{-- Botón Editar --}}
+                            <div class="col-md-2">
+                                <a href="" class="botonModal" data-form="{{route('editarContactoModal',['id'=>$contacto->id])}}" data-toggle="modal" data-target="#modal-contacto">
+                                <span><i class="fas fa-edit iconoGaleria" ></i></span></a>
+                            </div>
+                    @endif
+                @endauth
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -31,7 +39,7 @@
                                 <div class ="col">
                                 <h4>Contacto</h4>
                                 <p>
-                                   <i class="fab fa-whatsapp"></i>  (+56) 912345678
+                                   <i class="fab fa-whatsapp"></i>  (+56) {{$contacto->numero}}
                                 </p>
                                 </div>
                             </div>                            
@@ -40,7 +48,7 @@
                                 <div class ="col">
                                     <h5>Encuentranos En:</h5>
                                     <p>
-                                        <i class="fas fa-directions"></i>   Brasil 2950, Valparaíso, Región de Valparaíso
+                                        <i class="fas fa-directions"></i>   {{$contacto->direccion}}
                                     </p>
                                 </div>
                             </div>
@@ -49,23 +57,11 @@
                                 <div class ="col">
                                     <h4>Siguenos</h4>
                                     <p>
-                                        <i class="fab fa-instagram"></i>    #PeluqueriaCanina
+                                        <i class="fab fa-instagram"></i>    #{{$contacto->instagram}}
                                         <br>
-                                         <i class="fab fa-facebook"></i>    PeluqueriaCanina
+                                         <i class="fab fa-facebook"></i>    {{$contacto->facebook}}
                                         </p> 
                                 </div>
-                            </div>
-                            
-                           <div class="row justify-content-end">    
-                                @auth
-                                    @if(Auth::user()->isAdmin())
-                                    {{-- Botón Editar --}}
-                                        <div class="col-md-2">
-                                            <a href="" class="botonModal" data-form="{{route('editarContactoModal',['id'=>$contacto->id])}}" data-toggle="modal" data-target="#modal-contacto">
-                                            <span><i class="fas fa-edit iconoGaleria" ></i></span></a>
-                                        </div>
-                                    @endif
-                                @endauth  
                             </div>
                         </div>
 
@@ -76,4 +72,33 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal-contacto"></div>
+<script>
+    // Modal
+    $(document).ready(function () {
+    
+    $(".botonModal").click(function (ev) { // for each edit contact url
+        ev.preventDefault(); // prevent navigation
+        var url = $(this).data("form"); // get the contact form url
+        console.log(url);
+        $("#modal-contacto").load(url, function () { // load the url into the modal
+            $(this).modal('show'); // display the modal on url load
+        });
+    });
+    $('.contacto-form').on('submit', function () {
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                context: this,
+                success: function (data, status) {
+                    $('#modal-contacto').html(data);
+                }
+            });
+        });
+    
+});
+
+
+</script>
 @endsection
