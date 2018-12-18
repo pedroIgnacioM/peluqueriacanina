@@ -22,16 +22,19 @@
                                     <p>{{$evento->direccion}}</p>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <p>{{$evento->descripcion}}</p>
+                            <div class="card">
+                                
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p>{{$evento->descripcion}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-7">
-                                    <p>{{$evento->estado}}</p>
+                                    <p>Estado del evento:{{$evento->estado}}</p>
                                 </div>
                             </div>
                         </div>
