@@ -210,7 +210,6 @@ button{
 }
 .icon-right{
 	padding-left: 42px!important;
-	color: grey;
 }
 /*galeria*/
 .foto{
@@ -244,6 +243,14 @@ button{
 }
 .evento{
 	align-self: center;
+}
+.nombreRespuesta{
+	margin: 0;
+	padding-right: 30px!important;
+}
+.nombreTitulo{
+	margin: 0;
+	padding-left: 30px!important;
 }
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)

@@ -15,21 +15,21 @@
                         <div class="row justify-content-center">
                             <div class="col-sm-11">
                                 <div class="card">
-                                    <div class="card-body">
+                                    <div class="card-body" >
                                         <div class="row justify-content-center">
-                                            <div class="col-md-4 evento">
+                                            <div class="col-md-5 evento">
                                                 <div class="row ">
-                                                    <div class="col-md-7" style="margin: 0!important">
+                                                    <div class="col-md-7 nombreTitulo">
                                                         <label>Horario Seleccionado</label>
                                                         <label>Usuario creador</label>
                                                     </div>
-                                                    <div class="col-md-5" style="margin: 0!important">
+                                                    <div class="col-md-5 nombreRespuesta">
                                                         <label>: {{$evento->fecha}}</label>
                                                         <label>: {{$evento->user->nombres}} {{$evento->user->apellidos}}</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 evento">
+                                            <div class="col-md-5 evento">
                                                 <h5 class="text-center text-capitalize"><b>{{$evento->titulo}}</b></h5>
                                                 <label class="max-lines-eventos">{{$evento->descripcion}}</label>
                                                 <a href="{{ route('evento_detalle',['id'=>$evento->id]) }}"><p class="text-center">Ver más</p></a>

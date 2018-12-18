@@ -9,29 +9,33 @@
                 <div class="card-body">
                     <div class="row justify-content-between">
                         <div class="col-md-6">
-                            <div class="card-title text-capitalize"><h1>{{$evento->titulo}}</h1></div>
-                            
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <p id="txtDate">{{$evento->fecha}}</p>
-                                </div>
-                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title text-capitalize"><h1>{{$evento->titulo}}</h1></div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <p id="txtDate">{{$evento->fecha}}</p>
+                                        </div>
+                                    </div>
 
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <p>{{$evento->direccion}}</p>
-                                </div>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p>{{$evento->direccion}}</p>
+                                        </div>
+                                    </div>
 
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <p>{{$evento->descripcion}}</p>
-                                </div>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align: justify;">
+                                            <p>{{$evento->descripcion}}</p>
+                                        </div>
+                                    </div>
 
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <p>{{$evento->estado}}</p>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <p>{{$evento->estado}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

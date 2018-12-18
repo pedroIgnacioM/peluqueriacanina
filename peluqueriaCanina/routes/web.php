@@ -41,8 +41,6 @@ Route::post('/editarperfil','PerfilController@editarPerfil')->name('editarPerfil
 
 
 //-------------------------------Rutas galeria-----------------------------------
-Route::resource('galeria', 'CortePeloController');
-
 Route::get('/galeria', 'CortePeloController@index')->name('galeria');
 Route::get('cortePelo/', 'CortePeloController@download');
 

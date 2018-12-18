@@ -121,8 +121,8 @@
                         <div class="col-md-10 ">
                             <div class="row justify-content-end">
                                 <div class="col-sm-1 icon-right">
-                                    <a href="{{ route('ordenAscendente') }}"><i class="fas fa-long-arrow-alt-up " ></i></a>
-                                    <a href="{{ route('ordenDescendente') }}"><i class="fas fa-long-arrow-alt-down " ></i></a>  
+                                    <a href="{{ route('ordenAscendente') }}"><i class="fas fa-long-arrow-alt-up" style="color: grey;" ></i></a>
+                                    <a href="{{ route('ordenDescendente') }}"><i class="fas fa-long-arrow-alt-down "style="color:grey;" ></i></a>
                                 </div>
                             </div>
                             
