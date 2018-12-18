@@ -17,7 +17,7 @@ class Reserva_CitasTableSeeder extends Seeder
             DB::table('reserva_citas')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
                 'updated_At'=>$faker->dateTimeThisYear,
-                'fecha'=>$faker->dateTimeThisMonth($max="2018-12-31 20:00")->format('Y-m-d H:i'),
+                'fecha'=>$faker->dateTimeThisMonth($max="2018-12-31 20:00")->format('Y-m-d H').":00",
                 'servicio'=>$faker->randomElement($servicios),
                 'user_id'=>$faker->numberBetween($min = 1, $max = 10),
                 'mascota_id'=>$faker->numberBetween($min = 1, $max = 40),
