@@ -162,7 +162,7 @@ class CortePeloController extends Controller
     public function eliminarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
-        return view('modalEliminarCorte',[
+        return view('modales/modalEliminarCorte',[
             'elemento'=>$elemento
         ]);
     }
@@ -171,7 +171,7 @@ class CortePeloController extends Controller
     {
         $elemento=CortePelo::find($id);
         $mascotas = Mascota::orderBy('nombre','asc')->get();
-        return view('modalEditarCorte',[
+        return view('modales/modalEditarCorte',[
             'elemento'=>$elemento,
             'mascotas'=>$mascotas
         ]);
@@ -185,7 +185,7 @@ class CortePeloController extends Controller
             ->select('corte_favoritos.*')->paginate(12);
 
         $elemento = CortePelo::find($id);
-        return view('modalAgregarCorteFavorito',[
+        return view('modales/modalAgregarCorteFavorito',[
             'elemento'=>$elemento ,
             'corteFavoritos' => $corteFavoritos
         ]);
@@ -199,14 +199,14 @@ class CortePeloController extends Controller
         if($elemento->mascota_id != null){
             $usuario = User::find($mascota->user_id);
 
-            return view('modalComentario',[
+            return view('modales/modalComentario',[
                 'elemento' =>$elemento,
                 'comentario' =>$comentario,
                 'mascota' =>$mascota,
                 'usuario'=> $usuario ,
             ]);  
         }else{  
-             return view('modalComentario',[
+             return view('modales/modalComentario',[
                 'elemento' =>$elemento,
                 'comentario' =>$comentario,
                 'usuario'=> null,
@@ -217,7 +217,7 @@ class CortePeloController extends Controller
     public function agregarCorteModal(){
 
         $mascotas = Mascota::orderBy('nombre','asc')->get();
-        return view('modalAgregarCorte',[
+        return view('modales/modalAgregarCorte',[
             'mascotas'=>$mascotas
         ]);
     }
