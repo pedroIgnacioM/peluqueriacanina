@@ -6,7 +6,7 @@
                 <span> <i class="fas fa-times"></i></span>
             </button> 
         </div>
-        <form class="producto-form" method="POST" action="{{ route('editarProducto', ['id'=>$elemento->id])}}" enctype="multipart/form-data"  role="form">
+        <form class="contacto-form" method="POST" action="{{ route('editarContactoModal', ['id'=>$elemento->id])}}" enctype="multipart/form-data"  role="form">
             {{ csrf_field() }}
             <div class="modal-body">
                 <div class="form-group row justify-content-md-center">

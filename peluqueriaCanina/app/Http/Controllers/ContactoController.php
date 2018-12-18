@@ -32,4 +32,19 @@ class ContactoController extends Controller
 
         return redirect()->route('contacto',['Usuario']);
     }
+
+    public function editar(Request $request, $id){
+
+        $elemento = contacto::find($id);
+        if(!isset($elemento))
+            return redirect()->route('contacto');
+        
+        $elemento->numero = $request->numero;
+        $elemento->direccion = $request->direccion;
+        $elemento->facebook = $request->facebook;
+        $elemento->instagram = $request->instagram;
+        $elemento->save();
+
+        return redirect()->route('contacto')->with('success','Registro creado satisfactoriamente');
+    }
 }
