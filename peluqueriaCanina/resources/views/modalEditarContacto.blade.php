@@ -47,7 +47,7 @@
                             <div class="col-md-3">
                                 <label for="instagram" class="col-form-label text-md-right">{{ __('instagram') }}</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                             <input type="text" id="instagram" class="form-control tipo ? ' is-invalid' : '' }}" name="instagram" required autofocus placeholder="instagram" value="{{$contacto->instagram}}">
                             </div>
                         </div>    
