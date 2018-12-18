@@ -93,7 +93,7 @@ class CortePeloController extends Controller
                 ->select('corte_favoritos.*')
                 ->paginate(12);
         }
-        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
+        $cortePelos = CortePelo::orderBy('created_at','DESC')->paginate(12);
 
         return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
     }
@@ -115,7 +115,7 @@ class CortePeloController extends Controller
         $cabelloN = $request->cabelloN;
 
 
-        $cortePelos = CortePelo::orderBy('id','DESC')
+        $cortePelos = CortePelo::orderBy('created_at','DESC')
         ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
         ->Where('corte_pelos.tamaño','=',  $tamanoP)
         ->orWhere('corte_pelos.tamaño','=',$tamanoM)
@@ -302,6 +302,36 @@ class CortePeloController extends Controller
         $elemento->save();
         
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }
+
+    //----------------------------------Orden Imagenes --------------------------
+    public function ordenAscendente(){
+        
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
+        }
+
+        $cortePelos = CortePelo::orderBy('created_at','ASC')->paginate(12);
+
+        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
+    }
+    public function ordenDescendente(){
+
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
+        }
+
+        $cortePelos = CortePelo::orderBy('created_at','DESC')->paginate(12);
+
+        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
     }
 }
     
