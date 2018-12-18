@@ -11,7 +11,7 @@ class ContactoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('nosotros')->insert([
+        DB::table('contacto')->insert([
             
             'numero' => '912345678',
             'direccion' => 'Brasil 2950, Valparaíso, Región de Valparaíso',

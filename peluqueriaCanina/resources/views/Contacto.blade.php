@@ -55,7 +55,19 @@
                                         </p> 
                                 </div>
                             </div>
+                            
+                           <div class="row justify-content-end">
 
+                                @auth
+                                    @if(Auth::user()->isAdmin())
+                                    {{-- Botón Editar --}}
+                                        <div class="col-md-2">
+                                            <a href="" class="botonModal" data-form="{{route('editarProductoModal',['id'=>$producto->id])}}" data-toggle="modal" data-target="#modal-producto">
+                                            <span><i class="fas fa-edit iconoGaleria" ></i></span></a>
+                                        </div>
+                                    @endif
+                                @endauth  
+                            </div>
                         </div>
 
                     </div> 

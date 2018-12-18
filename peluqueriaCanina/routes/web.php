@@ -26,12 +26,12 @@ Route::group(['middleware' => 'is_admin'], function () {
 
 //Rutas del Contacto
 Route::get('/contacto', 'ContactoController@index')->name('contacto');
-
+Route::post('/editarContacto','ContactoController@editarContacto')->name('editarContactoModal');
 
 //Rutas del Nosotros
 Route::get('/nosotros', 'NosotrosController@index')->name('nosotros');
 Route::get('/nosotros', 'NosotrosController@index')->name('nosotros');
-Route::post('/subirImagenNosotros','PerfilController@subirImagen')->name('subirImagenNosotros');
+Route::post('/subirImagenNosotros','NosotrosController@subirImagen')->name('subirImagenNosotros');
 Route::post('/editarNosotros','NosotrosController@editarNosotros')->name('editarNosotros');
 
 //Rutas Perfil

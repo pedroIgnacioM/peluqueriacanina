@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             Reserva_CitasTableSeeder::class,
             AnunciosTableSeeder::class,
             NosotrosSeeder::class,
+            ContactoSeeder::class,
         ]);
 
     }
