@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReservaCitasTable extends Migration
+class CreateAnunciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,20 @@ class CreateReservaCitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('reserva_citas', function (Blueprint $table) {
+        Schema::create('anuncios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fecha');
-            $table->string('servicio');
-            $table->timestamps();
-        });
-        Schema::table('reserva_citas', function (Blueprint $table) {
-            
+            $table->date('fecha');
+            $table->mediumText('descripcion');
+            $table->string('direccion');
+            $table->string('estado')->default('activado');
+            $table->string('titulo');
+            $table->string('imagen');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
-
-            $table->unsignedInteger('mascota_id');
-            $table->foreign('mascota_id')
-            ->references('id')
-            ->on('mascotas')
-            ->onDelete('cascade');
+            $table->timestamps();
 
         });
     }
@@ -43,6 +38,6 @@ class CreateReservaCitasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reserva_citas');
+        Schema::dropIfExists('anuncios');
     }
 }

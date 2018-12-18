@@ -6,7 +6,7 @@
                 <span> <i class="fas fa-times"></i></span>
             </button> 
         </div>
-        <form class="corte-form" method="POST" action="{{ route('editarCorte', ['id'=>$elemento->id])}}"  role="form">
+        <form class="corte-form" method="POST" action="{{ route('editarCorte', ['id'=>$elemento->id])}}" enctype="multipart/form-data"  role="form">
             {{ csrf_field() }}
             <div class="modal-body">
                 <div class="form-group row justify-content-md-center">
@@ -103,11 +103,33 @@
                             <div class="col-md-9">
                                 <input id="imagen" type="file" name="imagen" value="{{$elemento->imagen}}">
                             </div>
-                        </div>    
-            </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Editar</button>
+                        </div>
+                         {{-- Mascotas --}}
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="mascota" class="col-form-label text-md-right">{{ __('Mascota') }}</label>
+                            </div>
+                            <div class="col-md-5">
+                                <select id="mascota" class="custom-select form-control tipo ? ' is-invalid' : '' }}" name="mascota" autofocus>>
+                                    <option value="" selected>Ninguna</option>
+                                    <optgroup label="Nombre mascota | Nombre usuario">
+                                    @foreach ($mascotas as $mascota)
+                                        @if ($mascota->id==$elemento->mascota_id)
+                                            <option value="{{$mascota->id}}" selected>{{$mascota->identificador()}}</option>
+                                        @else
+                                            <option value="{{$mascota->id}}">{{$mascota->identificador()}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+        </form>
     </div>
 </div>

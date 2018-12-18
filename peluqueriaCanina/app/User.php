@@ -28,6 +28,9 @@ class User extends Authenticatable
     public function reservaCita(){
         return $this->hasMany('App\reservaCita');
     }
+    public function anuncios(){
+        return $this->hasMany('App\Anuncio');
+    }
     public function reservaProducto(){
         return $this->hasMany('App\reservaProducto');
     }
@@ -40,6 +43,10 @@ class User extends Authenticatable
      public function isDefault()    {        
         return $this->tipo === self::DEFAULT_TYPE;    
     }
+    public function identificador(){
+        return $this->nombres." ".$this->apellidos;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -26,7 +26,7 @@
             </table>
             @endif
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
             </div>
         </div>
         

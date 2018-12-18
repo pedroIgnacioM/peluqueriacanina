@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\producto;
+use App\Producto;
 
 class ProductosController extends Controller
 {
@@ -14,89 +14,125 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = producto::orderBy('id','DESC')->paginate(9);
-        return view('catalogo')->with('productos',$productos);
+        $productos = Producto::orderBy('id','DESC')->get();
+        return view('catalogo',[
+            'productos'=>$productos
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *|
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    
+    public function agregar(Request $request){
+
+        $imagen = $request->file('imagen')->store('public/productos'); 
+            Producto::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'imagen'=>$imagen,
+
+        ]);
+    
+        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function editar(Request $request, $id){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $elemento = Producto::find($id);
+        if(!isset($elemento))
+            return redirect()->route('catalogo');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    public function catalogoFiltro(Request $request){
-
- 
-        if(isset($request->Por_precio))
+            
+        if($request->file('imagen')!=null)
         {
-            $productos = Producto::orderBy('precio', 'asc')
-            ->paginate(9);
-        }
-        else if(isset($request->Orden_Alfabetico))
-        {
-            $productos = Producto::orderBy('nombre','asc')
-            ->paginate(9);
+            $imagen = $request->file('imagen')->store('public/productos'); 
+            $elemento->imagen = $imagen;
         }
         
-        return view('catalogo')->with('productos',$productos);
+        $elemento->nombre = $request->nombre;
+        $elemento->precio = $request->precio;
+        $elemento->descripcion = $request->descripcion;
+        $elemento->save();
+
+        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
+    }
+
+    public function eliminar(Request $request, $id){
+
+        $elemento = Producto::find($id);
+        if(!isset($elemento))
+            return redirect()->route('catalogo');
+
+        $elemento->delete();
+
+        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
+    }
+
+    public function catalogoFiltro(Request $request){
+
+        $alfabeticoCheck = $request->alfabeticoCheck;
+        $precioCheck = $request->precioCheck;
+        
+        $ascendente = $request->ascendente;
+        
+        if(isset($precioCheck))
+        {
+            if(isset($ascendente))
+            {
+                $productos = Producto::orderBy('precio', 'asc')
+                ->get();
+            }
+            else {
+                $productos = Producto::orderBy('precio', 'desc')
+                ->get();
+            }
+            
+        }
+        else if(isset($alfabeticoCheck))
+        {
+            if(isset($ascendente)){
+                $productos = Producto::orderBy('nombre','asc')
+                ->get();
+            }
+            else{
+                $productos = Producto::orderBy('nombre','desc')
+                ->get();
+            }
+        }
+        else {
+            return redirect()->route('catalogo');
+        }
+
+        
+        return view('catalogo',[
+            'productos'=>$productos,
+            'alfabeticoCheck'=>$alfabeticoCheck,
+            'precioCheck'=>$precioCheck,
+            'ascendente'=>$ascendente,
+            'desbloqueado'=>'verdadero'
+        ]);
+    }
+
+    public function detalles($id)
+    {
+        $producto=Producto::find($id);
+        return view('detalle_producto',[
+            'producto'=>$producto
+        ]);
+    }
+
+    public function eliminarProductoModal($id)
+    {
+        $elemento=Producto::find($id);
+        return view('modalEliminarProducto',[
+            'elemento'=>$elemento
+        ]);
+    }
+
+    public function editarProductoModal($id)
+    {
+        $elemento=Producto::find($id);
+        return view('modalEditarProducto',[
+            'elemento'=>$elemento
+        ]);
     }
 }

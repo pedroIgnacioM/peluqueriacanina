@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Tipo_CabelloTableSeeder extends Seeder
+class ComentariosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,14 +12,13 @@ class Tipo_CabelloTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('es_ES');
-        $tiposCabellos=["rubio","castaño","negro"];
-        foreach ($tiposCabellos as $cabello) {
-            
-            DB::table('tipo_cabello')->insert([
+        foreach (range(1,10) as $i) {
+            DB::table('comentarios')->insert([
+                'id'=>$i,
                 'created_at'=>$faker->dateTimeThisYear,
                 'updated_At'=>$faker->dateTimeThisYear,
-                'nombre'=>$cabello,
+                'descripcion'=>$faker->text
             ]);   
-        }
+        }   
     }
 }

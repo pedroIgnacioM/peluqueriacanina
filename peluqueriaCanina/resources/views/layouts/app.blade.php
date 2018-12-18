@@ -41,30 +41,27 @@
         
                 </ul>
 
-                <ul class="navbar-nav ml-auto">
-                <!-- Right Side Of Navbar -->
-                    <!-- Pestañas peluqueria Canina-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ __('Reserva Aquí') }}</a>
-                        <a class="nav-link" href="{{ route('galeria') }}">Galeria</a>
-                    </li>
-                    <li class="nav-item">
-                    <li class="nav-item">
-                    </li>
-                    </li>
-                        <a class="nav-link" >|</a>
-                        <a class="nav-link" href="{{ route('contacto') }}">{{ __('Contacto') }}</a>
-                    </li>
-                    <li class>
-                        <a class="nav-link" href="{{ route('nosotros') }}">{{ __('Nosotros') }}</a>
-                    </li>
-                        <a class="nav-link" href="{{ route('catalogo') }}">{{ __('Catálogo') }}</a>
-                    </li>
-                    <li class="nav-item">
-                    <li class="nav-item">
+                            <!-- Right Side Of Navbar -->
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Pestañas peluqueria Canina-->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('reservaCita') }}">{{ __('Reserva Aquí') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('galeria') }}">Galeria</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('catalogo') }}">{{ __('Catálogo') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('nosotros') }}">{{ __('Nosotros') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('contacto') }}">{{ __('Contacto') }}</a>
+                                    </li>
 
                     <!-- Authentication Links -->
                     @guest
@@ -83,17 +80,21 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('perfil',['Usuario'])}}">
+                            <a class="dropdown-item" href="{{route('eventos')}}">
+                                Eventos
+                            </a>
+                            <a class="dropdown-item" href="{{route('perfil',[Auth::user()->id])}}">
                                 Perfil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('cortesFavoritos') }}">
+                                {{ __('Cortes Favoritos') }}
                             </a>
                              <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('cortesFavoritos') }}">
-                                {{ __('Cortes Favoritos') }}
-                            </a>
+                            
                                             
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

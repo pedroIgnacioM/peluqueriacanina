@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo_Cabello extends Model
+class Comentario extends Model
 {
-	 protected $fillable = [
-        'nombre'
+	protected $fillable = [
+        'id','descripcion'
     ];
 
     public function cortePelo(){

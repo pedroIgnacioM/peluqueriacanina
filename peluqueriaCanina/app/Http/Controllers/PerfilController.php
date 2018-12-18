@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Actividad;
+use App\ReservaCita;
+use App\User;
+
 
 class PerfilController extends Controller
 {
-    public function index($nombre)
+    public function index($id)
     {
-        if($nombre=='Usuario'){
-            
-            $user=\Auth::user();
+
+            $user = User::find($id);
+            $userActual= \Auth::user();
+            if(!isset($user))
+                return redirect()->route('home');
+            $actual=false;
+
             $nombresColumnas=array('nombres','apellidos','email','telefono');
             $titulos=array('Nombres','Apellidos','Email','Telefono');
-            $id=$user->id;
+            
             $nombresColumnasMascotas=array('nombre','sexo','edad','color');
             $mascotasUsuario=\DB::table ('mascotas')
             ->select('mascotas.id','mascotas.nombre','mascotas.sexo','mascotas.edad','mascotas.color','mascotas.user_id','mascotas.imagenMascota')
@@ -22,9 +29,20 @@ class PerfilController extends Controller
             ->where('mascotas.user_id',$id)
             ->get();
             
-            return view('perfilUsuario',['nombresColumnas'=>$nombresColumnas,'titulos'=>$titulos,'usuario'=>$user,'nombresColumnasMascotas'=>$nombresColumnasMascotas,'mascotas'=>$mascotasUsuario]);
+            if($id==$userActual->id)
+                $actual=true;
+            else {
+                if(!$userActual->isAdmin())
+                    return redirect()->route('home');
+            }
 
-        }
+            return view('perfilUsuario',[
+                'nombresColumnas'=>$nombresColumnas,
+                'titulos'=>$titulos,'usuario'=>$user,
+                'nombresColumnasMascotas'=>$nombresColumnasMascotas,
+                'mascotas'=>$mascotasUsuario,
+                'actual'=>$actual
+            ]);
  
     }
 
@@ -39,7 +57,7 @@ class PerfilController extends Controller
         $user->imagen=$imagen;
         $user->save();
 
-        return redirect()->route('perfil',['Usuario']);
+        return redirect()->route('perfil',[$user->id]);
     }
 
     public function editarPerfil(Request $request)
@@ -63,6 +81,14 @@ class PerfilController extends Controller
         $actividades=Actividad::all();
         return view('modalActividades',[
             'actividades'=>$actividades
+        ]);
+        
+    }
+     public function citasModal()
+    {
+        $reserva_citas=ReservaCita::all();
+        return view('modalCitas',[
+            'reserva_citas'=>$reserva_citas
         ]);
     }
 }

@@ -16,7 +16,6 @@
                     <div class="row">
                         <div class="col-md-9">
                             <h5>Ultimos Trabajos</h5>
-                            
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -69,7 +68,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <!-- Referenecia a Reserva -->
-                                            <a href="">Reserva Aquí</a>
+                                            <a href="{{ route('reservaCita') }}">Reserva Aquí</a>
                                             <i class="fas fa-calendar-alt"></i>
                                             <br>
                                             <b>Horarios de atención</b>
@@ -102,29 +101,44 @@
                                 </div>
                             </div>
                         </div>
-                        <hr id="vertical">
-                        <div class ="col">
-                            <h5>Anuncios de Usuarios</h5>        
+                        <div class ="col-md-3 bordeado-izquierdo">
+                            <div class="row justify-content-end">
+                                <div class="col-md-8">
+                                    <h4>Eventos</h4>        
+                                </div>
+                            </div>
+                            <br>
+                            @foreach ($anuncios as $anuncio)
+                            <div class="container ">
+                                <a href="{{ route('evento_detalle',['id'=>$anuncio->id]) }}">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-capitalize">
+                                        <h5>{{$anuncio->titulo}}</h5>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <img src="{{Storage::url($anuncio->imagen)}}" alt="imagen_evento" width="120px" height="120px">
+                                    </div>
+                                </div>
+                                </a>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <p class="max-lines">{{$anuncio->descripcion}}</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <p class="max-lines">{{$anuncio->fecha}}</p>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
                             
-                            <div class="row">
-                                <div class ="col">
-                                    <h5>Titulo Anuncio 1</h5>
-                                    <p>
-                                    <i class="fas fa-image"></i>   numero 1
-                                    </p>
-                                </div>
-                            </div>
+                            @endforeach
                                 
-                            <div class="row">
-                                <div class ="col">
-                                    <h5>Titulo Anuncio 2</h5>
-                                    <p>
-                                    <i class="fas fa-image"></i>   numero 2
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>   
+                        </div>
+                          
                     </div> 
                 </div>
 

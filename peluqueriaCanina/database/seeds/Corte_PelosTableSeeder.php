@@ -15,6 +15,7 @@ class Corte_PelosTableSeeder extends Seeder
         $tamannos=["pequeño","mediano","grande"];
         $tipos=["solo corte",'baño y corte','solo baño'];
         $imagenes =['perro1.png','perro2.png','perro3.png','perro4.png','perro5.png','perro6.png','perro7.png','perro8.png','perro9.png','perro10.png',];
+        $i = 1;
         foreach ($imagenes as $imagen) {
             DB::table('corte_pelos')->insert([
                 'created_at'=>$faker->dateTimeThisYear,
@@ -23,9 +24,11 @@ class Corte_PelosTableSeeder extends Seeder
                 'tamaño'=>$faker->randomElement($tamannos),
                 'tipo_cabello_id'=>$faker->numberBetween($min = 1, $max = 3),
                 'descripcion'=>$faker->text,
-                'mascota_id'=>$faker->numberBetween($min = 1, $max = 10),
+                'comentario_id'=> $i,
+                'mascota_id'=>$faker->numberBetween($min = 1, $max = 40),
                 'imagen'=>'public/cortePelo/'.$imagen
             ]);   
+            $i = $i + 1;
         }
     }
 }
