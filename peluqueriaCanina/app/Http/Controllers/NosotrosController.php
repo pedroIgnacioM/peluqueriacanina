@@ -50,7 +50,7 @@ class NosotrosController extends Controller
     public function editarNosotrosModal($id)
     {
         $nosotros=Nosotros::find($id);
-        return view('modalEditarNosotros',[
+        return view('modales/modalEditarNosotros',[
             'nosotros'=>$nosotros
         ]);
     }
