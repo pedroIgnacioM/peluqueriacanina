@@ -53,18 +53,8 @@
                                                                 Orden Alfabetico</label>
                                                             </div>
                                                         </div>
-                                                        <br>
-                                                        <div class="row">
-                                                            <div class="form-check">
-                                                                <label class="form-check-label" for="ascendente">
-                                                                @if (isset($ascendente))
-                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="ascendente" checked>
-                                                                @else
-                                                                    <input class="form-check-input" type="checkbox" value="verdadero" name="ascendente" >
-                                                                @endif
-                                                                Ascendente</label>
-                                                            </div>
-                                                        </div>
+                                                        
+                                                        
                                                     </div>
                                                 </div>
                                                 <br>
@@ -84,6 +74,12 @@
                             </div>
                         </div>
                         <div class="col-md-10">
+                            <div class="row justify-content-end">
+                                <div class="col-sm-1 icon-right">
+                                    <a href="{{ route('ordenAscendente') }}"><i class="fas fa-long-arrow-alt-up" style="color: grey;" ></i></a>
+                                    <a href="{{ route('ordenDescendente') }}"><i class="fas fa-long-arrow-alt-down "style="color:grey;" ></i></a>
+                                </div>
+                            </div>
                             <div class="row">
                             @foreach($productos as $producto)
                                 <div class="col-sm-4 conFoto">

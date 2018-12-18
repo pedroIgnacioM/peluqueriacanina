@@ -135,4 +135,24 @@ class ProductosController extends Controller
             'elemento'=>$elemento
         ]);
     }
+
+
+    public function ordenAscendente(){
+        
+        $productos = Producto::orderBy('created_at','ASC')->get();
+        return view('catalogo',[
+            'productos'=>$productos
+        ]);
+
+        return view('catalogo')->with('productos',$productos);
+    }
+    public function ordenDescendente(){
+
+        $productos = Producto::orderBy('created_at','DESC')->get();
+        return view('catalogo',[
+            'productos'=>$productos
+        ]);
+
+        return view('catalogo')->with('productos',$productos);
+    }
 }

@@ -63,6 +63,8 @@ Route::post('/galeria/comentario/{id}','CortePeloController@agregarComentario')-
 // OrdenImagenes
 Route::get('/galeria/ordenAscendente','CortePeloController@ordenAscendente')->name('ordenAscendente');
 Route::get('/galeria/ordenDescendente','CortePeloController@ordenDescendente')->name('ordenDescendente');
+
+
 //------------------------------Rutas CorteFavorito------------------------------------------
 Route::resource('cortesFavoritos', 'CorteFavoritoController');
 
@@ -97,8 +99,9 @@ Route::post('/galeria/eliminarProducto/{id}','ProductosController@eliminar')->na
 // Rutas modales
 Route::get('/modal/eliminarProducto/{id}','ProductosController@eliminarProductoModal')->name('eliminarProductoModal');
 Route::get('/modal/editarProducto/{id}','ProductosController@editarProductoModal')->name('editarProductoModal');
-
-
+//Orden productos
+Route::get('/catalogo/ordenAscendente','ProductosController@ordenAscendente')->name('ordenAscendente');
+Route::get('/catalogo/ordenDescendente','ProductosController@ordenDescendente')->name('ordenDescendente');
 //------------------------------Rutas Eventos ---------------------------------------
 Route::get('/eventos', 'EventosController@index')->name('eventos');
 Route::get('/eventos/{id}','EventosController@detalles')->name('evento_detalle');
