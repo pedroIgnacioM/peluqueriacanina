@@ -165,7 +165,7 @@ class ReservaCitaController extends Controller
     {
         $user = \Auth::user();
         if($user==null)
-            return redirect()->route('reservaCita')->with('error','Debe tener cuenta para reservar una cita');
+            return redirect()->route('reservaCita')->with('error','Debe iniciar sesión para reservar una cita');
         $anno=strftime('%Y');
         $id_usuario=$user->id;
         $mesNumero=$request->mes;

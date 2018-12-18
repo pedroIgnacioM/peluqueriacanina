@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if (session('success'))
+        <div class="alert alert-success">
+                {{ session('success') }}
+        </div>
+@endif
 @if(Auth::user()->isAdmin() && $actual)
 <div class="container-fluid row justify-content-md-center">
 @else

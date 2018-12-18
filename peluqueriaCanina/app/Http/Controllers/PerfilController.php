@@ -73,7 +73,7 @@ class PerfilController extends Controller
 
         $user->save();
 
-        return redirect()->route('perfil',['Usuario'])->with('success','Registro editado satisfactoriamente');
+        return redirect()->route('perfil',[$user->id])->with('success','Registro editado satisfactoriamente');
     }
 
     public function actividadesModal()
