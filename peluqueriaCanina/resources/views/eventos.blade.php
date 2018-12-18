@@ -70,7 +70,82 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal-agregar-evento"></div>
+<div class="modal" id="modal-editar-evento"></div>
+<div class="modal" id="modal-eliminar-evento"></div>
 
-    
+<script>
+$(document).ready(function () {
+
+    // Modal Agregar Evento
+    $(".botonModalAgregarEvento").click(function (ev) { // for each edit contact url
+        ev.preventDefault(); // prevent navigation
+        var url = $(this).data("form"); // get the contact form url
+        console.log(url);
+        $("#modal-agregar-evento").load(url, function () { // load the url into the modal
+            $(this).modal('show'); // display the modal on url load
+        });
+    });
+
+    $('.agregar-evento-form').on('submit', function () {
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            context: this,
+            success: function (data, status) {
+                $('#modal-agregar-evento').html(data);
+            }
+        });
+    });
+
+
+    // Modal Editar Evento
+    $(".botonModalEditarEvento").click(function (ev) { // for each edit contact url
+        ev.preventDefault(); // prevent navigation
+        var url = $(this).data("form"); // get the contact form url
+        console.log(url);
+        $("#modal-editar-evento").load(url, function () { // load the url into the modal
+            $(this).modal('show'); // display the modal on url load
+        });
+    });
+
+    $('.editar-evento-form').on('submit', function () {
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            context: this,
+            success: function (data, status) {
+                $('#modal-editar-evento').html(data);
+            }
+        });
+    });
+
+    // Modal Eliminar Evento
+    $(".botonModalEliminarEvento").click(function (ev) { // for each edit contact url
+        ev.preventDefault(); // prevent navigation
+        var url = $(this).data("form"); // get the contact form url
+        console.log(url);
+        $("#modal-eliminar-evento").load(url, function () { // load the url into the modal
+            $(this).modal('show'); // display the modal on url load
+        });
+    });
+
+    $('.eliminar-evento-form').on('submit', function () {
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            context: this,
+            success: function (data, status) {
+                $('#modal-eliminar-evento').html(data);
+            }
+        });
+    });
+
+
+});
+</script>
 
 @endsection
