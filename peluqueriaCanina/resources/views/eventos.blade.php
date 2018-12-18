@@ -26,7 +26,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-5">
                                                 <p>Horario Seleccionado: {{$evento->fecha}}</p>
                                                 <p>Usuario creador: {{$evento->user->nombres}} {{$evento->user->apellidos}}</p>
                                                 @if (\Auth::user()->isAdmin() || \Auth::user()->id==$evento->user->id)
