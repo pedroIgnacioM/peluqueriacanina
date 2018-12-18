@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             Reserva_ProductosTableSeeder::class,
             Reserva_CitasTableSeeder::class,
             AnunciosTableSeeder::class,
-            nosotrosSeeder::class,
+            NosotrosSeeder::class,
         ]);
 
     }
