@@ -1,20 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Contacto;
 use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('contacto');
+        $contacto=Contacto::first();
+        return view('contacto',['contacto'=>$contacto]);
     }
 
     public function editarContacto(Request $request)
@@ -23,7 +18,7 @@ class ContactoController extends Controller
         if(!isset($user))
             abort(404);
 
-        $nosotros->numero = $request->numero;
+        $contacto->numero = $request->numero;
         $contacto->direccion = $request->direccion;
         $contacto->facebook = $request->facebook;
         $contacto->instagram = $request->instagram;
@@ -35,16 +30,23 @@ class ContactoController extends Controller
 
     public function editar(Request $request, $id){
 
-        $elemento = contacto::find($id);
-        if(!isset($elemento))
-            return redirect()->route('contacto');
+        $contacto = Contacto::find($id);
         
-        $elemento->numero = $request->numero;
-        $elemento->direccion = $request->direccion;
-        $elemento->facebook = $request->facebook;
-        $elemento->instagram = $request->instagram;
-        $elemento->save();
+        $contacto->numero = $request->numero;
+        $contacto->direccion = $request->direccion;
+        $contacto->facebook = $request->facebook;
+        $contacto->instagram = $request->instagram;
+        
+        $contacto->save();
 
         return redirect()->route('contacto')->with('success','Registro editado satisfactoriamente');
+    }
+
+    public function editarContactoModal($id)
+    {
+        $contacto=Contacto::find($id);
+        return view('modalEditarContacto',[
+            'contacto'=>$contacto
+        ]);
     }
 }

@@ -31,7 +31,7 @@
                                     <textarea id="descripcion1" rows="4" class="form-control tipo ? ' is-invalid' : '' }}" name="descripcion1" required autofocus placeholder="descripcion2">{{$nosotros->descripcion1}}</textarea>
                                 </div>
                         </div>
-                        {{-- titulo1 --}}
+                        {{-- titulo2 --}}
                         <div class="form-group row">
                                 <div class="col-md-3">
                                     <label for="titulo2" class="col-form-label text-md-right">{{ __('titulo2') }}</label>

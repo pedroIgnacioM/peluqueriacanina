@@ -6,7 +6,7 @@
                 <span> <i class="fas fa-times"></i></span>
             </button> 
         </div>
-        <form class="contacto-form" method="POST" action="{{ route('editarContactoModal', ['id'=>$elemento->id])}}" enctype="multipart/form-data"  role="form">
+        <form class="contacto-form" method="POST" action="{{ route('editarContacto', ['id'=>$contacto->id])}}" enctype="multipart/form-data"  role="form">
             {{ csrf_field() }}
             <div class="modal-body">
                 <div class="form-group row justify-content-md-center">
@@ -18,7 +18,7 @@
                                     <label for="numero" class="col-form-label text-md-right">{{ __('numero') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="numero" class="form-control tipo ? ' is-invalid' : '' }}" name="numero" required autofocus placeholder="numero" value="{{$elemento->numero}}">
+                                    <input type="text" id="numero" class="form-control tipo ? ' is-invalid' : '' }}" name="numero" required autofocus placeholder="numero" value="{{$contacto->numero}}">
                                 </div>
                         </div>
 
@@ -28,7 +28,7 @@
                                     <label for="direccion" class="col-form-label text-md-right">{{ __('direccion') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="direccion" class="form-control tipo ? ' is-invalid' : '' }}" name="direccion" required autofocus placeholder="direccion" value="{{$elemento->direccion}}">
+                                    <input type="text" id="direccion" class="form-control tipo ? ' is-invalid' : '' }}" name="direccion" required autofocus placeholder="direccion" value="{{$contacto->direccion}}">
                                 </div>
                         </div>
 
@@ -38,7 +38,7 @@
                                     <label for="facebook" class="col-form-label text-md-right">{{ __('facebook') }}</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" id="facebook" class="form-control tipo ? ' is-invalid' : '' }}" name="facebook" required autofocus placeholder="facebook" value="{{$elemento->facebook}}">
+                                    <input type="text" id="facebook" class="form-control tipo ? ' is-invalid' : '' }}" name="facebook" required autofocus placeholder="facebook" value="{{$contacto->facebook}}">
                                 </div>
                         </div>
 
@@ -48,7 +48,7 @@
                                 <label for="instagram" class="col-form-label text-md-right">{{ __('instagram') }}</label>
                             </div>
                             <div class="col-md-9">
-                            <input type="text" id="instagram" class="form-control tipo ? ' is-invalid' : '' }}" name="instagram" required autofocus placeholder="instagram" value="{{$elemento->instagram}}">
+                            <input type="text" id="instagram" class="form-control tipo ? ' is-invalid' : '' }}" name="instagram" required autofocus placeholder="instagram" value="{{$contacto->instagram}}">
                             </div>
                         </div>    
             </form>
