@@ -28,4 +28,74 @@ class EventosController extends Controller
             'evento'=>$evento
         ]);
     }
+
+    public function agregarModal(){
+        return view('modales/modalAgregarEvento');
+    }
+
+    public function eliminarModal($id)
+    {
+        $evento=Anuncio::find($id);
+        return view('modales/modalEliminarEvento',[
+            'evento'=>$evento,
+        ]);
+    }
+
+    public function editarModal($id)
+    {
+        $evento=Anuncio::find($id);
+        return view('modales/modalEditarEvento',[
+            'evento'=>$evento,
+        ]);
+    }
+
+    public function agregar(Request $request){
+        $usuario = \Auth::user()->id;
+        $imagen = $request->file('imagen')->store('public/cortePelo'); 
+
+        Anuncio::create([
+            'fecha' => $request->fecha,
+            'descripcion' => $request->descripcion,
+            'direccion' => $request->direccion,
+            'titulo'=>$request->titulo,
+            'imagen'=>$imagen,
+            'user_id'=>$usuario,
+        ]);
+
+        return redirect()->route('eventos');
+    }
+
+    public function editar(Request $request,$id){
+
+        $anuncio = Anuncio::find($id);
+        if(!isset($anuncio))
+            return redirect()->route('galeria');
+
+            
+        if($request->file('imagen')!=null)
+        {
+            $imagen = $request->file('imagen')->store('public/cortePelo'); 
+            $anuncio->imagen = $imagen;
+        }
+        
+        $anuncio->fecha = $request->fecha;
+        $anuncio->descripcion = $request->descripcion;
+        $anuncio->direccion = $request->direccion;
+        $anuncio->titulo = $request->titulo;
+
+        $anuncio->save();
+
+        return redirect()->route('eventos');
+    }
+
+    public function eliminar(Request $request,$id){
+        
+        $anuncio = Anuncio::find($id);
+        if(!isset($anuncio))
+            return redirect()->route('galeria');
+
+        $anuncio->delete();
+
+        return redirect()->route('eventos');
+    }
 }
