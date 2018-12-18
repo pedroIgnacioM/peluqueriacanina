@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-md-2">
                             {{-- Botón Agregar --}}
-                            <a class="botonModalAgregarCorte" href="#" data-toggle="modal" data-form="{{route('agregarEventoModal')}}" data-target="#modal-agregar-corte">
+                            <a class="botonModalAgregarEvento" href="#" data-toggle="modal" data-form="{{route('agregarEventoModal')}}" data-target="#modal-agregar-evento">
                                 <button class="btn btn-lg btn-primary">Agregar Evento <i class="fas fa-plus"></i></button>
                             </a>
                         </div> 
@@ -30,6 +30,20 @@
                                             <div class="col-md-6">
                                                 <p>Horario Seleccionado: {{$evento->fecha}}</p>
                                                 <p>Usuario creador: {{$evento->user->nombres}} {{$evento->user->apellidos}}</p>
+                                                @if (\Auth::user()->isAdmin() || \Auth::user()->id==$evento->user->id)
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <a class="botonModalEditarEvento" href="#" data-toggle="modal" data-form="{{route('editarEventoModal',['id'=>$evento->id])}}" data-target="#modal-editar-evento">
+                                                                <input type="button" class="btn btn-warning" value="Editar">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <a class="botonModalEliminarEvento" href="#" data-toggle="modal" data-form="{{route('eliminarEventoModal',['id'=>$evento->id])}}" data-target="#modal-eliminar-evento">
+                                                                <input type="button" class="btn btn-danger" value="Eliminar">
+                                                            </a>
+                                                        </div>
+                                                    </div>    
+                                                @endif
                                             </div>
                                             <div class="col-md-4">
                                                 <p class="text-center text-capitalize">Evento: {{$evento->titulo}}</p>
