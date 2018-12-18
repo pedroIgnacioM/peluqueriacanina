@@ -6,10 +6,19 @@
         <div class="col-sm-10">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row justify-content-between" >
+                        <div class="col-md-6">
                             <div class="card-title text-capitalize"><h1>Lista de Eventos</h1></div>
                         </div>
+                        <div class="col-md-2">
+                            {{-- Botón Agregar --}}
+                            <a class="botonModalAgregarCorte" href="#" data-toggle="modal" data-form="{{route('agregarEventoModal')}}" data-target="#modal-agregar-corte">
+                                <button class="btn btn-lg btn-primary">Agregar Evento <i class="fas fa-plus"></i></button>
+                            </a>
+                        </div> 
+                    </div>
+                    <div class="row justify-content-end">
+                         
                     </div>
                     <br>
                     @foreach ($eventos as $evento)
