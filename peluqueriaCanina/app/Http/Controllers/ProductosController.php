@@ -123,7 +123,7 @@ class ProductosController extends Controller
     public function eliminarProductoModal($id)
     {
         $elemento=Producto::find($id);
-        return view('modalEliminarProducto',[
+        return view('modales/modalEliminarProducto',[
             'elemento'=>$elemento
         ]);
     }
@@ -131,7 +131,7 @@ class ProductosController extends Controller
     public function editarProductoModal($id)
     {
         $elemento=Producto::find($id);
-        return view('modalEditarProducto',[
+        return view('modales/modalEditarProducto',[
             'elemento'=>$elemento
         ]);
     }
