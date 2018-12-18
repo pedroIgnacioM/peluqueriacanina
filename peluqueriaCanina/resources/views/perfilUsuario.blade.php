@@ -3,19 +3,19 @@
 @section('content')
 
 @if(Auth::user()->isAdmin() && $actual)
-<div class="container row">
+<div class="container-fluid row justify-content-md-center">
 @else
-<div class="container">
+<div class="container-fluid row justify-content-md-center">
 @endif
-        @if(Auth::user()->isAdmin() && $actual)
-        <div class="col-md-3">
+    @if(Auth::user()->isAdmin() && $actual)
+        <div class="col-md-2">
                 <div class="card">
                         <div class="card-body">
                                 <div class="row justify-content-md-center">
                                         <div class="card-title"><h2>Opciones</h2></div>
                                 </div>
                                 <div class="row justify-content-md-center">
-                                        <div class="col-md-9">
+                                        <div class="col-md-10">
                                                 <a href="" class="botonModal" data-form="{{route('actividadesModal')}}" data-toggle="modal" data-target="#modal-actividades">
                                                         <button class="btn btn-primary btn-block">Lista Actividades</button>
                                                 </a>
@@ -23,7 +23,7 @@
                                 </div>
                                 <br>
                                 <div class="row justify-content-md-center">
-                                        <div class="col-md-9">
+                                        <div class="col-md-10">
                                                 <a href="" class="botonModalCita" data-form="{{route('citasModal')}}" data-toggle="modal" data-target="#modal-citas">
                                                         <button class="btn btn-primary btn-block">Lista Citas</button>
                                                 </a>
@@ -34,32 +34,57 @@
         </div>
         @endif
         @if(Auth::user()->isAdmin() && $actual)
-        <div class="card col-md-9">
+        <div class="card col-md-8">
         @else
         <div class="card">
         @endif
                 <div class="card-body">
-                        <div class="card-title"><h1>Perfil Usuario</h1></div>
-                        <div class="row ">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="card-title"><h1>Perfil Usuario</h1></div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center ">
                                 <div class="col-md-4">
                                         <div class="card">
-                                                <div class="card-body">                            
-                                                        <img src="{{Storage::url($usuario->imagen)}}" alt="avatar" class="img-thumbnail rounded-circle">
-                                                        @if ($actual)
-                                                        <p><a class="text" href="#" data-toggle="modal" data-target="#editarPerfilModal">Editar</a> 
-                                                        <br>
-                                                        <a class="text" data-toggle="modal" data-target="#subirImagenModal" href="#">Subir Foto</a></p>
-                                                        @endif
+                                                <div class="card-body">  
+                                                     <div class='row justify-content-center '>
+                                                        <div class="col-sm-12">
+                                                            <img src="{{Storage::url($usuario->imagen)}}" alt="avatar" class="img-thumbnail rounded-circle">
+                                                        </div>
+                                                    </div>  
+                                                    @if ($actual)
+                                                        <div class='row'>
+                                                            <div class="col-sm-12">
+                                                                <div class='row justify-content-center'>
+                                                                    <div class="col-sm-6 row justify-content-center">
+                                                                        <a class="text" href="#" data-toggle="modal" data-target="#editarPerfilModal"><i class="fas fa-edit iconoGaleria"></i></a> 
+                                                                    </div>
+                                                                    <div class="col-sm-6 row justify-content-center">
+                                                                        <a class="text" data-toggle="modal" data-target="#subirImagenModal" href="#"><i class="fas fa-camera iconoGaleria"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    @endif
                                                 </div>
                                         </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                         <div class="card">
                                                 <div class="card-body">                            
-                                                        <div class="card-title"><h1>Datos Usuario</h1></div>
+                                                        <div class="card-title"><h2>Datos Usuario</h2></div>
                                                         {{ csrf_field() }}
                                                         @foreach (array_combine($titulos, $nombresColumnas) as $titulo => $nombreColumna)
-                                                                <b >{{$titulo}}</b>:<a class="text">{{$usuario->$nombreColumna}}</a><br>
+                                                            <div class="row">
+                                                                <div class="col-md-3 nombreTitulo ">
+
+                                                                    <b >{{$titulo}}</b>
+                                                                </div>
+                                                                <div class="col-md-9 nombreRespuesta">
+                                                                   : <a class="text">{{$usuario->$nombreColumna}}</a><br>
+                                                                </div>
+                                                            </div>
                                                         @endforeach
                                                 </div>
                                         </div>
@@ -67,11 +92,12 @@
                         </div>
                 </div>
 
+            <div class="card-body">
                 <div class="row justify-content-md-center">
                         <div class="col-md-11">
                                 <div class="card">
                                         <div class="card-body">                            
-                                                <div class="card-title"><h1>Mascotas</h1></div>
+                                                <div class="card-title"><h2>Mascotas</h2></div>
                                                 <table class="table table-bordered">
                                                         {{ csrf_field() }}
                                                         <tr>
@@ -102,8 +128,8 @@
                 </div>
                 <br>
         </div>
+    </div>
 </div>
-
 
 <!-- Modal Subir Imagen -->
 <div class="modal fade" id="subirImagenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

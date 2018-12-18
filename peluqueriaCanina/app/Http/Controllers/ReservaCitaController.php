@@ -164,6 +164,8 @@ class ReservaCitaController extends Controller
     public function crear(Request $request)
     {
         $user = \Auth::user();
+        if($user==null)
+            return redirect()->route('reservaCita');
         $anno=strftime('%Y');
         $id_usuario=$user->id;
         $mesNumero=$request->mes;

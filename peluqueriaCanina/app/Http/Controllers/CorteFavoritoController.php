@@ -84,7 +84,7 @@ class CorteFavoritoController extends Controller
     public function eliminarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
-        return view('modalEliminarCorteFavorito',[
+        return view('modales/modalEliminarCorteFavorito',[
             'elemento'=>$elemento
         ]);
     }
