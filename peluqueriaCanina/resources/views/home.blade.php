@@ -13,9 +13,13 @@
                         </div>
                     @endif
 
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-md-9">
-                            <h5>Ultimos Trabajos</h5>
+                            <div class="row ">
+                                <div class="col-md-9">
+                                    <h5>Ultimos Trabajos</h5>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -57,8 +61,8 @@
                                     
                                     <h5>Descripción</h5>
                                     <p>
-                                        Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
-                                        cortes las uñas y tratamientos antiparasitarios.
+                                    Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
+                                    cortes las uñas y tratamientos antiparasitarios.
                                     </p>
                                 </div>
                            </div>
@@ -68,15 +72,30 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <!-- Referenecia a Reserva -->
-                                            <a href="{{ route('reservaCita') }}">Reserva Aquí</a>
-                                            <i class="fas fa-calendar-alt"></i>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row justify-content-center">
+                                                        <a href="{{ route('reservaCita') }}">Reserva Aquí  <i class="fas fa-calendar-alt"></i></a>
+                                                    </div>
+                                                </div>  
+                                            </div>
                                             <br>
-                                            <b>Horarios de atención</b>
-                                            <p> 
-                                                Lunes a Viernes de 9:00 am hasta 17:00 pm
-                                                <br> 
-                                                Sabados de 9:00 am hasta 13:00 pm
-                                            </p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <b>Horarios de atención</b>
+                                                </div>
+                                            </div> 
+                                             <div class="row justify-content-center">
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <p> 
+                                                            Lunes a Viernes de 9:00 am hasta 17:00 pm
+                                                            <br> 
+                                                            Sabados de 9:00 am hasta 13:00 pm
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div> 
                                         </div>    
                                     </div>
                                 </div>
@@ -101,40 +120,46 @@
                                 </div>
                             </div>
                         </div>
+                        <!--Eventos-->
                         <div class ="col-md-3 bordeado-izquierdo">
-                            <div class="row justify-content-end">
-                                <div class="col-md-8">
-                                    <h4>Eventos</h4>        
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="row justify-content-center">
+                                        <h4>Eventos</h4>   
+                                    </div>     
                                 </div>
                             </div>
-                            <br>
                             @foreach ($anuncios as $anuncio)
-                            <div class="container ">
-                                <a href="{{ route('evento_detalle',['id'=>$anuncio->id]) }}">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6 text-capitalize">
-                                        <h5>{{$anuncio->titulo}}</h5>
+                                <div class="container ">
+                                    <a href="{{ route('evento_detalle',['id'=>$anuncio->id]) }}">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="row justify-content-center">
+                                                    <h5>{{$anuncio->titulo}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-8">
+                                                <div class="row justify-content-center">
+                                                    <img src="{{Storage::url($anuncio->imagen)}}" alt="imagen_evento" width="120px" height="120px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-12">
+                                            <p class="max-lines">{{$anuncio->descripcion}}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-md-8">
-                                        <img src="{{Storage::url($anuncio->imagen)}}" alt="imagen_evento" width="120px" height="120px">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6">
+                                            <p class="max-lines">{{$anuncio->fecha}}</p>
+                                        </div>
                                     </div>
+                                    <hr>
                                 </div>
-                                </a>
-                                <div class="row justify-content-center">
-                                    <div class="col-md-12">
-                                        <p class="max-lines">{{$anuncio->descripcion}}</p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <p class="max-lines">{{$anuncio->fecha}}</p>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            
+                                
                             @endforeach
                                 
                         </div>

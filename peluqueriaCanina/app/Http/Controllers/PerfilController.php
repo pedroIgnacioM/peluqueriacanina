@@ -79,7 +79,7 @@ class PerfilController extends Controller
     public function actividadesModal()
     {
         $actividades=Actividad::all();
-        return view('modalActividades',[
+        return view('modales/modalActividades',[
             'actividades'=>$actividades
         ]);
         
@@ -87,7 +87,7 @@ class PerfilController extends Controller
      public function citasModal()
     {
         $reserva_citas=ReservaCita::all();
-        return view('modalCitas',[
+        return view('modales/modalCitas',[
             'reserva_citas'=>$reserva_citas
         ]);
     }

@@ -93,7 +93,7 @@ class CortePeloController extends Controller
                 ->select('corte_favoritos.*')
                 ->paginate(12);
         }
-        $cortePelos = CortePelo::orderBy('id','DESC')->paginate(12);
+        $cortePelos = CortePelo::orderBy('created_at','DESC')->paginate(12);
 
         return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
     }
@@ -115,7 +115,7 @@ class CortePeloController extends Controller
         $cabelloN = $request->cabelloN;
 
 
-        $cortePelos = CortePelo::orderBy('id','DESC')
+        $cortePelos = CortePelo::orderBy('created_at','DESC')
         ->join('tipo_cabello','tipo_cabello.id','=','corte_pelos.tipo_cabello_id')
         ->Where('corte_pelos.tamaño','=',  $tamanoP)
         ->orWhere('corte_pelos.tamaño','=',$tamanoM)
@@ -162,7 +162,7 @@ class CortePeloController extends Controller
     public function eliminarCorteModal($id)
     {
         $elemento=CortePelo::find($id);
-        return view('modalEliminarCorte',[
+        return view('modales/modalEliminarCorte',[
             'elemento'=>$elemento
         ]);
     }
@@ -171,7 +171,7 @@ class CortePeloController extends Controller
     {
         $elemento=CortePelo::find($id);
         $mascotas = Mascota::orderBy('nombre','asc')->get();
-        return view('modalEditarCorte',[
+        return view('modales/modalEditarCorte',[
             'elemento'=>$elemento,
             'mascotas'=>$mascotas
         ]);
@@ -185,7 +185,7 @@ class CortePeloController extends Controller
             ->select('corte_favoritos.*')->paginate(12);
 
         $elemento = CortePelo::find($id);
-        return view('modalAgregarCorteFavorito',[
+        return view('modales/modalAgregarCorteFavorito',[
             'elemento'=>$elemento ,
             'corteFavoritos' => $corteFavoritos
         ]);
@@ -199,14 +199,14 @@ class CortePeloController extends Controller
         if($elemento->mascota_id != null){
             $usuario = User::find($mascota->user_id);
 
-            return view('modalComentario',[
+            return view('modales/modalComentario',[
                 'elemento' =>$elemento,
                 'comentario' =>$comentario,
                 'mascota' =>$mascota,
                 'usuario'=> $usuario ,
             ]);  
         }else{  
-             return view('modalComentario',[
+             return view('modales/modalComentario',[
                 'elemento' =>$elemento,
                 'comentario' =>$comentario,
                 'usuario'=> null,
@@ -217,7 +217,7 @@ class CortePeloController extends Controller
     public function agregarCorteModal(){
 
         $mascotas = Mascota::orderBy('nombre','asc')->get();
-        return view('modalAgregarCorte',[
+        return view('modales/modalAgregarCorte',[
             'mascotas'=>$mascotas
         ]);
     }
@@ -302,6 +302,36 @@ class CortePeloController extends Controller
         $elemento->save();
         
         return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+    }
+
+    //----------------------------------Orden Imagenes --------------------------
+    public function ordenAscendente(){
+        
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
+        }
+
+        $cortePelos = CortePelo::orderBy('created_at','ASC')->paginate(12);
+
+        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
+    }
+    public function ordenDescendente(){
+
+        $corteFavoritos=null;
+        if(\Auth::user()!=null){
+            $corteFavoritos = CorteFavorito::orderBy('id','DESC')
+                ->Where('corte_favoritos.user_id','=', \Auth::user()->id)
+                ->select('corte_favoritos.*')
+                ->paginate(12);
+        }
+
+        $cortePelos = CortePelo::orderBy('created_at','DESC')->paginate(12);
+
+        return view('galeria')->with('cortePelos',$cortePelos)->with('corteFavoritos',$corteFavoritos);
     }
 }
     
