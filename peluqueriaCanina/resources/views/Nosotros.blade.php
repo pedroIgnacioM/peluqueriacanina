@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div><h5>{{$nosotros->titulo2}}</h5></div>
-                                    <p>{{$nosotros->descripcion1}}</p>
+                                    <p>{{$nosotros->descripcion2}}</p>
                                 </div>
                             </div>
 
