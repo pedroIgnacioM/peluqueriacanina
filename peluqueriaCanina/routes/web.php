@@ -100,7 +100,7 @@ Route::get('/modal/editarProducto/{id}','ProductosController@editarProductoModal
 
 //------------------------------Rutas Eventos ---------------------------------------
 Route::get('/eventos', 'EventosController@index')->name('eventos');
-Route::get('/eventos/{id}','EventosController@detalles')->name('evento_detalle');
+Route::get('/eventos/detalle/{id}','EventosController@detalles')->name('evento_detalle');
 
 Route::post('eventos/agregar',"EventosController@agregar")->name('agregarEvento');
 Route::post('eventos/editar/{id}',"EventosController@editar")->name('editarEvento');
@@ -108,8 +108,8 @@ Route::post('eventos/eliminar/{id}',"EventosController@eliminar")->name('elimina
 
 //Rutas modales
 Route::get('/modal/agregarEvento','EventosController@agregarModal')->name("agregarEventoModal");
-Route::get('/modal/editarEvento','EventosController@editarModal')->name("editarEventoModal");
-Route::get('/modal/eliminarEvento','EventosController@eliminarModal')->name("eliminarEventoModal");
+Route::get('/modal/editarEvento/{id}','EventosController@editarModal')->name("editarEventoModal");
+Route::get('/modal/eliminarEvento/{id}','EventosController@eliminarModal')->name("eliminarEventoModal");
 
 //-------------------------------Rutas reservaCita-----------------------------------
 
