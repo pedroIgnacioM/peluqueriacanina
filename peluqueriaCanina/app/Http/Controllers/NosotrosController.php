@@ -18,7 +18,23 @@ class NosotrosController extends Controller
             abort(404);
         $imagen = $request->file('imagen')->store('public/Nosotros');
 
-        $user->imagen=$imagen;
+        $nosotros->imagen=$imagen;
+        $nosotros->save();
+
+        return redirect()->route('nosotros',['Usuario']);
+    }
+
+    public function editarNosotros(Request $request)
+    {
+        $user = \Auth::user();
+        if(!isset($user))
+            abort(404);
+
+        $nosotros->titulo1 = $request->titulo1;
+        $nosotros->descripcion1 = $request->descripcion1;
+        $nosotros->titulo2 = $request->titulo2;
+        $nosotros->descripcion2 = $request->descripcion2;
+
         $user->save();
 
         return redirect()->route('nosotros',['Usuario']);
