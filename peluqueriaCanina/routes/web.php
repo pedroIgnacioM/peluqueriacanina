@@ -51,17 +51,20 @@ Route::get('/modal/eliminarCorte/{id}','CortePeloController@eliminarCorteModal')
 Route::get('/modal/editarCorte/{id}','CortePeloController@editarCorteModal')->name('editarCorteModal');
 Route::get('/modal/agregarCorte','CortePeloController@agregarCorteModal')->name('agregarCorteModal');
 
-//Rutas post
+// Rutas post
 Route::post('/galeria/filtro', 'CortePeloController@galeriaFiltro')->name('galeriaFiltro');
 Route::post('/galeria/agregar','CortePeloController@agregarCorte')->name('agregarCorte');
 
 Route::post('/galeria/editarCorte/{id}','CortePeloController@editarCorte')->name('editarCorte');
 Route::post('/galeria/eliminarCorte/{id}','CortePeloController@eliminarCorte')->name('eliminarCorte');
-
-//Comentarios
+ 
+// Comentarios
 Route::get('/modal/verComentario/{id}','CortePeloController@verComentarioModal')->name('verComentarioModal');
 Route::post('/galeria/comentario/{id}','CortePeloController@agregarComentario')->name('agregarComentario');
-
+ 
+// OrdenImagenes
+Route::get('/galeria/ordenAscendente','CortePeloController@ordenAscendente')->name('ordenAscendente');
+Route::get('/galeria/ordenDescendente','CortePeloController@ordenDescendente')->name('ordenDescendente');
 //------------------------------Rutas CorteFavorito------------------------------------------
 Route::resource('cortesFavoritos', 'CorteFavoritoController');
 
@@ -75,7 +78,7 @@ Route::get('/modal/agregarFavorito/{id}','CortePeloController@agregarCorteFavori
 Route::post('/corteFavorito/eliminarCorteFavorito/{id}','CorteFavoritoController@eliminarCorte')->name('eliminarCorteFavorito');
 Route::post('/galeria/agregarFavorito/{id}','CortePeloController@agregarCorteFavorito')->name('agregarCorteFavorito');
 
-Route::post('/corte-favorito/Filtro', 'CorteFavoritoController@corteFavoritoFiltro')->name('cortesFavoritosFiltro');
+Route::post('/corteFavorito/Filtro', 'CorteFavoritoController@corteFavoritoFiltro')->name('cortesFavoritosFiltro');
 
 //------------------------------Rutas Registrar Mascota -------------------------------------
 Route::get('/registraMascota', 'Auth\RegisterController@registraMascota')->name('registraMascota');

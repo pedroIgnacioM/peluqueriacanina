@@ -121,8 +121,8 @@
                         <div class="col-md-10 ">
                             <div class="row justify-content-end">
                                 <div class="col-sm-1 icon-right">
-                                    <a><i class="fas fa-long-arrow-alt-up " ></i></a>
-                                    <a><i class="fas fa-long-arrow-alt-down " ></i></a>  
+                                    <a href="{{ route('ordenAscendente') }}"><i class="fas fa-long-arrow-alt-up " ></i></a>
+                                    <a href="{{ route('ordenDescendente') }}"><i class="fas fa-long-arrow-alt-down " ></i></a>  
                                 </div>
                             </div>
                             
@@ -170,7 +170,6 @@
 
                                                         @endif 
                                                         @if(Auth::user()->isAdmin())
-
                                                             {{-- Botón Eliminar --}}
                                                             <div class="col-md-2">
                                                                 <a href="" class="botonModal" data-toggle="modal" data-form="{{route('eliminarCorteModal',['id'=>$cortePelo->id])}}"  data-target="#modal-corte"><span><i class="fas fa-trash iconoGaleria"></i></span></a>
@@ -198,20 +197,19 @@
 
 <div class="modal" id="modalImagen">
     <div class="ventana">
-        
         <div class="boton-cerrar">X</div>
-        <img class="imagenModal" id="imagenAMostrar" src="" alt="imagen" width="600px">
-        
+            <img class="imagenModal" id="imagenAMostrar" src="" alt="imagen" width="600px">
         </div>
     </div>
 </div>
+
 <div class="modal" id="modal-agregar-corte"></div>
 <div class="modal" id="modal-corte"></div>
 <div class="modal" id="modal-corteFavorito"></div>
 <div class="modal" id="modal-comentario"></div>
 
 <script>
-   
+
     $(document).ready(function () {
 
         $("#imagenRef a").click(function(e){
@@ -317,6 +315,9 @@
         $('#modal-comentario').on('hidden.bs.modal', function (e) {
 	        $(this).find('.modal-content').empty();
 	    });
+         $('#modal-corteFavorito').on('hidden.bs.modal', function (e) {
+            $(this).find('.modal-content').empty();
+        });
     });
 </script>
 @endsection
