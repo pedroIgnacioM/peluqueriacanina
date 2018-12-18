@@ -86,7 +86,7 @@ class PerfilController extends Controller
     }
      public function citasModal()
     {
-        $reserva_citas=ReservaCita::all();
+        $reserva_citas=ReservaCita::orderBy('fecha','desc')->get();
         return view('modales/modalCitas',[
             'reserva_citas'=>$reserva_citas
         ]);
