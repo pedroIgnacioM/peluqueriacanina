@@ -45,7 +45,7 @@ class NosotrosController extends Controller
 
         $nosotros->save();
 
-        return redirect()->route('nosotros');
+        return redirect()->route('nosotros')->with('success','Registro editado satisfactoriamente');
     }
     public function editarNosotrosModal($id)
     {

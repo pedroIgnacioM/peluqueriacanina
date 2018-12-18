@@ -62,7 +62,7 @@ class EventosController extends Controller
             'user_id'=>$usuario,
         ]);
 
-        return redirect()->route('eventos');
+        return redirect()->route('eventos')->with('success','Registro creado satisfactoriamente');
     }
 
     public function editar(Request $request,$id){
@@ -85,7 +85,7 @@ class EventosController extends Controller
 
         $anuncio->save();
 
-        return redirect()->route('eventos');
+        return redirect()->route('eventos')->with('success','Registro editado satisfactoriamente');
     }
 
     public function eliminar(Request $request,$id){
@@ -96,6 +96,6 @@ class EventosController extends Controller
 
         $anuncio->delete();
 
-        return redirect()->route('eventos');
+        return redirect()->route('eventos')->with('success','Registro eliminado satisfactoriamente');
     }
 }

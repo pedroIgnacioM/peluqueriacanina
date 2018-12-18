@@ -102,7 +102,7 @@ class CorteFavoritoController extends Controller
 
         $corteFavorito->delete();
 
-        return redirect()->route('cortesFavoritos')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('cortesFavoritos')->with('success','Registro eliminado satisfactoriamente');
     }
     
     public function corteFavoritoFiltro(Request $request){

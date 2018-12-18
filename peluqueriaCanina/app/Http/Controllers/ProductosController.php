@@ -53,7 +53,7 @@ class ProductosController extends Controller
         $elemento->descripcion = $request->descripcion;
         $elemento->save();
 
-        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('catalogo')->with('success','Registro editado satisfactoriamente');
     }
 
     public function eliminar(Request $request, $id){
@@ -64,7 +64,7 @@ class ProductosController extends Controller
 
         $elemento->delete();
 
-        return redirect()->route('catalogo')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('catalogo')->with('success','Registro eliminado satisfactoriamente');
     }
 
     public function catalogoFiltro(Request $request){
