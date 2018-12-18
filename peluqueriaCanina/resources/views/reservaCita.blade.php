@@ -49,7 +49,7 @@
                                                                         <td class="text-center" id="elementoTabla"><a href="#">{{$horariosLibres[$j][$i]}}</a></td> 
                                                                     @endif
                                                                 @else
-                                                                    <td class="text-center"></td> 
+                                                                    <td class="text-center table-active"></td> 
                                                                 @endif
                                                             @endfor
                                                         </tr>
