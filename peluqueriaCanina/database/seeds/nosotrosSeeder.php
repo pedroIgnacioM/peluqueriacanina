@@ -20,7 +20,7 @@ class NosotrosSeeder extends Seeder
             'titulo2' => 'Sobre mi',
             'descripcion2' => 'Fuego ardiente dentro de mi Mil miradas en el horizonte La indecicion huyo Llegare a la meta Se cumplira lo se El futuro un triunfo me depara Nada se interpondra La devilidad se esfumo Ardiendo esta La llama en mi La victoria te pertenece ya El poder del fuego habras De tener con invencible corazon Tuyo sera En tus ojos hay
             Ese gran poder Es la meta con su gran luz La frontera logre alcanzar Mas alla tu iras Con el corazon Ellos volaran Hacia el horizonte veran Los conocimientos estan En cualqueir lugar',
-            
+            'imagen'=>'public/nosotros/nosotros.jpg'
         ]);
     }
 }
