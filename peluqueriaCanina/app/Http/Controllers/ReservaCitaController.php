@@ -165,7 +165,7 @@ class ReservaCitaController extends Controller
     {
         $user = \Auth::user();
         if($user==null)
-            return redirect()->route('reservaCita');
+            return redirect()->route('reservaCita')->with('error','Debe iniciar sesión para reservar una cita');
         $anno=strftime('%Y');
         $id_usuario=$user->id;
         $mesNumero=$request->mes;
@@ -187,7 +187,7 @@ class ReservaCitaController extends Controller
             'mascota_id' => $id_mascota,
 
         ]);
-        return redirect()->route('reservaCita');
+        return redirect()->route('reservaCita')->with('success','Cita reservada satisfactoriamente');
         
     }
 }

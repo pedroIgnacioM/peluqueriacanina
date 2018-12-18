@@ -31,6 +31,6 @@ class MascotaController extends Controller
 
         ]);
 
-        return redirect()->route('perfil',['Usuario']);
+        return redirect()->route('perfil',['Usuario'])->with('success','Registro creado satisfactoriamente');
     }
 }

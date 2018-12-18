@@ -262,7 +262,7 @@ class CortePeloController extends Controller
 
         $elemento->save();
 
-        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('galeria')->with('success','Registro editado satisfactoriamente');
     }
     
     public function eliminarCorte(Request $request , $id)
@@ -273,7 +273,7 @@ class CortePeloController extends Controller
 
         $elemento->delete();
 
-        return redirect()->route('galeria')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('galeria')->with('success','Registro eliminado satisfactoriamente');
     }
     
     public function agregarCorteFavorito(Request $request, $id)

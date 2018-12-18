@@ -57,7 +57,7 @@ class PerfilController extends Controller
         $user->imagen=$imagen;
         $user->save();
 
-        return redirect()->route('perfil',[$user->id]);
+        return redirect()->route('perfil',[$user->id])->with('success','Imagen subida satisfactoriamente');
     }
 
     public function editarPerfil(Request $request)
@@ -73,7 +73,7 @@ class PerfilController extends Controller
 
         $user->save();
 
-        return redirect()->route('perfil',['Usuario']);
+        return redirect()->route('perfil',[$user->id])->with('success','Registro editado satisfactoriamente');
     }
 
     public function actividadesModal()

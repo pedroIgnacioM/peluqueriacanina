@@ -4,6 +4,11 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-sm-10">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-body">
                     <div class="row justify-content-between" >

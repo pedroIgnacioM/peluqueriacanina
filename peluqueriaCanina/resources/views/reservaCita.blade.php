@@ -4,7 +4,11 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-sm-10">
-        
+            @if (session('success'))
+                <div class="alert alert-success">
+                        {{ session('success') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header"> <h3>¿Qué día y hora te va bien?</h3> </div>
 
@@ -156,10 +160,33 @@
 </div>
 <div class="modal" id="modal-corteFavorito"></div>
 
+@if (session('error'))
+<div class="modal" id="modal-error" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog2" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="text-center">{{ session('error') }}</h4>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{route('login')}}"><button class="btn btn-primary btn-reservacion btn-block"><span class="AgrandarLetra">Iniciar Sesión</span></button></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{route('register')}}"><button class="btn btn-primary btn-reservacion btn-block"><span class="AgrandarLetra">Registrarse</span></button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+$(document).ready(function () {
+    $('#modal-error').modal('show');
+});
+</script>
+@endif
 
-
-
+<script>
 
 
 $(document).ready(function () {

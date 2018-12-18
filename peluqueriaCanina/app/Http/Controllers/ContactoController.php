@@ -30,7 +30,7 @@ class ContactoController extends Controller
 
         $user->save();
 
-        return redirect()->route('contacto',['Usuario']);
+        return redirect()->route('contacto',['Usuario'])->with('success','Registro editado satisfactoriamente');
     }
 
     public function editar(Request $request, $id){
@@ -45,6 +45,6 @@ class ContactoController extends Controller
         $elemento->instagram = $request->instagram;
         $elemento->save();
 
-        return redirect()->route('contacto')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('contacto')->with('success','Registro editado satisfactoriamente');
     }
 }
