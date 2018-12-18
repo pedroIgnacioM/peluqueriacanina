@@ -32,6 +32,7 @@ text-decoration:none;
 	overflow: hidden;
 	max-height: 5.4em;
 	line-height: 1.8em;
+	text-align: justify;
 }
 .max-lines-eventos {
 	display: block; /* or inline-block */
@@ -40,6 +41,7 @@ text-decoration:none;
 	overflow: hidden;
 	max-height: 3.0em;
 	line-height: 1.5em;
+
 }
 .ventana{
 	text-align:center;
