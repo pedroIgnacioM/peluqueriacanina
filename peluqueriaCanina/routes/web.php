@@ -27,13 +27,6 @@ Route::group(['middleware' => 'is_admin'], function () {
 //Rutas del Contacto
 Route::get('/contacto', 'ContactoController@index')->name('contacto');
 
-
-//Rutas del Nosotros
-Route::get('/nosotros', 'NosotrosController@index')->name('nosotros');
-Route::get('/nosotros', 'NosotrosController@index')->name('nosotros');
-Route::post('/subirImagenNosotros','PerfilController@subirImagen')->name('subirImagenNosotros');
-Route::post('/editarNosotros','NosotrosController@editarNosotros')->name('editarNosotros');
-
 //Rutas Perfil
 Route::get('/formulario_mascota/agregar', 'MascotaController@formularioAgregar')->name('agregarMascota');
 Route::get('/home', 'HomeController@index')->name('home');

@@ -57,8 +57,8 @@
                                     
                                     <h5>Descripción</h5>
                                     <p>
-                                        Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
-                                        cortes las uñas y tratamientos antiparasitarios.
+                                    Mantenemos a los perros en buenas condiciones, ofrecemos cortes de pelo, 
+                                    cortes las uñas y tratamientos antiparasitarios.
                                     </p>
                                 </div>
                            </div>
