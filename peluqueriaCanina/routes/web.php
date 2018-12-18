@@ -26,7 +26,7 @@ Route::group(['middleware' => 'is_admin'], function () {
 
 //Rutas del Contacto
 Route::get('/contacto', 'ContactoController@index')->name('contacto');
-//Rutas POST
+
 Route::post('/editarContacto/{id}','ContactoController@editar')->name('editarContacto');
 Route::get('/modal/editarContacto/{id}','ContactoController@editarContacto')->name('editarContactoModal');
 

@@ -6,16 +6,21 @@
         <div class="col-sm-10">
         
             <div class="card">
-                <div class="card-header"> <h3>Donde Encontrarnos</h3> </div>
-                @auth
-                    @if(Auth::user()->isAdmin())
-                        {{-- Botón Editar --}}
-                            <div class="col-md-2">
+                <div class="card-header"> 
+                    <h3>Donde Encontrarnos
+                    @auth
+                        @if(Auth::user()->isAdmin())
+                            {{-- Botón Editar --}}
+                            
                                 <a href="" class="botonModal" data-form="{{route('editarContactoModal',['id'=>$contacto->id])}}" data-toggle="modal" data-target="#modal-contacto">
                                 <span><i class="fas fa-edit iconoGaleria" ></i></span></a>
-                            </div>
-                    @endif
-                @endauth
+                            
+                        @endif
+                    @endauth
+                    </h3>
+
+                </div>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
