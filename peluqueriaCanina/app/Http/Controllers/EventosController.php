@@ -28,4 +28,24 @@ class EventosController extends Controller
             'evento'=>$evento
         ]);
     }
+
+    public function agregarModal(){
+        return view('modales/modalAgregarEvento');
+    }
+
+    public function eliminarModal($id)
+    {
+        $evento=Anuncio::find($id);
+        return view('modales/modalEliminarEvento',[
+            'evento'=>$evento,
+        ]);
+    }
+
+    public function editarModal($id)
+    {
+        $evento=Anuncio::find($id);
+        return view('modales/modalEditarEvento',[
+            'evento'=>$evento,
+        ]);
+    }
 }
