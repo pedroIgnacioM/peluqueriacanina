@@ -78,6 +78,7 @@
     </div>
 </div>
 <div class="modal" id="modal-contacto"></div>
+
 <script>
     // Modal
     $(document).ready(function () {
@@ -103,7 +104,5 @@
         });
     
 });
-
-
 </script>
 @endsection
