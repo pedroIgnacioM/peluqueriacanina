@@ -106,9 +106,8 @@ text-decoration:none;
 	color: whitesmoke!important;
 }
 /*pagina*/
-.py-4{
-	background: #50888a42;
-	min-height: 2000px;
+.fondo{
+	background-color: #50888a42;
 }
 button{
 	background: cadetblue!important;
