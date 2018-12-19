@@ -45,7 +45,7 @@ class ContactoController extends Controller
     public function editarContactoModal($id)
     {
         $contacto=Contacto::find($id);
-        return view('modalEditarContacto',[
+        return view('modales/modalEditarContacto',[
             'contacto'=>$contacto
         ]);
     }
