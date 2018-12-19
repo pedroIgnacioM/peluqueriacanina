@@ -113,7 +113,7 @@
                         <div class="form-group row">
                                 <label for="sexoMascota" class="col-md-2 col-form-label text-md-right">{{ __('Sexo') }}</label>
                             <div class="col-md-5">
-                                <select id="sexoMascota" name="sexoMascota" class="custom-select">
+                                <select id="sexoMascota" name="sexoMascota" class="custom-select" required>
 
                                         <option selected value="">Selecciona...</option>
                                         <option>Hembra</option>
@@ -125,13 +125,19 @@
                                 <label for="color" class="col-md-2 col-form-label text-md-right">{{ __('Color') }}</label>
 
                             <div class="col-md-5">
-                                <input id="color" type="text" class="form-control" name="color" value="{{ old('color') }}" required>
+                                <select id="color" name="color" class="custom-select" required>
+
+                                        <option selected value="">Selecciona...</option>
+                                        <option value="rubio">Rubio</option>
+                                        <option value="castaño">Castaño</option>
+                                        <option value="negro">Negro</option>
+                                </select>  
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="imagenMascota" class="col-md-2 col-form-label text-md-right">{{ __('Imagen') }}</label>
                             <div class="col-md-5">
-                                    <input id="imagenMascota" type="file" class="form-control" name="imagenMascota">
+                                    <input id="imagenMascota" type="file" class="form-control" name="imagenMascota" required>
 
                             </div>
                         </div>
