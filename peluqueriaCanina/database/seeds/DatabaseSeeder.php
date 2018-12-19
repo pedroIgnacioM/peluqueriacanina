@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             AnunciosTableSeeder::class,
             NosotrosSeeder::class,
             ContactoSeeder::class,
+            ActividadesTableSeeder::class,
         ]);
 
     }
