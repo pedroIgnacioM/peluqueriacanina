@@ -108,6 +108,7 @@ text-decoration:none;
 /*pagina*/
 .py-4{
 	background: #50888a42;
+	min-height: 2000px;
 }
 button{
 	background: cadetblue!important;
